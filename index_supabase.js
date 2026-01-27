@@ -358,12 +358,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Hero Slider Logic
     const slideImages = [
-        'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/12.webp',
-        'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/13.webp',
-        'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/14.webp',
-        'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/7.webp',
-        'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/8.webp',
-        'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/9.webp'
+        'assets/12.webp',
+        'assets/13.webp',
+        'assets/14.webp',
+        'assets/7.webp',
+        'assets/8.webp',
+        'assets/9.webp'
     ];
     const desktopSlider = document.getElementById('hero-slider-desktop');
     const mobileSlider = document.getElementById('hero-slider-mobile');

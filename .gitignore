@@ -1,6 +1,5 @@
 node_modules/
 .venv/
-assets/
 .env
 optimize_assets.py
 optimize_assets_v2.py
