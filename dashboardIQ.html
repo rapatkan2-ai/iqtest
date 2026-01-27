@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Laporan Analisis Intelektual</title>
+    <link href="styles.css" rel="stylesheet">
+
+    <link href="fonts.css" rel="stylesheet">
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/id.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.1/css/flag-icons.min.css" />
+    <link rel="icon" href="assets/FaviconNew.webp">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+    <script src="./pdfGeneratorSample.js"></script>
+    <script src="./pdfGeneratorPremium.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.12.0/umd/Recharts.js"></script>
+    <script src="./chcChart.js"></script>
+
+    <!-- Tailwind Config for Poppins -->
+    <!-- Tailwind Config Removed (Using compiled styles.css) -->
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="dashboardIQ.css?v=12">
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-black text-slate-800 dark:text-slate-100 transition-colors duration-300 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+    <app-sidebar></app-sidebar>
+
+    <!-- Payment Modal (Refined Premium Design) -->
+    <div id="payment-modal"
+        class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 transition-all duration-500 opacity-0"
+        onclick="if(event.target === this) closePaymentModal()">
+
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-md transition-opacity duration-500"></div>
+
+        <!-- content container -->
+        <div class="relative w-full max-w-lg transform transition-all duration-500 scale-95 translate-y-4">
+
+            <!-- Main Card (Refined) -->
+            <div
+                class="relative w-full bg-white rounded-3xl border-2 border-slate-100 p-6 md:p-8 flex flex-col shadow-xl transform scale-[0.85] md:scale-100 origin-center filter drop-shadow-2xl">
+
+                <!-- Close Button (Added) -->
+                <button onclick="closePaymentModal()"
+                    class="absolute top-4 left-4 z-20 p-1.5 rounded-full bg-slate-50 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors">
+                    <span class="material-icons-round text-lg">close</span>
+                </button>
+
+                <div class="absolute top-0 right-0 overflow-hidden rounded-tr-3xl rounded-bl-3xl">
+                    <div
+                        class="bg-gradient-to-r from-red-500 to-pink-600 text-white text-[10px] font-bold px-6 py-2 shadow-sm tracking-wider uppercase flex items-center gap-2">
+                        <span class="material-icons-round text-sm animate-pulse">timer</span> Limited Offer
+                    </div>
+                </div>
+
+                <!-- Logo Area (Clean) -->
+                <div class="flex justify-center mb-2 mt-6 relative">
+                    <div class="relative w-24 h-24 flex items-center justify-center">
+                        <img src="assets/FaviconNew.webp" class="w-16 h-16 object-contain relative z-10 rounded-xl">
+                    </div>
+                </div>
+
+                <div class="mb-6 text-center">
+                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-widest mb-1">Akses Premium</h3>
+
+                    <!-- Countdown Timer -->
+                    <div
+                        class="flex justify-center items-center gap-1 mb-4 text-red-500 font-mono text-sm font-bold bg-red-50 py-1 px-3 rounded-full w-fit mx-auto border border-red-100">
+                        <span>Promo berakhir dalam:</span>
+                        <span id="promo-countdown">59:59</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                        <span
+                            class="text-slate-400 text-lg line-through decoration-red-400 decoration-2 font-semibold">Rp
+                            149.000</span>
+                        <div class="flex items-baseline -mt-1">
+                            <span
+                                class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 tracking-tight">35<span
+                                    class="text-3xl md:text-4xl text-slate-700">rb</span></span>
+                        </div>
+                        <span
+                            class="text-xs font-bold text-white bg-green-500 px-2 py-0.5 rounded-md shadow-sm mt-1">Diskon
+                            75% Hari Ini</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-4 leading-relaxed font-light max-w-xs mx-auto">
+                        Investasi sekali seumur hidup untuk membuka potensi jeniusmu.
+                    </p>
+                </div>
+
+                <ul class="space-y-3 mb-8 flex-1">
+                    <li class="flex items-start text-sm text-slate-700 group">
+                        <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                            <span class="material-icons-round text-purple-600 text-sm">check</span>
+                        </div>
+                        <span class="py-0.5 font-medium">Buka <strong>Analisis 8 Dimensi Kecerdasan</strong></span>
+                    </li>
+                    <li class="flex items-start text-sm text-slate-700 group">
+                        <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                            <span class="material-icons-round text-purple-600 text-sm">check</span>
+                        </div>
+                        <span class="py-0.5 font-medium">Laporan Detail dan <strong>Sertifikat Resmi Digital
+                                (PDF)</strong></span>
+                    </li>
+                    <li class="flex items-start text-sm text-slate-700 group">
+                        <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                            <span class="material-icons-round text-purple-600 text-sm">check</span>
+                        </div>
+                        <span class="py-0.5">Buka <strong>Semua Fitur Premium</strong> di Laporan</span>
+                    </li>
+                    <li class="flex items-start text-sm text-slate-700 group">
+                        <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                            <span class="material-icons-round text-purple-600 text-sm">check</span>
+                        </div>
+                        <span class="py-0.5">Akses <strong>Lifetime</strong> Untuk Semua Test MindTest.id</span>
+                    </li>
+                </ul>
+
+                <button onclick="processPayment()"
+                    class="block w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-center font-bold py-4 rounded-xl transition-all shadow-lg shadow-purple-200 hover:shadow-purple-300 transform active:scale-95 flex items-center justify-center gap-2 group relative overflow-hidden">
+                    <span
+                        class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></span>
+                    <span>Ambil Promo Sekarang</span>
+                    <span
+                        class="material-icons-round group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+            </div>
+            <script>
+                // Simple Coupon Countdown
+                (function () {
+                    let minutes = 59;
+                    let seconds = 59;
+                    const el = document.getElementById('promo-countdown');
+                    if (el) {
+                        setInterval(() => {
+                            seconds--;
+                            if (seconds < 0) {
+                                seconds = 59;
+                                minutes--;
+                                if (minutes < 0) minutes = 59; // Reset loops for demo
+                            }
+                            el.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                        }, 1000);
+                    }
+                })();
+            </script>
+        </div>
+    </div>
+
+    <!-- Suggestion Modal (Rich Popup) -->
+    <div id="suggestion-modal"
+        class="fixed inset-0 z-[70] hidden flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeSuggestionModal()"></div>
+        <div
+            class="relative w-full max-w-md bg-white dark:bg-slate-800 rounded-[2rem] shadow-2xl border border-slate-100 dark:border-slate-700 overflow-hidden transform transition-all scale-100 flex flex-col max-h-[90vh]">
+
+            <!-- Modal Header with Image -->
+            <div class="relative h-32 bg-slate-100 dark:bg-slate-900 flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 opacity-30 bg-[url('assets/cubes.png')]">
+                </div>
+                <img id="suggestion-img" src="" class="h-24 object-contain relative z-10 drop-shadow-lg">
+                <button onclick="closeSuggestionModal()"
+                    class="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/20 text-white flex items-center justify-center hover:bg-black/40 transition-colors z-20">
+                    <span class="material-icons-round text-sm">close</span>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 overflow-y-auto">
+                <h3 id="suggestion-title" class="text-xl font-bold text-slate-900 dark:text-white mb-4">Development</h3>
+
+                <!-- Scientific Fact Section -->
+                <div
+                    class="mb-6 p-4 rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/30">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="material-icons-round text-indigo-500 text-sm">science</span>
+                        <span
+                            class="text-xs font-bold text-indigo-600 dark:text-indigo-300 uppercase tracking-wide">Fakta
+                            Sains</span>
+                    </div>
+                    <p id="suggestion-fact" class="text-sm text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        Loading facts...
+                    </p>
+                </div>
+
+                <!-- Action Plan Section -->
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="material-icons-round text-emerald-500 text-sm">flag</span>
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Rencana Aksi
+                            Konkret</span>
+                    </div>
+                    <ul id="suggestion-actions" class="space-y-3">
+                        <!-- Actions injected here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Details Modal -->
+    <div id="certificate-modal"
+        class="fixed inset-0 z-[80] hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-sm transition-opacity"
+            onclick="closeCertificateModal()">
+        </div>
+
+        <!-- Modal Content -->
+        <div
+            class="relative w-full max-w-md bg-white dark:bg-slate-800 rounded-2xl shadow-2xl transform scale-95 transition-all duration-300">
+            <!-- Header -->
+            <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Isi Data Sertifikat</h3>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Data ini akan tercetak di sertifikat
+                        resmi
+                        Anda.</p>
+                </div>
+                <button onclick="closeCertificateModal()"
+                    class="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-700 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 flex items-center justify-center transition-colors">
+                    <span class="material-icons-round text-lg">close</span>
+                </button>
+            </div>
+
+            <!-- Form -->
+            <div class="p-6 space-y-4">
+                <!-- Nama Lengkap -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Nama Lengkap <span
+                            class="text-red-500">*</span></label>
+                    <input type="text" id="cert-name" placeholder="Nama untuk di sertifikat"
+                        class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all shadow-sm">
+                </div>
+
+                <!-- Tanggal Lahir -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tanggal Lahir <span
+                            class="text-xs text-slate-400 font-normal">(Opsional)</span></label>
+                    <div class="relative">
+                        <input type="text" id="cert-dob" placeholder="Pilih tanggal lahir"
+                            class="w-full px-4 py-2 pl-10 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all shadow-sm">
+                        <span
+                            class="material-icons-round absolute left-3 top-2.5 text-slate-400 text-sm">calendar_today</span>
+                    </div>
+                </div>
+
+                <!-- Pekerjaan -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Pekerjaan <span
+                            class="text-xs text-slate-400 font-normal">(Opsional)</span></label>
+                    <input type="text" id="cert-job" placeholder="Contoh: Student, Engineer, dll"
+                        class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all shadow-sm">
+                </div>
+
+                <!-- Perusahaan / Instansi -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Perusahaan /
+                        Instansi <span class="text-xs text-slate-400 font-normal">(Opsional)</span></label>
+                    <input type="text" id="cert-org" placeholder="Contoh: Universitas Indonesia, Google, dll"
+                        class="w-full px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all shadow-sm">
+                </div>
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="p-6 pt-2 flex gap-3">
+                <button onclick="closeCertificateModal()"
+                    class="flex-1 px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                    Batal
+                </button>
+                <button onclick="submitCertificateProps()"
+                    class="flex-1 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
+                    <span class="material-icons-round text-sm">download</span>
+                    Cetak PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Overlay -->
+    <div id="processing-overlay"
+        class="fixed inset-0 z-[70] bg-slate-900/90 backdrop-blur-md flex flex-col items-center justify-center hidden">
+        <div class="w-16 h-16 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+        <h2 class="text-xl font-bold text-white mt-4 animate-pulse">Memproses Pembayaran...</h2>
+    </div>
+
+    <main class="min-h-screen pt-24 md:pt-10 pb-24 px-4 sm:px-6 lg:px-8 md:ml-64 transition-all duration-300">
+        <div class="w-full max-w-[1400px] mx-auto">
+
+            <!-- Loading / No Data State -->
+            <div id="no-data" class="hidden min-h-[60vh] flex flex-col justify-center items-center text-center">
+                <div
+                    class="w-24 h-24 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-6 animate-pulse">
+                    <span class="material-icons-round text-4xl text-slate-400">search_off</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Data Tidak Ditemukan</h2>
+                <p class="text-slate-500 dark:text-slate-400 mb-8 max-w-md mx-auto">Sepertinya kamu belum
+                    menyelesaikan tes IQ nih. Yuk ikuti tes dulu biar dapet laporan lengkapnya</p>
+                <a href="quizz.html"
+                    class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-semibold shadow-lg shadow-primary-600/30 transition-all transform hover:scale-105">
+                    Mulai Tes Sekarang
+                </a>
+            </div>
+
+            <!-- Report Content -->
+            <div id="report-content" class="hidden space-y-4 md:space-y-8 pb-20">
+
+                <!-- Header Section -->
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 md:gap-4 fade-in-up">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+                            Ringkasan Eksekutif</h1>
+                        <p id="report-date" class="text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-2">
+                            <span class="material-icons-round text-sm">calendar_today</span> Loading date...
+                        </p>
+                    </div>
+                    <div id="action-buttons" class="flex items-center gap-3">
+                        <button id="downloadBtnPro" onclick="openCertificateModal()"
+                            class="w-full py-4 px-4 bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 text-white shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 font-bold rounded-2xl transition-all transform hover:scale-[1.02] flex items-center justify-center gap-3 group relative overflow-hidden border border-white/20">
+                            <!-- Shine Effect -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] animate-shimmer">
+                            </div>
+
+                            <!-- Crown Icon -->
+                            <svg class="w-6 h-6 text-indigo-100 drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M5 16L3 5L8.5 10L12 4L15.5 10L21 5L19 16H5M19 19C19 19.6 18.6 20 18 20H6C5.4 20 5 19.6 5 19V18H19V19Z">
+                                </path>
+                            </svg>
+
+                            <div class="flex flex-col items-start leading-tight">
+                                <span class="text-[10px] text-indigo-100 font-medium uppercase tracking-wider">Unlock
+                                    Full
+                                    Access</span>
+                                <span class="text-sm font-extrabold text-white drop-shadow-sm">Download Laporan
+                                    Lengkap</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Summary Grid (Hero) -->
+                <div id="report-body" class="fade-in-up delay-100">
+                    <!-- Injected via JS -->
+                </div>
+
+                <!-- Detailed Analysis Carousel -->
+                <div class="space-y-4 fade-in-up delay-200">
+                    <div class="flex items-center justify-between px-1">
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white">Analisis Kognitif
+                                Mendalam</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Geser buat liat detail tiap
+                                aspeknya</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="scroll-left-btn"
+                                class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                <span class="material-icons-round">arrow_back</span>
+                            </button>
+                            <button id="scroll-right-btn"
+                                class="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 shadow-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                                <span class="material-icons-round">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="analysis-carousel"
+                        class="flex overflow-x-auto gap-5 pb-8 -mx-4 px-4 pt-2 snap-x snap-mandatory no-scrollbar"
+                        style="scroll-behavior: smooth;">
+                        <!-- Cards Injected Here -->
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 fade-in-up delay-300">
+                    <!-- Bell Curve -->
+                    <div class="glass-card rounded-2xl p-6 shadow-soft dark:bg-slate-850">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Distribusi Normal
+                                    (Bell Curve)</h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Posisi skor kamu
+                                    dibandingin orang lain</p>
+                            </div>
+                            <div class="p-2 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
+                                <span
+                                    class="material-icons-round text-primary-600 dark:text-primary-400">bar_chart</span>
+                            </div>
+                        </div>
+                        <div id="bell-curve-chart" class="h-80 w-full"></div>
+                    </div>
+
+                    <!-- Radar Chart -->
+                    <div class="glass-card rounded-2xl p-6 shadow-soft dark:bg-slate-850">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Radar Kompetensi
+                                </h3>
+                                <p class="text-sm text-slate-500 dark:text-slate-400">Kekuatan otak kamu vs
+                                    rata-rata</p>
+                            </div>
+                            <div class="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                                <span class="material-icons-round text-purple-600 dark:text-purple-400">radar</span>
+                            </div>
+                        </div>
+                        <div id="radar-chart" class="flex justify-center items-center h-80 w-full"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Certificate Modal -->
+    <div id="certificate-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300"
+        role="dialog" aria-modal="true">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
+            onclick="closeCertificateModal()"></div>
+
+        <!-- Modal Content -->
+        <div class="relative min-h-[calc(100vh-4rem)] flex items-center justify-center p-4">
+            <div
+                class="relative transform overflow-hidden rounded-2xl bg-white dark:bg-slate-800 text-left shadow-2xl transition-all scale-95 sm:w-full sm:max-w-lg border border-white/10">
+
+                <!-- Decorative Header -->
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-700 px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                            <span class="material-icons-round">workspace_premium</span>
+                            Data Sertifikat
+                        </h3>
+                        <button onclick="closeCertificateModal()"
+                            class="text-white/80 hover:text-white transition-colors">
+                            <span class="material-icons-round">close</span>
+                        </button>
+                    </div>
+                    <p class="text-blue-100 text-sm mt-1">Lengkapi data untuk sertifikat resmi Anda</p>
+                </div>
+
+                <!-- Body -->
+                <div class="px-6 py-6 space-y-5">
+                    <!-- Name Input -->
+                    <div>
+                        <label for="cert-name"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Nama Lengkap
+                            (Gelar Opsional)</label>
+                        <input type="text" id="cert-name"
+                            class="w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 py-2.5 px-3 shadow-sm transition-all"
+                            placeholder="Contoh: Budi Santoso, S.Kom">
+                    </div>
+
+                    <!-- DOB Input -->
+                    <div>
+                        <label for="cert-dob"
+                            class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tanggal
+                            Lahir</label>
+                        <input type="text" id="cert-dob"
+                            class="w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 py-2.5 px-3 shadow-sm transition-all flatpickr-input"
+                            placeholder="Pilih tanggal lahir">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Job -->
+                        <div>
+                            <label for="cert-job"
+                                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Pekerjaan /
+                                Jabatan</label>
+                            <input type="text" id="cert-job"
+                                class="w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 py-2.5 px-3 shadow-sm transition-all"
+                                placeholder="Contoh: Manager">
+                        </div>
+                        <!-- Company -->
+                        <div>
+                            <label for="cert-org"
+                                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Instansi /
+                                Perusahaan</label>
+                            <input type="text" id="cert-org"
+                                class="w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 py-2.5 px-3 shadow-sm transition-all"
+                                placeholder="Contoh: MindTest Corp">
+                        </div>
+                    </div>
+
+                    <!-- Info Box -->
+                    <div
+                        class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg flex gap-3 border border-blue-100 dark:border-blue-800/50">
+                        <span class="material-icons-round text-blue-600 text-lg mt-0.5">info</span>
+                        <p class="text-xs text-blue-700 dark:text-blue-300 leading-relaxed">
+                            Pastikan data benar. Nama akan dicetak permanen di sertifikat digital dan <b>tidak dapat
+                                diubah</b> setelah 2x unduhan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div
+                    class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-700 flex justify-end gap-3">
+                    <button onclick="closeCertificateModal()"
+                        class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                        Batal
+                    </button>
+                    <button onclick="submitCertificateProps()"
+                        class="px-6 py-2 text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-lg shadow-lg hover:shadow-indigo-500/30 transition-all transform hover:scale-[1.02]">
+                        Generate Sertifikat
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="pdfGeneratorSample.js"></script>
+    <script src="payment_utils.js"></script>
+
+    <script src="layout.js"></script>
+
+    <script>
+        // Certificate Modal Logic
+        function openCertificateModal() {
+            // SECURITY CHECK
+            const isPremiumLocal = localStorage.getItem('mindtest_premium') === 'true';
+            // Allow if verified globally or locally
+            const isVerified = window.isPremiumUser || isPremiumLocal || localStorage.getItem('user_premium') === 'true';
+
+            if (!isVerified) {
+                // Open Payment Modal instead
+                document.getElementById('payment-modal').classList.remove('hidden');
+                return;
+            }
+
+            // ALWAYS SHOW MODAL (FRESH START)
+            console.log("[Modal] Opening certificate modal (Fresh Force)...");
+
+            const modal = document.getElementById('certificate-modal');
+            const nameInput = document.getElementById('cert-name');
+            const dobInput = document.getElementById('cert-dob');
+            const jobInput = document.getElementById('cert-job');
+            const orgInput = document.getElementById('cert-org');
+
+            // Reset inputs to ensure fresh data
+            nameInput.value = "";
+            dobInput.value = "";
+            jobInput.value = "";
+            orgInput.value = "";
+
+            // Maybe still nice to prefill from login data if available?
+            // But user said "hapus fungsi data teakhir".
+            // Let's safe-bet: Pre-fill ONLY from latestResult (fresh login data), NOT from localStorage history.
+            if (window.latestResult && window.latestResult.username) {
+                nameInput.value = window.latestResult.username;
+            }
+
+            modal.classList.remove('hidden');
+            // Small timeout for transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div.transform').classList.remove('scale-95');
+                modal.querySelector('div.transform').classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('certificate-modal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('div.transform').classList.remove('scale-100');
+            modal.querySelector('div.transform').classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function submitCertificateProps() {
+            const name = document.getElementById('cert-name').value;
+            const dob = document.getElementById('cert-dob').value;
+            const job = document.getElementById('cert-job').value;
+            const org = document.getElementById('cert-org').value;
+
+            if (!name.trim()) {
+                alert("Nama Lengkap wajib diisi!");
+                return;
+            }
+
+            // SAVE DATA & INCREMENT COUNT
+            const userData = {
+                fullName: name,
+                dob: dob,
+                job: job,
+                company: org
+            };
+            localStorage.setItem('pdf_user_data', JSON.stringify(userData));
+
+            let downloadCount = parseInt(localStorage.getItem('pdf_download_count') || '0');
+            localStorage.setItem('pdf_download_count', (downloadCount + 1).toString());
+
+            console.log("[Certificate] Submitting props:", userData);
+
+            // Close modal
+            closeCertificateModal();
+
+            // Call Generator with Props
+            if (window.generatePremiumPDF) {
+                console.log("[Certificate] Calling generatePremiumPDF...");
+                window.generatePremiumPDF(userData).then(() => {
+                    console.log("[Certificate] Generation complete.");
+                }).catch(err => {
+                    console.error("[Certificate] Generation failed:", err);
+                    alert("Gagal membuat PDF: " + err.message);
+                });
+            } else {
+                console.error("PDF Generator function not found!");
+                alert("Sistem PDF belum siap. Coba refresh halaman.");
+            }
+        }
+    </script>
+
+    <!-- PDF Generator Premium -->
+    <script src="pdfGeneratorPremium.js"></script>
+
+    <!-- Main Logic -->
+    <script src="dashboardIQ.js?v=41"></script>
+
+    <script>
+        // Initialize Flatpickr
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.flatpickr) {
+                flatpickr("#cert-dob", {
+                    dateFormat: "d F Y",
+                    locale: "id",
+                    allowInput: true
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
+<!-- BUILD_ID: 20260127-1018-UNIQUE-DEPLOY -->

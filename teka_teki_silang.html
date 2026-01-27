@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Teka Teki Silang - MindTest.id</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'fun': ['Fredoka', 'sans-serif'], 'body': ['Nunito', 'sans-serif'] },
+                    colors: { 'p1-color': '#002060', 'p2-color': '#C00000', 'grid-bg': '#f0f4f8' },
+                    animation: { 'pop': 'pop 0.3s ease-out' },
+                    keyframes: { 'pop': { '0%': { transform: 'scale(0.8)', opacity: '0' }, '100%': { transform: 'scale(1)', opacity: '1' } } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 1.5rem;
+            cursor: grab;
+            touch-action: none;
+        }
+
+        .glass-card:active {
+            cursor: grabbing;
+        }
+
+        .numpad-btn {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.25rem;
+            color: #4A5568;
+            transition: all 0.1s;
+        }
+
+        .numpad-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        .cell {
+            transition: all 0.2s;
+        }
+
+        .cell.selected {
+            border-color: #3B82F6;
+            background-color: #EBF8FF;
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .cell.correct {
+            background-color: #C6F6D5;
+            color: #22543D;
+            border-color: #48BB78;
+        }
+
+        .cell.wrong {
+            animation: shake 0.4s;
+            background-color: #FED7D7;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 font-body h-screen w-screen flex flex-col text-gray-800">
+
+    <!-- Nav -->
+    <div class="fixed top-4 left-4 z-50">
+        <button onclick="window.location.href='playground_ifp.html'"
+            class="bg-white h-12 w-12 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-500"><span
+                class="material-icons">home</span></button>
+    </div>
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleFullscreen()"
+            class="bg-white h-12 w-12 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-500"><span
+                class="material-icons">fullscreen</span></button>
+    </div>
+
+    <main id="app" class="flex-grow relative w-full h-full flex items-center justify-center">
+
+        <!-- 1. MODE -->
+        <section id="screen-mode" class="text-center w-full max-w-5xl px-4 animate-pop">
+            <h1
+                class="font-fun text-7xl md:text-8xl font-bold text-gray-800 mb-2 drop-shadow-xl tracking-wider text-purple-600">
+                TEKA-TEKI SILANG</h1>
+            <p class="text-2xl text-gray-500 mb-12">Duel Matematika Strategi</p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="setMode('1v1')"
+                    class="bg-white border-b-8 border-purple-200 hover:border-purple-400 p-8 rounded-3xl shadow-xl flex flex-col items-center w-72 active:border-b-0 transition-transform hover:scale-105">
+                    <span class="text-6xl mb-4">🧩</span>
+                    <span class="font-fun text-3xl font-bold text-gray-700">1 vs 1</span>
+                </button>
+                <button onclick="setMode('2v2')"
+                    class="bg-white border-b-8 border-pink-200 hover:border-pink-400 p-8 rounded-3xl shadow-xl flex flex-col items-center w-72 active:border-b-0 transition-transform hover:scale-105">
+                    <span class="text-6xl mb-4">👥👥</span>
+                    <span class="font-fun text-3xl font-bold text-gray-700">Team (2 vs 2)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. SETUP -->
+        <section id="screen-setup" class="hidden w-full h-full flex flex-col items-center justify-center relative">
+            <h2 class="text-3xl font-bold text-gray-600 mb-8">PILIH KARAKTER</h2>
+            <div id="setup-container" class="flex w-full gap-4 px-8 justify-center max-w-6xl"></div>
+            <div id="start-overlay"
+                class="absolute inset-0 bg-black/40 hidden flex items-center justify-center backdrop-blur-sm z-20">
+                <button onclick="startMatch()"
+                    class="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-fun text-4xl px-16 py-6 rounded-full shadow-2xl animate-bounce border-4 border-white">MULAI!</button>
+            </div>
+        </section>
+
+        <!-- 3. GAME -->
+        <section id="screen-game" class="hidden absolute inset-0 w-full h-full flex flex-col">
+
+            <!-- Split Screen Boards -->
+            <div class="flex-grow flex w-full relative z-0">
+                <!-- Left Board (Team 1) -->
+                <div
+                    class="flex-1 flex flex-col items-center justify-center border-r-4 border-dashed border-gray-300 bg-blue-50/50 p-4 relative">
+                    <div
+                        class="absolute top-4 left-4 bg-blue-600 text-white px-6 py-2 rounded-full font-bold text-xl shadow-lg">
+                        TEAM 1</div>
+                    <div class="absolute top-4 right-4 text-blue-800 font-bold text-3xl" id="score-t1">0%</div>
+                    <div id="grid-t1" class="grid gap-2 bg-white p-4 rounded-xl shadow-inner border-4 border-blue-200">
+                        <!-- Cells injected here -->
+                    </div>
+                    <div id="clue-display-t1"
+                        class="mt-4 h-16 bg-white rounded-xl shadow w-full max-w-md flex items-center justify-center text-xl font-bold text-blue-600 border border-blue-100">
+                        Pilih kotak untuk melihat soal
+                    </div>
+                </div>
+
+                <!-- Right Board (Team 2) -->
+                <div class="flex-1 flex flex-col items-center justify-center bg-red-50/50 p-4 relative">
+                    <div
+                        class="absolute top-4 right-4 bg-red-600 text-white px-6 py-2 rounded-full font-bold text-xl shadow-lg">
+                        TEAM 2</div>
+                    <div class="absolute top-4 left-4 text-red-800 font-bold text-3xl" id="score-t2">0%</div>
+                    <div id="grid-t2" class="grid gap-2 bg-white p-4 rounded-xl shadow-inner border-4 border-red-200">
+                        <!-- Cells injected here -->
+                    </div>
+                    <div id="clue-display-t2"
+                        class="mt-4 h-16 bg-white rounded-xl shadow w-full max-w-md flex items-center justify-center text-xl font-bold text-red-600 border border-red-100">
+                        Pilih kotak untuk melihat soal
+                    </div>
+                </div>
+            </div>
+
+            <!-- UI Inputs (Bottom Layer) -->
+            <div id="ui-layer" class="absolute inset-0 pointer-events-none z-10">
+                <!-- Draggable Cards Injected Here -->
+            </div>
+
+        </section>
+
+        <!-- 4. RESULT -->
+        <section id="screen-result"
+            class="hidden absolute inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center">
+            <div
+                class="bg-white rounded-[3rem] p-12 text-center max-w-4xl w-full mx-4 shadow-2xl border-8 border-purple-400 animate-bounce">
+                <div class="text-9xl mb-6">🏆</div>
+                <h2 id="result-title" class="font-fun text-6xl font-bold text-gray-800 mb-4">WINNER!</h2>
+                <div id="result-text" class="text-3xl text-gray-600 font-bold mb-10">...</div>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="startGameFlow()"
+                        class="bg-purple-600 text-white font-bold py-4 px-10 rounded-2xl shadow-lg text-xl">MAIN
+                        LAGI</button>
+                    <button onclick="window.location.href='playground_ifp.html'"
+                        class="bg-gray-200 text-gray-700 font-bold py-4 px-10 rounded-2xl shadow-lg text-xl">MENU</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // CONFIG
+        let mode = '1v1';
+        let state = { t1: { grid: [], done: 0 }, t2: { grid: [], done: 0 }, players: [], over: false };
+        let COLORS = ['#FFE66D', '#FF6B6B', '#4ECDC4', '#1A535C'];
+        let CHARS = ['🐵', '🐨', '🐼', '🐈', '🦁', '🐸'];
+
+        // --- GRID DATA (Simple Crossnumber Template) ---
+        // 0 = Block, >0 = Answer Digit (which we hide initially)
+        // This is a 5x5 Grid.
+        // We need a mapping of [Row,Col] -> Question string
+        const TEMPLATE = {
+            grid: [
+                [1, 2, 0, 5, 6], // 12 + 56 = ? (No, structure needs real cross logic. We'll simplify: just numbers)
+                [3, 0, 0, 0, 7],
+                [4, 5, 0, 8, 9],
+                [0, 0, 0, 0, 0],
+                [1, 5, 0, 2, 0]
+            ],
+            // For this MVP, we will use a predefined valid grid.
+            // 1 2 . 5 6  (12, 56)
+            // + - . + -
+            // 4 5 . 1 0
+            // = = . = =
+            // 5 7 . 6 6
+            // We can treat them as independent cells that just need to be filled. 
+            // Better: Each cell has a "Question" associated with it. 
+            // The grid is just a container for questions.
+            // Some cells are 'blocks'.
+            cells: [
+                // Row 0
+                { r: 0, c: 0, a: 1, q: "2 - 1 = ?" }, { r: 0, c: 1, a: 2, q: "1 + 1 = ?" }, { r: 0, c: 2, block: true }, { r: 0, c: 3, a: 5, q: "2 + 3 = ?" }, { r: 0, c: 4, a: 6, q: "3 + 3 = ?" },
+                // Row 1
+                { r: 1, c: 0, a: 3, q: "1 + 2 = ?" }, { r: 1, c: 1, block: true }, { r: 1, c: 2, block: true }, { r: 1, c: 3, block: true }, { r: 1, c: 4, a: 7, q: "3 + 4 = ?" },
+                // Row 2
+                { r: 2, c: 0, a: 4, q: "2 + 2 = ?" }, { r: 2, c: 1, a: 5, q: "10 - 5 = ?" }, { r: 2, c: 2, block: true }, { r: 2, c: 3, a: 8, q: "4 + 4 = ?" }, { r: 2, c: 4, a: 9, q: "3 x 3 = ?" },
+                // Row 3 (Blocks)
+                { r: 3, c: 0, block: true }, { r: 3, c: 1, block: true }, { r: 3, c: 2, block: true }, { r: 3, c: 3, block: true }, { r: 3, c: 4, block: true },
+                // Row 4
+                { r: 4, c: 0, a: 1, q: "5 - 4 = ?" }, { r: 4, c: 1, a: 5, q: "15 ÷ 3 = ?" }, { r: 4, c: 2, block: true }, { r: 4, c: 3, a: 2, q: "10 ÷ 5 = ?" }, { r: 4, c: 4, a: 0, q: "Zero" }
+            ]
+        };
+
+        // UTILS
+        const $ = id => document.getElementById(id);
+        const toggleFullscreen = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => { }); else document.exitFullscreen(); };
+        const show = id => { document.querySelectorAll('section').forEach(s => s.classList.add('hidden')); $(`screen-${id}`).classList.remove('hidden'); };
+
+        // DRAG (Robust)
+        function makeDraggable(el) {
+            let isDragging = false;
+            let shiftX, shiftY;
+
+            const onStart = (e) => {
+                if (e.target.closest('button')) return;
+
+                const hint = el.querySelector('[id^="hint-"]'); if (hint) hint.remove();
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                const rect = el.getBoundingClientRect();
+                const parentRect = el.offsetParent.getBoundingClientRect();
+
+                shiftX = clientX - rect.left;
+                shiftY = clientY - rect.top;
+
+                isDragging = true;
+
+                const relLeft = rect.left - parentRect.left;
+                const relTop = rect.top - parentRect.top;
+
+                el.style.position = 'absolute';
+                el.style.left = relLeft + 'px';
+                el.style.top = relTop + 'px';
+                el.style.bottom = 'auto';
+                el.style.right = 'auto';
+                el.style.transform = 'none';
+                el.style.zIndex = 100;
+            };
+
+            const onMove = (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                const parentRect = el.offsetParent.getBoundingClientRect();
+                el.style.left = (clientX - shiftX - parentRect.left) + 'px';
+                el.style.top = (clientY - shiftY - parentRect.top) + 'px';
+            };
+
+            const onEnd = () => { isDragging = false; el.style.zIndex = 10; };
+
+            el.addEventListener('mousedown', onStart);
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('mouseup', onEnd);
+            el.addEventListener('touchstart', onStart, { passive: false });
+            window.addEventListener('touchmove', onMove, { passive: false });
+            el.addEventListener('touchend', onEnd);
+        }
+
+        // FLOW
+        function startGameFlow() { toggleFullscreen(); show('mode'); }
+        function setMode(m) {
+            mode = m;
+            state.players = [];
+            let count = mode === '1v1' ? 2 : 4;
+            for (let i = 0; i < count; i++) state.players.push({ id: i, char: null, sel: null, input: '' });
+            renderSetup(); show('setup');
+        }
+
+        // SETUP
+        function renderSetup() {
+            const container = $('setup-container'); container.innerHTML = '';
+            $('start-overlay').classList.add('hidden');
+            let colors = ['#002060', '#C00000', '#002060', '#C00000'];
+            if (mode === '2v2') colors = ['#002060', '#002060', '#C00000', '#C00000']; // Team colors
+
+            state.players.forEach((p, i) => {
+                const col = document.createElement('div');
+                col.className = `glass-card flex-1 p-4 flex flex-col items-center gap-2 border-t-8`;
+                col.style.borderColor = colors[i];
+                let btns = '';
+                CHARS.forEach(c => btns += `<button onclick="pickChar(${i},'${c}')" class="cbtn-${i} text-3xl p-1 rounded hover:bg-white/50 transition transform hover:scale-110">${c}</button>`);
+
+                let label = `P${i + 1}`;
+                if (mode === '2v2') label = i < 2 ? `Team 1 (P${i + 1})` : `Team 2 (P${i + 1})`;
+
+                col.innerHTML = `
+                    <h3 class="font-bold text-xl mb-2 text-gray-700">${label}</h3>
+                    <div class="grid grid-cols-3 gap-1 mb-auto">${btns}</div>
+                    <div id="stat-${i}" class="font-bold text-gray-400 mt-2 text-sm">Pilih...</div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
+        function pickChar(pid, c) {
+            state.players[pid].char = c;
+            document.querySelectorAll(`.cbtn-${pid}`).forEach(b => {
+                b.className = `cbtn-${pid} text-3xl p-1 rounded transition transform`;
+                if (b.innerText === c) b.className += ` bg-purple-200 border border-purple-400 scale-125`;
+            });
+            $(`stat-${pid}`).innerHTML = `<span class="text-green-500">OK!</span>`;
+            if (state.players.every(p => p.char)) $('start-overlay').classList.remove('hidden');
+        }
+
+        // MATCH
+        function startMatch() {
+            state.over = false;
+            state.t1.done = 0; state.t2.done = 0;
+            state.players.forEach(p => { p.sel = null; p.input = ''; });
+
+            // Render Boards
+            renderGrid('t1');
+            renderGrid('t2');
+
+            // Render UI
+            const uiLayer = $('ui-layer'); uiLayer.innerHTML = '';
+            const widthPercent = 100 / state.players.length;
+            let colors = ['#002060', '#C00000'];
+            if (mode === '2v2') colors = ['#002060', '#002060', '#C00000', '#C00000'];
+
+            state.players.forEach((p, i) => {
+                const card = document.createElement('div');
+                const leftPos = (i * widthPercent) + (widthPercent / 2);
+
+                card.className = `glass-card absolute p-3 flex flex-col gap-2 pointer-events-auto transform -translate-x-1/2 transition-shadow hover:shadow-2xl`;
+                card.style.width = '220px';
+                card.style.bottom = '20px';
+                card.style.left = `${leftPos}%`;
+                card.style.borderTop = `6px solid ${colors[i]}`;
+
+                card.innerHTML = `
+                    <div id="hint-${i}" class="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-bounce whitespace-nowrap z-50 pointer-events-none">
+                        👇 Klik dan hold untuk geser kalkulator
+                        <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-yellow-400 rotate-45"></div>
+                    </div>
+                    <div class="rounded-lg p-2 text-center text-white font-fun text-lg font-bold shadow mb-1 cursor-grab active:cursor-grabbing select-none flex justify-between items-center px-4" style="background-color:${colors[i]}">
+                        <div class="flex items-center"><span class="material-icons text-white/50 mr-1 text-sm">drag_indicator</span><span>P${i + 1}</span></div>
+                        <span id="disp-q-${i}">...</span>
+                    </div>
+                    <div id="in-${i}" class="bg-white rounded h-10 flex items-center justify-center font-bold text-2xl text-gray-700 shadow-inner tracking-widest border border-gray-200 mb-1"></div>
+                     <div class="grid grid-cols-3 gap-1">
+                        ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button class="numpad-btn h-10 text-xl" onclick="handleIn(${i},'${n}')">${n}</button>`).join('')}
+                        <button class="numpad-btn bg-gray-100 text-gray-400 h-10">.</button>
+                        <button class="numpad-btn h-10 text-xl" onclick="handleIn(${i},'0')">0</button>
+                        <button class="numpad-btn bg-red-500 text-white font-bold h-10" onclick="handleIn(${i},'C')">C</button>
+                    </div>
+                    <button class="go-btn bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 font-bold text-lg w-full mt-1 shadow" onclick="handleIn(${i},'OK')">Jawab</button>
+                `;
+
+                makeDraggable(card);
+                uiLayer.appendChild(card);
+            });
+
+            show('game');
+        }
+
+        function renderGrid(teamId) {
+            const gridEl = $(`grid-${teamId}`);
+            gridEl.style.gridTemplateColumns = `repeat(5, 1fr)`;
+            gridEl.innerHTML = '';
+
+            // Generate Cells
+            TEMPLATE.cells.forEach((cell, idx) => {
+                const div = document.createElement('div');
+                if (cell.block) {
+                    div.className = "w-10 h-10 md:w-14 md:h-14 bg-gray-800 rounded shadow-inner";
+                } else {
+                    div.className = "cell w-10 h-10 md:w-14 md:h-14 bg-white border-2 border-gray-300 rounded flex items-center justify-center font-bold text-xl cursor-pointer hover:bg-gray-50 text-transparent select-none";
+                    div.id = `${teamId}-c-${idx}`;
+                    div.innerText = cell.a; // Hidden by text-transparent
+
+                    // Click to Select
+                    div.onclick = () => selectCell(teamId, idx);
+                }
+                gridEl.appendChild(div);
+            });
+        }
+
+        function selectCell(teamId, cellIdx) {
+            // Find who clicked? 
+            // In 1v1: Left Board = P0, Right Board = P1.
+            // In 2v2: Left = P0/P1, Right = P2/P3.
+            // Problem: How do we know WHICH player clicked if there are 2 players per team?
+            // Solution: We don't. The CELL becomes "Active" for the TEAM. Any team member can answer it.
+
+            // Highlight Cell
+            document.querySelectorAll(`#grid-${teamId} .cell`).forEach(c => c.classList.remove('selected'));
+            const cellEl = $(`${teamId}-c-${cellIdx}`);
+            cellEl.classList.add('selected');
+
+            // Find Question
+            const cellData = TEMPLATE.cells[cellIdx];
+            if (cellData.block) return;
+
+            // Show Question on Board Display
+            $(`clue-display-${teamId}`).innerText = cellData.q;
+
+            // Assign this cell as the target for the Team's inputs
+            // We need to store "Current Active Cell" for the Team
+            state[teamId].activeCell = cellIdx;
+            state[teamId].activeData = cellData;
+        }
+
+        function handleIn(pid, k) {
+            if (state.over) return;
+            // Identify Team
+            let teamId = 't1';
+            if (mode === '1v1' && pid === 1) teamId = 't2';
+            if (mode === '2v2' && pid > 1) teamId = 't2';
+
+            // Check if team has a selected cell
+            const target = state[teamId].activeCell;
+            if (target === undefined || target === null) return; // No cell selected
+
+            let p = state.players[pid];
+            let el = $(`in-${pid}`);
+
+            if (k === 'C') { p.input = ''; }
+            else if (k === 'OK') {
+                // Submit Answer to Team's Active Cell
+                checkAnswer(teamId, pid);
+                return;
+            }
+            else if (p.input.length < 5) { p.input += k; }
+            el.innerText = p.input;
+        }
+
+        function checkAnswer(teamId, pid) {
+            const cellIdx = state[teamId].activeCell;
+            const cellData = state[teamId].activeData;
+            const p = state.players[pid];
+            const val = parseInt(p.input);
+
+            const cellEl = $(`${teamId}-c-${cellIdx}`);
+
+            if (val === cellData.a) {
+                // Correct
+                cellEl.classList.remove('selected', 'text-transparent');
+                cellEl.classList.add('correct');
+                cellEl.innerText = val; // Reveal
+                cellEl.onclick = null; // Lock
+
+                state[teamId].done++;
+                $(`score-t1`).innerText = Math.round((state.t1.done / 14) * 100) + "%";
+                $(`score-t2`).innerText = Math.round((state.t2.done / 14) * 100) + "%";
+
+                // Clear Input
+                p.input = ''; $(`in-${pid}`).innerText = '';
+                state[teamId].activeCell = null;
+                $(`clue-display-${teamId}`).innerText = "Pilih kotak berikutnya!";
+
+                // Check Win (14 non-block cells)
+                if (state[teamId].done >= 14) endGame(teamId);
+
+            } else {
+                // Wrong
+                cellEl.classList.add('wrong');
+                setTimeout(() => cellEl.classList.remove('wrong'), 400);
+                $(`in-${pid}`).classList.add('text-red-500');
+                setTimeout(() => $(`in-${pid}`).classList.remove('text-red-500'), 500);
+            }
+        }
+
+        function endGame(winnerTeam) {
+            state.over = true;
+            $(`result-title`).innerText = winnerTeam === 't1' ? "TEAM 1 WINS!" : "TEAM 2 WINS!";
+            $(`result-title`).className = `font-fun text-6xl font-bold mb-4 ${winnerTeam === 't1' ? 'text-blue-600' : 'text-red-600'}`;
+            $(`result-text`).innerText = "Semua kotak terisi dengan benar!";
+            confetti();
+            show('result');
+        }
+
+    </script>
+</body>
+
+</html>
+
+
+

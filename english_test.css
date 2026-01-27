@@ -1,0 +1,270 @@
+/* English Proficiency Test Specific Styles */
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+.timer-warning {
+    background-color: #fef2f2 !important;
+    color: #ef4444 !important;
+    animation: pulse-red 2s infinite;
+}
+
+/* --- Option Buttons --- */
+.option-btn {
+    text-align: left;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    border: 2px solid #e2e8f0;
+    /* slate-200 */
+    background-color: white;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.option-btn:hover:not(.selected) {
+    border-color: #cbd5e1;
+    /* slate-300 */
+    background-color: #f8fafc;
+    /* slate-50 */
+    transform: translateY(-1px);
+}
+
+.option-btn:active {
+    transform: translateY(0);
+}
+
+.option-btn.selected {
+    border-color: #2563eb;
+    /* blue-600 */
+    background-color: #eff6ff;
+    /* blue-50 */
+    color: #1e3a8a;
+    /* blue-900 */
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1), 0 2px 4px -1px rgba(37, 99, 235, 0.06);
+}
+
+.option-letter {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: #f1f5f9;
+    /* slate-100 */
+    color: #64748b;
+    /* slate-500 */
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.option-btn.selected .option-letter {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* --- Navigation Grid (Question Map) --- */
+.nav-grid-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.nav-grid-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav-drawer {
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    /* Fallback */
+    height: 100dvh;
+    /* Mobile friendly */
+    background: white;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-grid-overlay.active .nav-drawer {
+    transform: translateX(0);
+}
+
+/* --- Question Bubbles --- */
+.q-bubble {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #64748b;
+}
+
+.q-bubble:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+}
+
+.q-bubble.answered {
+    background-color: #eff6ff;
+    border-color: #3b82f6;
+    color: #2563eb;
+}
+
+.q-bubble.current {
+    background-color: #1e293b;
+    border-color: #1e293b;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.q-bubble.flagged {
+    border-color: #f59e0b;
+    color: #d97706;
+    position: relative;
+}
+
+.q-bubble.flagged::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: #f59e0b;
+    border-radius: 50%;
+}
+
+/* --- Results Modal --- */
+.results-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    /* Re-add dim backdrop */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.results-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.results-content {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    /* Limit height */
+    overflow-y: auto;
+    /* Enable scroll */
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.results-modal.active .results-content {
+    transform: scale(1);
+}
+
+/* Score Circle Gradient Logic is handled in JS or via inline styles usually, but here is a helper */
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#3b82f6 0%, #e2e8f0 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.score-circle::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+}
+
+.score-value {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+/* Scrollbar specific */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}

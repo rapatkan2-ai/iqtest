@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tarik Tambang - MindTest.id</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'fun': ['Fredoka', 'sans-serif'], 'body': ['Nunito', 'sans-serif'] },
+                    colors: { 'p1-color': '#002060', 'p2-color': '#C00000', 'surface': '#E3F2FD' },
+                    animation: { 'wiggle': 'wiggle 0.5s ease-in-out infinite' },
+                    keyframes: { wiggle: { '0%, 100%': { transform: 'rotate(-3deg)' }, '50%': { transform: 'rotate(3deg)' } } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .rope-pattern {
+            background-image: repeating-linear-gradient(45deg, #d3a15c 0, #d3a15c 10px, #c08b45 10px, #c08b45 20px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-touch:active {
+            transform: scale(0.95);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 1.5rem;
+            cursor: grab;
+            touch-action: none;
+            /* Crucial for drag */
+        }
+
+        .glass-card:active {
+            cursor: grabbing;
+        }
+
+        .numpad-btn {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.25rem;
+            color: #4A5568;
+            transition: all 0.1s;
+        }
+
+        .numpad-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        .go-btn {
+            background: #3B82F6;
+            color: white;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .go-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 to-blue-50 font-body h-screen w-screen flex flex-col text-gray-800">
+
+    <!-- Nav -->
+    <div class="fixed top-4 left-4 z-50">
+        <button onclick="window.location.href='playground_ifp.html'"
+            class="btn-touch bg-white h-12 w-12 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-500"><span
+                class="material-icons">home</span></button>
+    </div>
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleFullscreen()"
+            class="btn-touch bg-white h-12 w-12 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-500"><span
+                class="material-icons">fullscreen</span></button>
+    </div>
+
+    <main id="app" class="flex-grow relative w-full h-full flex items-center justify-center">
+
+        <!-- 1. MODE -->
+        <section id="screen-mode" class="text-center w-full max-w-5xl px-4 animate-fade-in-up">
+            <h1 class="font-fun text-7xl md:text-8xl font-bold text-gray-800 mb-2 drop-shadow-xl tracking-wider">TARIK
+                TAMBANG</h1>
+            <p class="text-2xl text-gray-500 mb-12">Pilih Mode Permainan</p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="setMode('1v1')"
+                    class="btn-touch bg-white border-b-8 border-blue-200 hover:border-blue-400 p-8 rounded-3xl shadow-xl flex flex-col items-center w-72 group active:translate-y-2 active:border-b-0">
+                    <span class="text-6xl mb-4 group-hover:scale-110 transition-transform">⚔️</span>
+                    <span class="font-fun text-3xl font-bold text-gray-700">1 vs 1</span>
+                </button>
+                <button onclick="setMode('2v2')"
+                    class="btn-touch bg-white border-b-8 border-orange-200 hover:border-orange-400 p-8 rounded-3xl shadow-xl flex flex-col items-center w-72 group active:translate-y-2 active:border-b-0">
+                    <span
+                        class="text-4xl mb-4 group-hover:scale-110 transition-transform flex gap-2"><span>😃</span><span>😃</span><span
+                            class="text-gray-400">vs</span><span>👿</span><span>👿</span></span>
+                    <span class="font-fun text-3xl font-bold text-gray-700">Team (2 vs 2)</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. DIFFICULTY -->
+        <section id="screen-difficulty" class="hidden text-center w-full max-w-5xl px-4 animate-fade-in-up">
+            <h1 class="font-fun text-6xl font-bold text-gray-800 mb-8">TINGKAT KESULITAN</h1>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <button onclick="setDiff('easy')"
+                    class="btn-touch bg-green-100 border-b-8 border-green-300 hover:bg-green-200 p-6 rounded-3xl shadow-lg">
+                    <div class="text-4xl mb-2">🌱</div>
+                    <div class="font-bold text-2xl text-green-700">MUDAH</div>
+                    <div class="text-sm text-green-600">Angka 1-10</div>
+                </button>
+                <button onclick="setDiff('medium')"
+                    class="btn-touch bg-yellow-100 border-b-8 border-yellow-300 hover:bg-yellow-200 p-6 rounded-3xl shadow-lg">
+                    <div class="text-4xl mb-2">⭐</div>
+                    <div class="font-bold text-2xl text-yellow-700">SEDANG</div>
+                    <div class="text-sm text-yellow-600">Angka 1-20</div>
+                </button>
+                <button onclick="setDiff('hard')"
+                    class="btn-touch bg-orange-100 border-b-8 border-orange-300 hover:bg-orange-200 p-6 rounded-3xl shadow-lg">
+                    <div class="text-4xl mb-2">🔥</div>
+                    <div class="font-bold text-2xl text-orange-700">SULIT</div>
+                    <div class="text-sm text-orange-600">Angka 10-50</div>
+                </button>
+                <button onclick="setDiff('expert')"
+                    class="btn-touch bg-purple-100 border-b-8 border-purple-300 hover:bg-purple-200 p-6 rounded-3xl shadow-lg">
+                    <div class="text-4xl mb-2">🧠</div>
+                    <div class="font-bold text-2xl text-purple-700">AHLI</div>
+                    <div class="text-sm text-purple-600">Angka 10-100</div>
+                </button>
+            </div>
+            <button onclick="show('mode')" class="mt-12 text-gray-400 font-bold hover:text-gray-600">KEMBALI</button>
+        </section>
+
+        <!-- 3. OPS -->
+        <section id="screen-ops" class="hidden text-center w-full max-w-5xl px-4 animate-fade-in-up">
+            <h1 class="font-fun text-6xl font-bold text-gray-800 mb-8">OPERASI HITUNG</h1>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <button onclick="setOp('+')"
+                    class="btn-touch bg-blue-100 border-b-8 border-blue-300 hover:bg-blue-200 p-8 rounded-3xl shadow-lg">
+                    <div class="text-6xl mb-2 font-bold text-blue-600">+</div>
+                    <div class="font-bold text-2xl text-blue-700">Jumlah</div>
+                </button>
+                <button onclick="setOp('-')"
+                    class="btn-touch bg-red-100 border-b-8 border-red-300 hover:bg-red-200 p-8 rounded-3xl shadow-lg">
+                    <div class="text-6xl mb-2 font-bold text-red-600">-</div>
+                    <div class="font-bold text-2xl text-red-700">Kurang</div>
+                </button>
+                <button onclick="setOp('x')"
+                    class="btn-touch bg-amber-100 border-b-8 border-amber-300 hover:bg-amber-200 p-8 rounded-3xl shadow-lg">
+                    <div class="text-6xl mb-2 font-bold text-amber-600">×</div>
+                    <div class="font-bold text-2xl text-amber-700">Kali</div>
+                </button>
+                <button onclick="setOp('/')"
+                    class="btn-touch bg-teal-100 border-b-8 border-teal-300 hover:bg-teal-200 p-8 rounded-3xl shadow-lg">
+                    <div class="text-6xl mb-2 font-bold text-teal-600">÷</div>
+                    <div class="font-bold text-2xl text-teal-700">Bagi</div>
+                </button>
+            </div>
+            <button onclick="show('difficulty')"
+                class="mt-12 text-gray-400 font-bold hover:text-gray-600">KEMBALI</button>
+        </section>
+
+        <!-- 4. SETUP -->
+        <section id="screen-setup" class="hidden w-full h-full flex flex-col relative">
+            <div id="setup-container" class="w-full h-full flex items-center justify-center p-8 gap-4"></div>
+            <div id="setup-start-wrapper"
+                class="absolute inset-0 bg-black/50 z-20 hidden flex items-center justify-center backdrop-blur-sm">
+                <button onclick="startMatch()"
+                    class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-fun text-4xl px-16 py-8 rounded-full shadow-2xl animate-bounce border-4 border-white">MULAI!</button>
+            </div>
+        </section>
+
+        <!-- 5. GAME (FLOATING DRAGGABLE) -->
+        <section id="screen-game" class="hidden absolute inset-0 w-full h-full overflow-hidden">
+
+            <!-- GAME LAYER (Visuals) -->
+            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+                <!-- Scores Floating Top -->
+                <div
+                    class="absolute top-8 z-0 flex gap-12 font-fun text-4xl font-bold bg-white/90 px-8 py-2 rounded-full shadow-lg border-2 border-gray-200">
+                    <div class="text-blue-800">TEAM 1: <span id="team1-score" class="text-blue-600">0</span></div>
+                    <div class="text-gray-300">|</div>
+                    <div class="text-red-800">TEAM 2: <span id="team2-score" class="text-red-600">0</span></div>
+                </div>
+
+                <!-- Scene -->
+                <div class="relative w-full h-full flex items-center justify-center">
+                    <div id="game-scene"
+                        class="relative w-full flex items-center justify-center transition-transform duration-300 ease-out">
+                        <div
+                            class="absolute w-[300%] h-8 bg-amber-700 top-2/3 transform -translate-y-1/2 rope-pattern shadow-xl border-y-2 border-amber-800">
+                        </div>
+                        <div
+                            class="absolute w-1 h-screen border-l-4 border-dashed border-gray-400 opacity-30 top-0 left-1/2 transform -translate-x-1/2">
+                        </div>
+                        <div id="char-container"
+                            class="relative flex items-end gap-32 z-10 transition-all duration-100 ease-linear top-8">
+                            <div class="sprite-stack flex justify-center items-end" id="p1-stack"></div>
+                            <div
+                                class="w-12 h-12 bg-red-600 rounded-lg rotate-45 shadow-lg border-4 border-white relative z-20 -top-8 shrink-0">
+                            </div>
+                            <div class="sprite-stack flex justify-center items-end" id="p2-stack"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UI LAYER (Draggable Calculators) -->
+            <div id="ui-layer" class="absolute inset-0 z-10 pointer-events-none">
+                <!-- Injected Cards will go here -->
+            </div>
+
+        </section>
+
+        <!-- 6. RESULT -->
+        <section id="screen-result"
+            class="hidden absolute inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center">
+            <div
+                class="bg-white rounded-[3rem] p-12 text-center max-w-4xl w-full mx-4 animate-bounce-in shadow-2xl relative border-8 border-white/50">
+                <div class="text-9xl mb-6 animate-bounce">🏆</div>
+                <h2 id="result-title" class="font-fun text-7xl font-bold text-gray-800 mb-4">WINNER!</h2>
+                <div class="flex justify-center gap-12 text-2xl font-bold text-gray-500 mb-12">
+                    <div class="flex flex-col"><span>Team 1</span><span id="end-team1-score"
+                            class="text-blue-600 text-4xl">0</span></div>
+                    <div class="flex flex-col"><span>Team 2</span><span id="end-team2-score"
+                            class="text-red-600 text-4xl">0</span></div>
+                </div>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="startGameFlow()"
+                        class="btn-touch bg-blue-600 text-white text-2xl font-bold py-4 px-10 rounded-2xl shadow-lg">MAIN
+                        LAGI</button>
+                    <button onclick="window.location.href='playground_ifp.html'"
+                        class="btn-touch bg-gray-200 text-gray-700 text-2xl font-bold py-4 px-10 rounded-2xl shadow-lg">KELUAR</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const WIN_DIST = 300; let mode = '1v1', diff = 'medium', op = '+';
+        let state = { t1: { score: 0 }, t2: { score: 0 }, rope: 0, over: false, players: [] };
+        const CHARS = ['🦸‍♂️', '🧕', '👨‍🚀', '🤖', '🧛', '🧟', '🧙‍♂️', '🧚‍♀️'];
+
+        function toggleFullscreen() { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => { }); else document.exitFullscreen(); }
+        function show(id) { document.querySelectorAll('section').forEach(s => s.classList.add('hidden')); document.getElementById(`screen-${id}`).classList.remove('hidden'); }
+        function startGameFlow() { toggleFullscreen(); show('mode'); }
+
+        function setMode(m) { mode = m; show('difficulty'); }
+        function setDiff(d) { diff = d; show('ops'); }
+        function setOp(o) {
+            op = o;
+            state.players = [];
+            let count = mode === '1v1' ? 2 : 4;
+            for (let i = 0; i < count; i++) state.players.push({ id: i, team: i < count / 2 ? 1 : 2, char: null });
+            renderSetup(); show('setup');
+        }
+
+        // DRAG (Robust)
+        function makeDraggable(el) {
+            let isDragging = false;
+            let shiftX, shiftY;
+
+            const onStart = (e) => {
+                if (e.target.closest('button')) return;
+
+                const hint = el.querySelector('[id^="hint-"]'); if (hint) hint.remove();
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                const rect = el.getBoundingClientRect();
+                const parentRect = el.offsetParent.getBoundingClientRect();
+
+                shiftX = clientX - rect.left;
+                shiftY = clientY - rect.top;
+
+                isDragging = true;
+
+                const relLeft = rect.left - parentRect.left;
+                const relTop = rect.top - parentRect.top;
+
+                el.style.position = 'absolute';
+                el.style.left = relLeft + 'px';
+                el.style.top = relTop + 'px';
+                el.style.bottom = 'auto';
+                el.style.right = 'auto';
+                el.style.transform = 'none';
+                el.style.zIndex = 100;
+            };
+
+            const onMove = (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                const parentRect = el.offsetParent.getBoundingClientRect();
+                el.style.left = (clientX - shiftX - parentRect.left) + 'px';
+                el.style.top = (clientY - shiftY - parentRect.top) + 'px';
+            };
+
+            const onEnd = () => { isDragging = false; el.style.zIndex = 10; };
+
+            el.addEventListener('mousedown', onStart);
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('mouseup', onEnd);
+            el.addEventListener('touchstart', onStart, { passive: false });
+            window.addEventListener('touchmove', onMove, { passive: false });
+            window.addEventListener('touchend', onEnd);
+        }
+
+        function renderSetup() {
+            const container = document.getElementById('setup-container');
+            container.innerHTML = '';
+            state.players.forEach((p, idx) => {
+                const isTeam1 = p.team === 1;
+                const col = document.createElement('div');
+                col.className = `glass-card flex-1 h-full flex flex-col items-center justify-center p-4 max-w-sm mx-auto border-t-8 ${isTeam1 ? 'border-blue-600' : 'border-red-600'}`;
+                let btnsHtml = '';
+                CHARS.forEach(c => btnsHtml += `<button onclick="selectChar(${idx}, '${c}')" class="char-btn-${idx} btn-touch bg-white text-3xl p-3 rounded-xl shadow-sm hover:bg-gray-50 transition-all">${c}</button>`);
+                col.innerHTML = `<h3 class="text-2xl font-bold mb-4 ${isTeam1 ? 'text-blue-800' : 'text-red-800'}">P${idx + 1}</h3><div class="grid grid-cols-2 gap-3 mb-6">${btnsHtml}</div><div id="ready-${idx}" class="text-gray-400 font-bold mb-4">Pilih Char</div>`;
+                container.appendChild(col);
+            });
+            document.getElementById('setup-start-wrapper').classList.add('hidden');
+        }
+
+        function selectChar(pIdx, char) {
+            state.players[pIdx].char = char;
+            document.querySelectorAll(`.char-btn-${pIdx}`).forEach(b => {
+                b.className = `char-btn-${pIdx} btn-touch bg-white text-3xl p-3 rounded-xl shadow-sm transition-all`;
+                if (b.innerText === char) b.classList.add('ring-4', state.players[pIdx].team === 1 ? 'ring-blue-400' : 'ring-red-400', 'bg-blue-50');
+            });
+            document.getElementById(`ready-${pIdx}`).innerHTML = '<span class="text-green-500 text-xl animate-pulse">SIAP!</span>';
+            if (state.players.every(p => p.char)) document.getElementById('setup-start-wrapper').classList.remove('hidden');
+        }
+
+        function startMatch() {
+            state.t1.score = 0; state.t2.score = 0; state.rope = 0; state.over = false;
+            state.players.forEach(p => { p.input = ''; p.q = null; });
+
+            const uiLayer = document.getElementById('ui-layer');
+            uiLayer.innerHTML = '';
+
+            const pCount = state.players.length;
+            const widthPercent = 100 / pCount;
+
+            state.players.forEach((p, i) => {
+                const isTeam1 = p.team === 1;
+                const card = document.createElement('div');
+                // Absolute positioning at BOTTOM
+                // Distribute evenly horizontally
+                const leftPos = (i * widthPercent) + (widthPercent / 2);
+
+                card.className = `glass-card absolute p-3 flex flex-col gap-2 pointer-events-auto transform -translate-x-1/2 transition-shadow hover:shadow-2xl`;
+                card.style.width = '240px';
+                card.style.bottom = '20px';
+                card.style.left = `${leftPos}%`;
+
+                // Distinct Styles
+                const headColor = isTeam1 ? 'bg-gradient-to-r from-blue-700 to-blue-500' : 'bg-gradient-to-r from-red-700 to-red-500';
+                card.style.borderTop = `6px solid ${isTeam1 ? '#1D4ED8' : '#B91C1C'}`;
+
+                card.innerHTML = `
+                    <div id="hint-${i}" class="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-bounce whitespace-nowrap z-50 pointer-events-none">
+                        👇 Klik dan hold untuk geser kalkulator
+                        <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-yellow-400 rotate-45"></div>
+                    </div>
+                    <div class="${headColor} rounded-lg p-2 text-center text-white font-fun text-xl font-bold shadow mb-1 cursor-grab active:cursor-grabbing select-none flex justify-between items-center px-4">
+                        <div class="flex items-center"><span class="material-icons text-white/50 mr-1 text-sm">drag_indicator</span><span>P${i + 1}</span></div>
+                        <span id="q-${i}">...</span>
+                    </div>
+                    <div id="in-${i}" class="bg-gray-50 rounded h-10 flex items-center justify-center font-bold text-2xl text-gray-700 shadow-inner tracking-widest border border-gray-200 mb-1"></div>
+                    <div class="grid grid-cols-3 gap-1">
+                        ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button class="numpad-btn h-10" onclick="handleInput(${i},'${n}')">${n}</button>`).join('')}
+                        <button class="numpad-btn bg-gray-100 text-gray-400 h-10">.</button>
+                        <button class="numpad-btn h-10" onclick="handleInput(${i},'0')">0</button>
+                        <button class="numpad-btn bg-red-100 text-red-600 font-bold h-10" onclick="handleInput(${i},'C')">C</button>
+                    </div>
+                    <button class="go-btn rounded-lg py-2 font-bold text-lg w-full mt-1" onclick="handleInput(${i},'OK')">Jawab</button>
+                `;
+
+                makeDraggable(card);
+                uiLayer.appendChild(card);
+                nextQ(i);
+            });
+
+            renderSprites(); updateVis(); show('game');
+        }
+
+        function nextQ(idx) {
+            let min, max;
+            if (diff === 'easy') { min = 1; max = 10; }
+            else if (diff === 'medium') { min = 1; max = 20; }
+            else if (diff === 'hard') { min = 10; max = 50; }
+            else { min = 10; max = 100; }
+
+            let a, b, symbol;
+            if (op === '+') { a = Math.floor(Math.random() * (max - min) + min); b = Math.floor(Math.random() * max + 1); symbol = '+'; }
+            else if (op === '-') { a = Math.floor(Math.random() * (max - min) + min); b = Math.floor(Math.random() * a); symbol = '-'; }
+            else if (op === 'x') { let m = diff === 'easy' ? 5 : diff === 'medium' ? 10 : 20; a = Math.floor(Math.random() * m + 1); b = Math.floor(Math.random() * 10 + 1); symbol = '×'; }
+            else { let m = diff === 'easy' ? 5 : diff === 'medium' ? 10 : 20; let v2 = Math.floor(Math.random() * m + 1); let v1 = Math.floor(Math.random() * 10 + 1); b = v2; a = v1 * v2; symbol = '÷'; }
+
+            if (op === '+') state.players[idx].q = { t: `${a} ${symbol} ${b} = ?`, a: a + b };
+            else if (op === '-') state.players[idx].q = { t: `${a} ${symbol} ${b} = ?`, a: a - b };
+            else if (op === 'x') state.players[idx].q = { t: `${a} ${symbol} ${b} = ?`, a: a * b };
+            else if (op === '/') state.players[idx].q = { t: `${a} ${symbol} ${b} = ?`, a: a / b };
+
+            document.getElementById(`q-${idx}`).innerText = state.players[idx].q.t;
+        }
+
+        function handleInput(idx, k) {
+            if (state.over) return;
+            let p = state.players[idx];
+            let el = document.getElementById(`in-${idx}`);
+            if (k === 'C') { p.input = ''; }
+            else if (k === 'OK') { check(idx); return; }
+            else if (p.input.length < 5) { p.input += k; }
+            el.innerText = p.input;
+        }
+
+        function check(idx) {
+            let p = state.players[idx];
+            let el = document.getElementById(`in-${idx}`);
+            if (parseInt(p.input) === p.q.a) {
+                el.classList.add('text-green-600', 'bg-green-50');
+                if (p.team === 1) { state.t1.score += 10; state.rope -= 15; } else { state.t2.score += 10; state.rope += 15; }
+                document.getElementById('team1-score').innerText = state.t1.score;
+                document.getElementById('team2-score').innerText = state.t2.score;
+                updateVis();
+                if (Math.abs(state.rope) >= WIN_DIST) end(p.team);
+                else { p.input = ''; setTimeout(() => { el.innerText = ''; el.classList.remove('text-green-600', 'bg-green-50'); nextQ(idx); }, 200); }
+            } else {
+                el.classList.add('text-red-500', 'bg-red-50');
+                setTimeout(() => el.classList.remove('text-red-500', 'bg-red-50'), 500);
+            }
+        }
+
+        function renderSprites() {
+            const p1Stack = document.getElementById('p1-stack'); const p2Stack = document.getElementById('p2-stack');
+            p1Stack.innerHTML = ''; p2Stack.innerHTML = '';
+            state.players.forEach((p, i) => {
+                const img = document.createElement('img');
+                img.src = `https://placehold.co/150x150/png/transparent?text=${p.char}`;
+                img.className = 'w-24 h-24 md:w-32 md:h-32 drop-shadow-xl';
+                if (p.team === 1) { const tIdx = i; img.style.left = `${tIdx * -30}px`; img.style.zIndex = 10 - tIdx; p1Stack.appendChild(img); }
+                else { const tIdx = i - (state.players.length / 2); img.className += ' transform scale-x-[-1]'; img.style.right = `${tIdx * -30}px`; img.style.zIndex = 10 - tIdx; p2Stack.appendChild(img); }
+            });
+        }
+
+        function updateVis() {
+            let v = Math.max(-WIN_DIST, Math.min(WIN_DIST, state.rope));
+            document.getElementById('game-scene').style.transform = `translateX(${-v}px)`;
+            document.getElementById('char-container').style.transform = `translateX(${v}px)`;
+        }
+
+        function end(team) {
+            state.over = true;
+            document.getElementById('result-title').innerText = team === 1 ? 'TEAM 1 WINS' : 'TEAM 2 WINS';
+            document.getElementById('result-title').style.color = team === 1 ? '#002060' : '#C00000';
+            document.getElementById('end-team1-score').innerText = state.t1.score;
+            document.getElementById('end-team2-score').innerText = state.t2.score;
+            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+            show('result');
+        }
+    </script>
+</body>
+
+</html>
+
+
+

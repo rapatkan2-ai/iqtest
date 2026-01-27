@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Produktivitas - Insights & Inspiration | MindTest.id</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    
+    <link rel="icon" href="assets/FaviconNew.webp">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+
+    <app-sidebar></app-sidebar>
+    <app-mobile-nav></app-mobile-nav>
+
+    <main class="min-h-screen pt-24 md:pt-10 pb-20 md:ml-64 transition-all duration-300">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-12">
+                <div>
+                    <span
+                        class="px-3 py-1 bg-green-50 text-green-600 rounded-full text-xs font-bold tracking-wider uppercase mb-3 inline-block">Kategori</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+                        Produktivitas</h1>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-2xl text-lg">Tips dan strategi untuk bekerja
+                        lebih cerdas dan efektif.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Sidebar -->
+                <aside class="hidden lg:block lg:col-span-2 space-y-8">
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4">Kategori</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="artikel.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors"><span
+                                        class="material-icons-round text-base">chevron_right</span> Semua Artikel</a>
+                            </li>
+                            <li><a href="kategori-psikologi.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Psikologi
+                                    Minggu Ini</a></li>
+                            <li><a href="kategori-produktivitas.html"
+                                    class="flex items-center gap-2 text-primary-600 font-bold transition-colors">Produktivitas</a>
+                            </li>
+                            <li><a href="kategori-manajemen-diri.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Manajemen
+                                    Diri</a></li>
+                            <li><a href="kategori-karir.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Karir</a>
+                            </li>
+                            <li><a href="kategori-kerjasama-tim.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Kerjasama
+                                    Tim</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- Content -->
+                <div class="lg:col-span-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                        <!-- Articles -->
+                        <a href="artikel-tips-meningkatkan-iq.html" class="group cursor-pointer flex flex-col h-full">
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 relative">
+                                <img src="https://images.unsplash.com/photo-1546422904-90eab23c3d7e?auto=format&fit=crop&q=80&w=1000"
+                                    class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <span class="text-green-600 text-xs font-bold uppercase tracking-wide mb-2">Tips &
+                                Trik</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-green-600 transition-colors">
+                                5 Cara Efektif Meningkatkan Kapasitas Otak & IQ</h3>
+                            <div class="mt-auto pt-4 flex items-center gap-3 text-xs text-slate-500">
+                                <span>5 Menit Baca</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <app-footer></app-footer>
+    <script src="layout.js"></script>
+</body>
+
+</html>
+
+
+

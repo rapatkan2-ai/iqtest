@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Insights & Inspiration | MindTest.id</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    
+    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    
+    <link rel="icon" href="assets/FaviconNew.webp">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mindtest.id/artikel.html">
+    <meta property="og:title" content="Insights & Inspiration | MindTest.id">
+    <meta property="og:description"
+        content="Cerita, tips, dan saran berbasis sains untuk membantu Anda memahami diri sendiri, mengelola potensi, dan hidup lebih baik.">
+    <meta property="og:image" content="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/7%20tanda%20(1).jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mindtest.id/artikel.html">
+    <meta property="twitter:title" content="Insights & Inspiration | MindTest.id">
+    <meta property="twitter:description"
+        content="Cerita, tips, dan saran berbasis sains untuk membantu Anda memahami diri sendiri, mengelola potensi, dan hidup lebih baik.">
+    <meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/7%20tanda%20(1).jpg">
+
+    <!-- Schema.org / Google / Fallback for WhatsApp -->
+    <meta itemprop="name" content="Insights & Inspiration | MindTest.id">
+    <meta itemprop="description"
+        content="Cerita, tips, dan saran berbasis sains untuk membantu Anda memahami diri sendiri, mengelola potensi, dan hidup lebih baik.">
+    <meta itemprop="image" content="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/7%20tanda%20(1).jpg">
+
+    <!-- SUPABASE RESOURCE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+
+    <app-sidebar></app-sidebar>
+
+    <main class="min-h-screen pt-24 md:pt-10 pb-20 md:ml-64 transition-all duration-300">
+        <div class="w-full px-4 sm:px-6 lg:px-8">
+
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+                <div>
+                    <span
+                        class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold tracking-wider uppercase mb-3 inline-block">Blog</span>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-3">
+                        Wawasan & Inspirasi
+                    </h1>
+                    <p class="text-slate-500 dark:text-slate-400 max-w-2xl text-lg">
+                        Cerita, tips, dan saran berbasis sains untuk membantu Anda memahami diri sendiri, mengelola
+                        potensi, dan hidup lebih baik.
+                    </p>
+                </div>
+
+                <!-- Search -->
+                <div class="w-full md:w-auto min-w-[300px]">
+                    <div class="relative group">
+                        <input type="text" placeholder="Cari artikel..."
+                            class="w-full pl-10 pr-4 py-3 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all shadow-sm">
+                        <span
+                            class="material-icons-round absolute left-3 top-3 text-slate-400 group-focus-within:text-primary-500 transition-colors">search</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                <!-- Sidebar (Left) -->
+                <aside class="hidden lg:block lg:col-span-2 space-y-8">
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4">Kategori</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="artikel.html"
+                                    class="flex items-center gap-2 text-primary-600 font-semibold"><span
+                                        class="material-icons-round text-base">chevron_right</span> Semua Artikel</a>
+                            </li>
+                            <li><a href="kategori-psikologi.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Psikologi
+                                    Minggu Ini</a></li>
+                            <li><a href="kategori-produktivitas.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Produktivitas</a>
+                            </li>
+                            <li><a href="kategori-manajemen-diri.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Manajemen
+                                    Diri</a></li>
+                            <li><a href="kategori-karir.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Karir</a>
+                            </li>
+                            <li><a href="kategori-kerjasama-tim.html"
+                                    class="flex items-center gap-2 text-slate-500 hover:text-primary-600 transition-colors">Kerjasama
+                                    Tim</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-4">Tags</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="#"
+                                class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-xs text-slate-600 rounded-lg hover:bg-slate-200 transition-colors">#KesehatanMental</a>
+                            <a href="#"
+                                class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-xs text-slate-600 rounded-lg hover:bg-slate-200 transition-colors">#TesIQ</a>
+                            <a href="#"
+                                class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-xs text-slate-600 rounded-lg hover:bg-slate-200 transition-colors">#Fokus</a>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Content Area -->
+                <div class="lg:col-span-10">
+
+                    <!-- Featured Post -->
+                    <a href="artikel-tanda-iq-tinggi.html" class="block group mb-16 cursor-pointer">
+                        <div class="relative aspect-[21/9] rounded-3xl overflow-hidden mb-6 shadow-lg">
+                            <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/7%20tanda%20(1).jpg"
+                                alt="7 Tanda IQ Tinggi"
+                                class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60">
+                            </div>
+                            <div class="absolute bottom-0 left-0 p-8">
+                                <span
+                                    class="bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-3 inline-block shadow-lg">Self
+                                    Discovery</span>
+                            </div>
+                        </div>
+
+                        <div class="max-w-3xl">
+                            <h2
+                                class="text-3xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-emerald-600 transition-colors">
+                                7 Tanda IQ Kamu Tinggi Tanpa Disadari
+                            </h2>
+                            <div class="flex items-center gap-4 text-sm text-slate-500">
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        class="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-500">
+                                        MT</div>
+                                    <span>MindTest Media Team</span>
+                                </div>
+                                <span>•</span>
+                                <span>7 Menit Baca</span>
+                                <span>•</span>
+                                <span class="text-emerald-600 font-semibold">Cover Story</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Article Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+
+                        <!-- Raven Matrices (Moved from Featured) -->
+                        <a href="artikel-raven-matrices.html" class="group cursor-pointer flex flex-col h-full">
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 relative">
+                                <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/raven.jpg"
+                                    alt="Raven Matrices"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <span class="text-primary-600 text-xs font-bold uppercase tracking-wide mb-2">Psikologi &
+                                IQ</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-primary-600 transition-colors">
+                                Keunggulan Raven Progressive Matrices
+                            </h3>
+                            <div class="mt-auto pt-4 flex items-center gap-3 text-xs text-slate-500">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">
+                                    MT</div>
+                                <span>MindTest Media Team</span>
+                                <span>•</span>
+                                <span>6 menit baca</span>
+                            </div>
+                        </a>
+
+
+
+
+                        <!-- Article 1 -->
+                        <a href="artikel-tips-meningkatkan-iq.html" class="group cursor-pointer flex flex-col h-full">
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 relative">
+                                <img src="https://images.pexels.com/photos/355948/pexels-photo-355948.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                    alt="Brain Power"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <span class="text-blue-600 text-xs font-bold uppercase tracking-wide mb-2">Tips &
+                                Trik</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-blue-600 transition-colors">
+                                5 Cara Efektif Meningkatkan Kapasitas Otak & IQ
+                            </h3>
+                            <div class="mt-auto pt-4 flex items-center gap-3 text-xs text-slate-500">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">
+                                    MT</div>
+                                <span>MindTest Media Team</span>
+                                <span>•</span>
+                                <span>5 menit baca</span>
+                            </div>
+                        </a>
+
+                        <!-- Article 2 -->
+                        <a href="artikel-persiapan-teknis-kerja.html" class="group cursor-pointer flex flex-col h-full">
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-slate-100 relative">
+                                <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                                    alt="Team Work"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <span class="text-purple-600 text-xs font-bold uppercase tracking-wide mb-2">Karir</span>
+                            <h3
+                                class="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-purple-600 transition-colors">
+                                Persiapan Teknis: Kenapa Psikotes Penting untuk Karir?
+                            </h3>
+                            <div class="mt-auto pt-4 flex items-center gap-3 text-xs text-slate-500">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">
+                                    MT</div>
+                                <span>MindTest Media Team</span>
+                                <span>•</span>
+                                <span>4 menit baca</span>
+                            </div>
+                        </a>
+
+                        <!-- CTA Card -->
+                        <div
+                            class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 flex flex-col justify-center items-center text-center text-white relative overflow-hidden group">
+                            <div
+                                class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700">
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700">
+                            </div>
+
+                            <span
+                                class="material-icons-round text-5xl mb-4 bg-white/20 p-3 rounded-2xl backdrop-blur-sm">psychology</span>
+                            <h3 class="text-2xl font-bold mb-2">Unlock Your Potential</h3>
+                            <p class="text-blue-100 text-sm mb-6 leading-relaxed">
+                                Discover your cognitive strengths with our detailed analysis.
+                            </p>
+                            <a href="quizz.html"
+                                class="px-6 py-3 bg-white text-blue-700 font-bold rounded-xl shadow-lg hover:shadow-xl hover:bg-blue-50 transition-all transform hover:-translate-y-1 w-full">
+                                Mulai Tes Gratis
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="bg-slate-900 rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-[url('assets/grid-pattern.svg')] opacity-5"></div>
+                        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div class="flex items-center gap-6">
+                                <div
+                                    class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                                    <span class="material-icons-round text-3xl text-white">mail_outline</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Subscribe to MindTest newsletter</h3>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                                <button
+                                    class="px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/30">
+                                    Subscribe Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <app-footer></app-footer>
+
+    <!-- MAIN LOGIC SCRIPT -->
+    <script src="layout.js?v=FIX_MENU"></script>
+
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Papan Peringkat - MindTest.id</title>
+    <link rel="icon" type="image/webp" href="assets/FaviconNew.webp">
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.1/css/flag-icons.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
+
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Glassmorphism Utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Leaderboard Specific Styles */
+        .bg-purple-gradient {
+            background-image: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+        }
+
+        .podium-base {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 0.5rem;
+            height: 280px;
+        }
+
+        .podium-rank {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            text-align: center;
+            width: 30%;
+            padding-top: 1rem;
+            border-radius: 1rem 1rem 0 0;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .podium-rank:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Glass effect on podium blocks */
+        .podium-1 {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(5px);
+            border-top: 4px solid #FFC13D;
+        }
+
+        .podium-2 {
+            height: 80%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border-top: 4px solid #A0AEC0;
+        }
+
+        .podium-3 {
+            height: 65%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border-top: 4px solid #E9A279;
+        }
+
+        .leaderboard-row {
+            transition: background-color 0.2s;
+            border-radius: 0.5rem;
+        }
+
+        .leaderboard-row:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animasi Lottie Piala - Posisi disesuaikan agar pas di dalam/atas avatar */
+        #podium-1 dotlottie-wc {
+            position: absolute;
+            top: -75px;
+            /* Posisi tepat di atas avatar */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            /* Ukuran pas, tidak terlalu besar */
+            z-index: 20;
+            pointer-events: none;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        #podium-1 img {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-text-light">
+
+
+
+
+
+    <app-header></app-header>
+
+
+
+    <main class="relative z-30 min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-2 space-y-8">
+
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-text-light">Papan Peringkat</h1>
+                        <p class="text-text-light-secondary mt-1">Top 100 Pengguna Tercerdas Minggu Ini</p>
+                    </div>
+                    <div class="hidden sm:block text-right">
+                        <div class="text-sm font-semibold text-text-light-secondary">Waktu Tersisa</div>
+                        <div class="text-xl font-bold text-primary">04:12:30</div>
+                    </div>
+                </div>
+
+
+                <div class="relative text-white">
+
+                    <div class="absolute inset-0 bg-purple-gradient rounded-3xl shadow-2xl overflow-hidden -z-10">
+
+                        <div
+                            class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full blur-3xl">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-pink-500 opacity-20 rounded-full blur-3xl">
+                        </div>
+                    </div>
+
+
+                    <div class="p-8 relative z-10">
+                        <div class="podium-base">
+
+                            <div id="podium-2" class="podium-rank podium-2">
+                                <div class="relative mb-2 group">
+                                    <div
+                                        class="absolute inset-0 bg-white rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity">
+                                    </div>
+                                    <img id="podium-2-avatar" src="assets/avatar-3.svg"
+                                        class="relative w-20 h-20 rounded-full object-cover border-4 border-accent-silver shadow-lg"
+                                        alt="Avatar">
+                                    <div
+                                        class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-accent-silver text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">
+                                        #2</div>
+                                </div>
+                                <h3 id="podium-2-name" class="font-bold mt-1 text-sm w-full truncate px-2">Ninja_Gamer
+                                </h3>
+                                <p id="podium-2-score" class="font-medium text-indigo-100 text-sm">158 PTS</p>
+                            </div>
+
+
+                            <div id="podium-1" class="podium-rank podium-1">
+                                <dotlottie-wc
+                                    src="https://lottie.host/87e27d4d-bcc2-4011-b6fa-a3957b3ddcc7/nW4pysDQRY.lottie"
+                                    autoplay loop></dotlottie-wc>
+                                <div class="relative mb-3 group">
+                                    <div
+                                        class="absolute inset-0 bg-yellow-300 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity">
+                                    </div>
+                                    <img id="podium-1-avatar" src="assets/avatar-1.svg"
+                                        class="relative w-24 h-24 rounded-full object-cover border-4 border-accent-gold shadow-xl"
+                                        alt="Avatar">
+                                    <div
+                                        class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-accent-gold text-white text-sm font-bold px-3 py-0.5 rounded-full shadow-md">
+                                        #1</div>
+                                </div>
+                                <h3 id="podium-1-name" class="font-bold mt-2 text-lg w-full truncate px-2 text-center">
+                                    SkyWalker_99</h3>
+                                <p id="podium-1-score" class="font-bold text-white text-xl">162 PTS</p>
+                            </div>
+
+
+                            <div id="podium-3" class="podium-rank podium-3">
+                                <div class="relative mb-2 group">
+                                    <div
+                                        class="absolute inset-0 bg-orange-300 rounded-full blur opacity-20 group-hover:opacity-40 transition-opacity">
+                                    </div>
+                                    <img id="podium-3-avatar" src="assets/avatar-4.svg"
+                                        class="relative w-16 h-16 rounded-full object-cover border-4 border-accent-bronze shadow-lg"
+                                        alt="Avatar">
+                                    <div
+                                        class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-accent-bronze text-white text-xs font-bold px-2 py-0.5 rounded-full shadow-sm">
+                                        #3</div>
+                                </div>
+                                <h3 id="podium-3-name" class="font-bold mt-1 text-sm w-full truncate px-2">Pixel_Queen
+                                </h3>
+                                <p id="podium-3-score" class="font-medium text-indigo-100 text-sm">155 PTS</p>
+                            </div>
+                        </div>
+                        <div class="text-center mt-6">
+                            <div class="inline-block bg-white/10 backdrop-blur-md rounded-full px-4 py-1">
+                                <p id="winner-congrats" class="text-indigo-100 text-sm font-medium">SkyWalker_99
+                                    memimpin klasemen minggu ini!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <section class="bg-card-light rounded-3xl shadow-card-new overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                        <h3 class="font-bold text-lg text-text-light">Peringkat Global</h3>
+                        <button class="text-primary text-sm font-semibold hover:underline">Lihat Semua</button>
+                    </div>
+
+                    <div
+                        class="flex items-center text-xs text-text-light-secondary uppercase font-bold px-6 py-3 bg-gray-50">
+                        <div class="w-[60px] text-center shrink-0">Rank</div>
+                        <div class="flex-1 min-w-0 pl-2">Nama Pengguna</div>
+                        <div class="w-[60px] text-center shrink-0 hidden sm:block">Negara</div>
+                        <div class="w-[80px] text-right shrink-0">Skor IQ</div>
+                    </div>
+
+                    <div id="leaderboard-list" class="divide-y divide-gray-100">
+
+                    </div>
+                </section>
+            </div>
+
+
+            <aside class="space-y-8">
+
+                <div class="bg-card-light p-6 rounded-3xl shadow-card-new">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="bg-blue-100 p-2 rounded-lg text-blue-600">
+                            <span class="material-icons">public</span>
+                        </div>
+                        <h3 class="font-bold text-text-light">Rata-rata Negara</h3>
+                    </div>
+                    <ul id="country-iq-list" class="space-y-3">
+
+                    </ul>
+                    <button
+                        class="w-full mt-4 text-sm text-text-light-secondary font-medium hover:text-primary transition-colors">Lihat
+                        peta lengkap</button>
+                </div>
+
+
+                <div class="bg-gradient-to-br from-primary to-pink-500 p-6 rounded-3xl shadow-lg text-white">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-lg">Tahukah Kamu?</h3>
+                        <span class="material-icons bg-white/20 p-1 rounded-full text-sm">lightbulb</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10">
+                            <h4 class="font-bold text-sm text-yellow-200 mb-1">Efek Flynn</h4>
+                            <p class="text-xs leading-relaxed text-indigo-50">Rata-rata skor IQ global telah meningkat
+                                sekitar 3 poin setiap dekade sejak awal abad ke-20.</p>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm p-3 rounded-xl border border-white/10">
+                            <h4 class="font-bold text-sm text-yellow-200 mb-1">Skor Tidak Tetap</h4>
+                            <p class="text-xs leading-relaxed text-indigo-50">Pendidikan, nutrisi, dan latihan otak
+                                dapat memengaruhi skor IQ seseorang dari waktu ke waktu.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bg-card-light p-6 rounded-3xl shadow-card-new">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="bg-green-100 p-2 rounded-lg text-green-600">
+                            <span class="material-icons">bar_chart</span>
+                        </div>
+                        <h3 class="font-bold text-text-light">Distribusi IQ</h3>
+                    </div>
+                    <div>
+                        <canvas id="iqDistributionChart" height="200"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-text-light-secondary mt-3">Kurva lonceng distribusi IQ normal</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+
+    <app-footer></app-footer>
+
+
+    <app-mobile-nav></app-mobile-nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 3. LEADERBOARD LOGIC (ASLI/TIDAK DIUBAH) ---
+            const avatarUrls = [
+                'assets/avatar-1.svg',
+                'assets/avatar-3.svg',
+                'assets/avatar-4.svg',
+                'assets/avatar-5.svg',
+                'assets/avatar-6.svg',
+                'assets/avatar-7.svg',
+                'assets/avatar-8.svg',
+                'assets/avatar-portrait.svg'
+            ];
+            let mockLeaderboardData = [
+                { name: "SkyWalker_99", country: "id", score: 162, avatar: avatarUrls[0] },
+                { name: "Ninja_Gamer", country: "jp", score: 158, avatar: avatarUrls[1] },
+                { name: "Pixel_Queen", country: "us", score: 155, avatar: avatarUrls[2] },
+                { name: "CryptoKing_ID", country: "id", score: 152, avatar: avatarUrls[3] },
+                { name: "Luna_Maya_Fan", country: "id", score: 151, avatar: avatarUrls[4] },
+                { name: "JustForFun", country: "sg", score: 149, avatar: avatarUrls[5] },
+                { name: "SilentSniper", country: "de", score: 148, avatar: avatarUrls[6] },
+                { name: "RajaTerakhir", country: "my", score: 147, avatar: avatarUrls[7] },
+                { name: "Captain_Nemo", country: "gb", score: 145, avatar: avatarUrls[0] },
+                { name: "DataNerd_42", country: "ca", score: 144, avatar: avatarUrls[1] },
+            ];
+
+            const countryIqData = [
+                { name: "Jepang", iq: 106.48, code: "jp" },
+                { name: "Singapura", iq: 105.89, code: "sg" },
+                { name: "Korea Selatan", iq: 104.8, code: "kr" },
+                { name: "Jerman", iq: 100.74, code: "de" },
+                { name: "Inggris", iq: 99.12, code: "gb" },
+                { name: "Amerika Serikat", iq: 97.43, code: "us" },
+                { name: "Indonesia", iq: 78.49, code: "id" },
+            ];
+            const rankChanges = {};
+            function censorName(name) {
+                if (name.length <= 4) return '***';
+                return name.substring(0, Math.floor(name.length / 2)) + '***';
+            }
+            function renderLeaderboard() {
+                const sortedData = [...mockLeaderboardData].sort((a, b) => b.score - a.score);
+                // Populate Podium
+                const podiumData = sortedData.slice(0, 3);
+                podiumData.forEach((user, index) => {
+                    const rank = index + 1;
+                    const avatarEl = document.getElementById(`podium-${rank}-avatar`);
+                    const nameEl = document.getElementById(`podium-${rank}-name`);
+                    const scoreEl = document.getElementById(`podium-${rank}-score`);
+
+                    if (avatarEl) avatarEl.src = user.avatar || `https://placehold.co/100x100/EFEFEF/333333?text=${rank}`;
+                    if (nameEl) nameEl.textContent = user.name;
+                    if (scoreEl) scoreEl.textContent = `${user.score} PTS`;
+                });
+
+                const winner = podiumData[0];
+                const winnerMsg = document.getElementById('winner-congrats');
+                if (winnerMsg) winnerMsg.textContent = `${winner.name} memimpin klasemen minggu ini!`;
+                // Populate List
+                const listContainer = document.getElementById('leaderboard-list');
+                if (listContainer) {
+                    listContainer.innerHTML = '';
+                    const listData = sortedData.slice(3);
+                    listData.forEach((user, index) => {
+                        const rank = index + 4;
+                        const item = document.createElement('div');
+                        item.className = 'leaderboard-row flex items-center text-sm py-3 px-6 cursor-pointer';
+                        const rankChange = rankChanges[user.name];
+                        let rankIcon = '<span class="text-gray-400">-</span>';
+                        if (rankChange === 'up') {
+                            rankIcon = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>';
+                        } else if (rankChange === 'down') {
+                            rankIcon = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>';
+                        }
+                        item.innerHTML = `
+                    <div class="w-[60px] text-center flex items-center justify-center gap-2 font-bold text-text-light-secondary shrink-0">
+                        ${rankIcon}
+                        <span class="w-5">${rank}</span>
+                    </div>
+                    <div class="flex-1 min-w-0 flex items-center pl-2">
+                        <img src="${user.avatar || 'https://placehold.co/40x40'}" class="w-9 h-9 rounded-full object-cover mr-3 shrink-0 border border-gray-100" alt="Avatar">
+                        <span class="font-semibold text-text-light truncate">${censorName(user.name)}</span>
+                    </div>
+                    <div class="w-[60px] text-center shrink-0 hidden sm:block">
+                        <span class="fi fi-${user.country} shadow-sm rounded-sm"></span>
+                    </div>
+                    <div class="w-[80px] text-right font-bold text-primary shrink-0">${user.score}</div>
+                `;
+                        listContainer.appendChild(item);
+                    });
+                }
+            }
+
+            function renderChart() {
+                const iqCtx = document.getElementById('iqDistributionChart');
+                if (iqCtx) {
+                    new Chart(iqCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['70', '85', '100', '115', '130', '145'],
+                            datasets: [{
+                                label: 'Distribusi Skor IQ',
+                                data: [2.1, 13.6, 68.2, 13.6, 2.1, 0.1],
+                                borderColor: '#FF6B6B',
+                                backgroundColor: 'rgba(255, 107, 107, 0.15)',
+                                fill: true,
+                                tension: 0.4,
+                                borderWidth: 3,
+                                pointBackgroundColor: '#fff',
+                                pointBorderColor: '#FF6B6B',
+                                pointRadius: 4,
+                                pointHoverRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: { backgroundColor: '#1e293b', padding: 12, cornerRadius: 8 }
+                            },
+                            scales: {
+                                y: { display: false, min: 0 },
+                                x: { grid: { display: false }, ticks: { color: '#94a3b8', font: { family: 'Poppins' } } }
+                            }
+                        }
+                    });
+                }
+            }
+
+            function renderCountryIqList() {
+                const countryList = document.getElementById('country-iq-list');
+                if (!countryList) return;
+                countryList.innerHTML = '';
+                countryIqData.sort((a, b) => b.iq - a.iq).forEach((country, idx) => {
+                    const item = document.createElement('li');
+                    item.className = 'flex items-center justify-between text-sm py-2 px-2 rounded hover:bg-gray-50 transition-colors';
+                    item.innerHTML = `
+                <span class="flex items-center text-text-light font-medium">
+                    <span class="w-5 text-gray-400 text-xs mr-2 text-center">${idx + 1}</span>
+                    <span class="fi fi-${country.code} mr-3 rounded-sm shadow-sm"></span>
+                    ${country.name}
+                </span>
+                <span class="font-bold text-primary bg-primary/10 px-2 py-0.5 rounded text-xs">${country.iq}</span>
+            `;
+                    countryList.appendChild(item);
+                });
+            }
+            // Initial render
+            renderLeaderboard();
+            renderChart();
+            renderCountryIqList();
+            // Live update simulation
+            setInterval(() => {
+                const userIndexToUpdate = Math.floor(Math.random() * (mockLeaderboardData.length - 3)) + 3;
+                const oldScore = mockLeaderboardData[userIndexToUpdate].score;
+                const scoreChange = Math.floor(Math.random() * 5) - 2;
+                const newScore = Math.max(100, Math.min(160, oldScore + scoreChange));
+                if (newScore > oldScore) rankChanges[mockLeaderboardData[userIndexToUpdate].name] = 'up';
+                else if (newScore < oldScore) rankChanges[mockLeaderboardData[userIndexToUpdate].name] = 'down';
+                else delete rankChanges[mockLeaderboardData[userIndexToUpdate].name];
+                mockLeaderboardData[userIndexToUpdate].score = newScore;
+                renderLeaderboard();
+            }, 5000);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="layout.js"></script>
+</body>
+
+</html>
+
+
+

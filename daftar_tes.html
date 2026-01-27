@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindTest.id - Semua Kuis</title>
+    <link rel="icon" type="image/webp" href="assets/FaviconNew.webp">
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.1/css/flag-icons.min.css" />
+
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Glassmorphism Utility (Untuk Navbar) */
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Button Styles untuk Login Header */
+        .gradient-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 106%;
+            height: 115%;
+            overflow: hidden;
+            border-radius: inherit;
+            z-index: -2;
+            filter: blur(10px);
+            transition: all 0.3s;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-text-light">
+
+
+
+
+
+    <app-header></app-header>
+
+
+    <main class="relative z-30 min-h-screen bg-gray-50 overflow-hidden">
+
+
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <div
+                class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float">
+            </div>
+            <div class="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float"
+                style="animation-delay: 2s"></div>
+            <div class="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-float"
+                style="animation-delay: 4s"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+
+            <div class="text-center mb-16 animate-fade-in-up">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-red-100 text-primary text-xs font-bold tracking-wider mb-4 uppercase">MindTest.id
+                    Platform</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">
+                    Jelajahi Potensi <span class="text-primary">Tersembunyi</span>
+                </h1>
+                <p class="text-gray-500 mt-4 text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    Platform tes modern untuk mengungkap kepribadian, mengukur IQ, dan melatih kemampuan kognitif Anda
+                    secara akurat
+                </p>
+            </div>
+
+
+            <div class="sticky top-24 z-30 mb-12 animate-fade-in-up" style="animation-delay: 150ms">
+                <div
+                    class="bg-white/80 backdrop-blur-md border border-white/40 shadow-soft rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 max-w-4xl mx-auto">
+                    <div class="relative w-full md:w-2/3 group">
+                        <span
+                            class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors">search</span>
+                        <input id="searchInput"
+                            class="w-full bg-gray-50/50 border-transparent rounded-xl py-3 pl-12 pr-4 text-gray-800 placeholder-gray-400 focus:bg-white focus:border-primary/20 focus:ring-4 focus:ring-primary/10 shadow-inner transition-all duration-300"
+                            placeholder="Cari kuis (misal: IQ, Kepribadian)..." type="text" />
+                    </div>
+                    <div class="relative w-full md:w-1/3">
+                        <select id="categoryFilter"
+                            class="w-full bg-gray-50/50 border-transparent rounded-xl text-sm font-semibold py-3 pl-4 pr-10 appearance-none focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/10 cursor-pointer text-gray-700 shadow-inner transition-all">
+                            <option value="all">Semua Kategori</option>
+                            <option value="logika">Logika & IQ</option>
+                            <option value="kepribadian">Kepribadian</option>
+                            <option value="kecerdasan">Kecerdasan & EQ</option>
+                            <option value="karir">Karir & Pekerjaan</option>
+                            <option value="hubungan">Hubungan</option>
+                        </select>
+                        <span
+                            class="material-icons absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">expand_more</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 200ms">
+
+                    <div class="absolute top-0 w-full h-1 bg-gradient-to-r from-blue-400 to-purple-500"></div>
+
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div
+                                class="inline-flex items-center bg-blue-50 text-blue-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase">
+                                <span class="material-icons text-xs mr-1">verified</span>
+                                Official
+                            </div>
+                        </div>
+                        <div
+                            class="rounded-2xl p-6 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors duration-500">
+                            <img src="assets/Tes_IQ_Picture.webp" alt="Tes IQ Jenius"
+                                class="w-full h-48 object-contain transform group-hover:scale-110 transition-transform duration-500 drop-shadow-md">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Tes Logika</p>
+                            <h3
+                                class="font-extrabold text-xl text-gray-800 leading-tight mb-3 group-hover:text-blue-600 transition-colors">
+                                Tes IQ & Profil Kognitif</h3>
+                            <p class="text-sm text-gray-500 line-clamp-2 mb-4">Ukur kecerdasan logika Anda dengan
+                                standar internasional.</p>
+
+
+                            <div class="flex items-center gap-3 mb-4 text-gray-400">
+                                <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                        class="material-icons text-sm">format_list_numbered</span> 30</div>
+                                <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                        class="material-icons text-sm">timer</span> 30m</div>
+                                <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                        class="material-icons text-sm">workspace_premium</span> Yes</div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-500/30 transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-2">
+                            <span>Mulai Tes</span>
+                            <span class="material-icons text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 300ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-purple-50 text-purple-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            MBTI
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
+                            <img src="assets/4.webp" alt="Tes Kepribadian"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Kepribadian</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Siapa Aku Sebenarnya?</h3>
+                        <p class="text-sm text-gray-500 line-clamp-2 mb-6">Temukan potensi diri dan karir yang cocok
+                            untukmu.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 60</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 15m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+
+
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 400ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-rose-50 text-rose-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Language
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-rose-50 to-red-50 flex items-center justify-center">
+                            <img src="assets/coin_2.webp" alt="English Proficiency Tests"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Bahasa</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">English Proficiency Tests
+                        </h3>
+                        <p class="text-sm text-gray-500 line-clamp-2 mb-6">Uji kemampuan Bahasa Inggris Anda (Grammar,
+                            Vocabulary) dengan standar internasional.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 15</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 5m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+
+
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Kuis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 550ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-purple-50 text-purple-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Intelligence
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-purple-50 to-fuchsia-50 flex items-center justify-center">
+                            <img src="assets/6.webp" alt="Multiple Intelligences"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Kecerdasan</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Analisa Kecerdasan Majemuk
+                        </h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Temukan potensi dominanmu dari 8 tipe
+                            kecerdasan, mulai dari musikal hingga logis-matematis.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 35</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 15m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 600ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-orange-50 text-orange-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Career
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-orange-50 to-amber-50 flex items-center justify-center">
+                            <img src="assets/7_1.webp" alt="Holland Code (RIASEC)"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Karir</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Minat Karir RIASEC</h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Jelajahi profil minat kerjamu: Realistik,
+                            Investigatif, Artistik, Sosial, Enterprising, atau Konvensional.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 48</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 10m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 650ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-green-50 text-green-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            EQ
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-green-50 to-teal-50 flex items-center justify-center">
+                            <img src="assets/8_1.webp" alt="Emotional intelligence"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Kecerdasan Emosional
+                        </p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Tes EQ (Kecerdasan
+                            Emosional)</h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Ukur seberapa baik kamu mengelola emosi diri
+                            dan berempati terhadap orang lain.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 30</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 15m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 700ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-blue-50 text-blue-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Personality
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+                            <img src="assets/9_2.webp" alt="Big Five Personality"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Kepribadian</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Profil Kepribadian Big Five
+                        </h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Analisa mendalam 5 faktor utama
+                            kepribadianmu:
+                            Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 50</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 15m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <a href="javascript:void(0)"
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 750ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-red-50 text-red-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Work
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center">
+                            <img src="assets/10.webp" alt="PAPI Kostick"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Gaya Kerja</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Tes Gaya Kerja PAPI Kostick
+                        </h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Evaluasi peran profesionalmu melalui 7 aspek
+                            psikologis di tempat kerja.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 90</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 20m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 800ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-teal-50 text-teal-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Personality
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-teal-50 to-green-50 flex items-center justify-center">
+                            <img src="assets/11.webp" alt="DISC"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Kepribadian</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Analisa Profil DISC</h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Pahami pola perilakumu: Dominance, Influence,
+                            Steadiness, atau Compliance dalam situasi kerja.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 24</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 10m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 850ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-blue-50 text-blue-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            IQ
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-blue-50 to-indigo-50 flex items-center justify-center">
+                            <img src="assets/12_1.webp" alt="WAIS IV"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Intelegensi</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Tes Intelegensi Umum (WAIS)
+                        </h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Asesmen IQ komprehensif mengukur pemahaman
+                            verbal, penalaran, daya ingat, dan kecepatan proses.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 50</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 60m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 900ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-gray-50 text-gray-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Academic
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-gray-50 to-slate-50 flex items-center justify-center">
+                            <img src="assets/14_1.webp" alt="TPA"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Potensi Akademik</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Tes Potensi Akademik</h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Uji kemampuan logis, numerik, dan verbal
+                            untuk
+                            persiapan standar akademik dan rekrutmen.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 100</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 60m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <button type="button" disabled
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-3xl border border-gray-100 shadow-soft hover:shadow-xl transition-all duration-500 flex flex-col overflow-hidden relative animate-fade-in-up"
+                    style="animation-delay: 950ms">
+                    <div class="p-5 flex flex-col">
+                        <div
+                            class="inline-flex items-center bg-pink-50 text-pink-600 font-bold text-[10px] px-3 py-1.5 rounded-full tracking-wide uppercase self-start">
+                            Personality
+                        </div>
+                        <div
+                            class="mt-4 rounded-2xl p-6 bg-gradient-to-br from-pink-50 to-rose-50 flex items-center justify-center">
+                            <img src="assets/15_1.webp" alt="EPPS"
+                                class="w-full h-48 object-contain transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0 flex flex-col flex-grow">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Kepribadian</p>
+                        <h3 class="font-extrabold text-xl text-gray-800 leading-tight mb-3">Tes Preferensi Pribadi
+                            (EPPS)</h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-6">Ungkap 15 kebutuhan psikologis utamamu yang
+                            memengaruhi motivasi dan interaksi sosial.</p>
+                        <div class="flex items-center gap-3 mb-4 text-gray-400">
+                            <div class="flex items-center gap-1 text-xs" title="Jumlah Soal"><span
+                                    class="material-icons text-sm">format_list_numbered</span> 225</div>
+                            <div class="flex items-center gap-1 text-xs" title="Estimasi Waktu"><span
+                                    class="material-icons text-sm">timer</span> 60m</div>
+                            <div class="flex items-center gap-1 text-xs" title="Sertifikat"><span
+                                    class="material-icons text-sm">workspace_premium</span> Yes</div>
+                        </div>
+                        <div class="relative mt-auto">
+                            <div
+                                class="absolute -top-3 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                                SEGERA HADIR
+                            </div>
+                            <a href="javascript:void(0)"
+                                class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                                Mulai Tes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </main>
+
+
+    <app-footer></app-footer>
+
+
+    <app-mobile-nav></app-mobile-nav>
+
+
+
+    <!-- Script Filters -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const cards = document.querySelectorAll('.group.bg-white.rounded-3xl');
+
+            function filterTests() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                const category = categoryFilter.value.toLowerCase();
+
+                cards.forEach(card => {
+                    // Get all text content from the card to be safe
+                    const cardText = card.textContent.toLowerCase();
+
+                    // 1. Search Logic: Check if card text contains the search term
+                    const matchesSearch = searchTerm === '' || cardText.includes(searchTerm);
+
+                    // 2. Category Logic
+                    let matchesCategory = false;
+                    if (category === 'all' || category === 'semua kategori') {
+                        matchesCategory = true;
+                    } else {
+                        // Define keywords for each category
+                        const categoryKeywords = {
+                            'logika': ['logika', 'iq', 'intelegensi', 'akademik'],
+                            'kepribadian': ['kepribadian', 'personality', 'mbti', 'disc', 'epps', 'big five', 'siapa aku'],
+                            'kecerdasan': ['kecerdasan', 'eq', 'intelligence', 'majemuk'],
+                            'karir': ['karir', 'kerja', 'riasec', 'papi'],
+                            'hubungan': ['hubungan', 'jodoh', 'love']
+                        };
+
+                        const keywords = categoryKeywords[category] || [];
+                        // Check if ANY keyword for the selected category exists in the card text
+                        matchesCategory = keywords.some(keyword => cardText.includes(keyword));
+                    }
+
+                    // toggle visibility
+                    if (matchesSearch && matchesCategory) {
+                        card.classList.remove('hidden');
+                        card.classList.add('flex');
+                    } else {
+                        card.classList.add('hidden');
+                        card.classList.remove('flex');
+                    }
+                });
+            }
+
+            searchInput.addEventListener('input', filterTests);
+            categoryFilter.addEventListener('change', filterTests);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="layout.js"></script>
+</body>
+
+</html>
+
+
+

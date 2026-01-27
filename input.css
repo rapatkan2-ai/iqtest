@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Utilities if needed */
+.global-bg {
+    background-color: #f8fafc;
+    /* slate-50 */
+}
+
+.dark .global-bg {
+    background-color: #0f172a;
+    /* slate-900 */
+}

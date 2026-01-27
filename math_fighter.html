@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pertarungan Matematika - MindTest.id</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'fun': ['Fredoka', 'sans-serif'], 'body': ['Nunito', 'sans-serif'] },
+                    colors: { 'p1': '#002060', 'p2': '#C00000', 'hp-high': '#48BB78', 'hp-mid': '#ECC94B', 'hp-low': '#F56565' },
+                    animation: {
+                        'pulse-fast': 'pulse 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+                        'hit': 'hit 0.2s linear'
+                    },
+                    keyframes: {
+                        shake: { '10%, 90%': { transform: 'translate3d(-1px, 0, 0)' }, '20%, 80%': { transform: 'translate3d(2px, 0, 0)' }, '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' }, '40%, 60%': { transform: 'translate3d(4px, 0, 0)' } },
+                        hit: { '0%': { filter: 'brightness(2) sepia(1)' }, '100%': { filter: 'brightness(1) sepia(0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 1.5rem;
+            cursor: grab;
+            touch-action: none;
+        }
+
+        .glass-card:active {
+            cursor: grabbing;
+        }
+
+        .numpad-btn {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.25rem;
+            color: #4A5568;
+            transition: all 0.1s;
+        }
+
+        .numpad-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
+        }
+
+        .hp-bar-fill {
+            transition: width 0.3s ease-out, background-color 0.3s;
+        }
+
+        .char-sprite {
+            transition: all 0.2s;
+        }
+
+        .damage-float {
+            animation: floatUp 1s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1.5);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 font-body h-screen w-screen flex flex-col text-gray-100 overflow-hidden">
+
+    <!-- Background (Dynamic Arena) -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop"
+            class="w-full h-full object-cover opacity-30" alt="Arena">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-gray-900"></div>
+    </div>
+
+    <!-- Nav -->
+    <div class="fixed top-4 left-4 z-50">
+        <button onclick="window.location.href='playground_ifp.html'"
+            class="bg-white h-12 w-12 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-500"><span
+                class="material-icons">home</span></button>
+    </div>
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleFullscreen()"
+            class="bg-white h-12 w-12 rounded-xl shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-500"><span
+                class="material-icons">fullscreen</span></button>
+    </div>
+
+    <main id="app" class="relative w-full h-full flex flex-col">
+
+        <!-- 1. SETUP / MODE -->
+        <section id="screen-setup"
+            class="absolute inset-0 z-50 flex items-center justify-center bg-gray-900/90 backdrop-blur-md">
+            <div class="text-center w-full max-w-4xl px-4">
+                <h1
+                    class="font-fun text-7xl md:text-8xl font-bold text-yellow-500 mb-2 drop-shadow-lg tracking-wider italic">
+                    MATH FIGHTER</h1>
+                <p class="text-2xl text-gray-400 mb-12 uppercase tracking-widest font-bold">1 vs 1 Battle Arena</p>
+
+                <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
+                    <!-- P1 Char Select -->
+                    <div class="bg-gray-800 p-6 rounded-3xl border-4 border-blue-600 w-80">
+                        <h3 class="text-blue-400 font-bold text-2xl mb-4">PLAYER 1</h3>
+                        <div class="grid grid-cols-4 gap-2 mb-4" id="p1-chars"></div>
+                        <div id="p1-preview"
+                            class="text-6xl h-24 flex items-center justify-center bg-gray-700 rounded-xl mb-4">?</div>
+                        <button id="p1-ready"
+                            class="w-full py-4 rounded-xl bg-gray-700 text-gray-500 font-bold text-xl uppercase"
+                            disabled>SELECT</button>
+                    </div>
+
+                    <div class="text-4xl font-bold text-yellow-500 italic">VS</div>
+
+                    <!-- P2 Char Select -->
+                    <div class="bg-gray-800 p-6 rounded-3xl border-4 border-red-600 w-80">
+                        <h3 class="text-red-400 font-bold text-2xl mb-4">PLAYER 2</h3>
+                        <div class="grid grid-cols-4 gap-2 mb-4" id="p2-chars"></div>
+                        <div id="p2-preview"
+                            class="text-6xl h-24 flex items-center justify-center bg-gray-700 rounded-xl mb-4">?</div>
+                        <button id="p2-ready"
+                            class="w-full py-4 rounded-xl bg-gray-700 text-gray-500 font-bold text-xl uppercase"
+                            disabled>SELECT</button>
+                    </div>
+                </div>
+
+                <button onclick="startMatch()" id="btn-fight"
+                    class="hidden mt-12 bg-gradient-to-r from-red-600 to-orange-600 text-white font-fun text-5xl px-20 py-6 rounded-full shadow-2xl animate-pulse border-4 border-yellow-400 hover:scale-110 transition-transform italic">FIGHT!</button>
+            </div>
+        </section>
+
+        <!-- 2. BATTLE ARENA -->
+        <section id="screen-game" class="hidden absolute inset-0 w-full h-full flex flex-col justify-between p-4 pb-0">
+
+            <!-- HUD (Top) -->
+            <div class="relative z-10 w-full flex justify-between items-start pt-2 px-2 md:px-12">
+                <!-- P1 HP -->
+                <div class="flex-1 max-w-lg">
+                    <div class="flex justify-between text-blue-300 font-bold mb-1 text-xl uppercase tracking-wider">
+                        <span>Player 1</span><span id="p1-hp-text">100%</span>
+                    </div>
+                    <div
+                        class="w-full h-8 bg-gray-700 border-4 border-blue-900 rounded-l-xl rounded-r-sm relative overflow-hidden transform skew-x-[-20deg]">
+                        <div id="p1-hp-bar" class="h-full bg-green-500 hp-bar-fill w-full"></div>
+                    </div>
+                    <!-- P1 Ult Meter -->
+                    <div class="w-2/3 h-2 bg-gray-800 mt-1 rounded transform skew-x-[-20deg] overflow-hidden">
+                        <div id="p1-ult-bar" class="h-full bg-yellow-400 w-0 transition-all duration-200"></div>
+                    </div>
+                </div>
+
+                <!-- Timer -->
+                <div
+                    class="bg-gray-800/80 backdrop-blur border-4 border-gray-600 rounded-xl w-24 h-24 flex items-center justify-center z-20 shadow-xl mx-4 transform">
+                    <span id="timer" class="font-fun text-5xl font-bold text-white">99</span>
+                </div>
+
+                <!-- P2 HP -->
+                <div class="flex-1 max-w-lg text-right">
+                    <div class="flex justify-between text-red-300 font-bold mb-1 text-xl uppercase tracking-wider"><span
+                            id="p2-hp-text">100%</span><span>Player 2</span></div>
+                    <div
+                        class="w-full h-8 bg-gray-700 border-4 border-red-900 rounded-r-xl rounded-l-sm relative overflow-hidden transform skew-x-[20deg]">
+                        <div id="p2-hp-bar" class="h-full bg-green-500 hp-bar-fill w-full ml-auto"></div>
+                    </div>
+                    <!-- P2 Ult Meter -->
+                    <div class="w-2/3 h-2 bg-gray-800 mt-1 ml-auto rounded transform skew-x-[20deg] overflow-hidden">
+                        <div id="p2-ult-bar" class="h-full bg-yellow-400 w-0 transition-all duration-200 ml-auto"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHR & VISUALS (Center) -->
+            <div class="flex-grow relative flex items-center justify-center z-0 px-12 perspective-1000">
+                <!-- P1 -->
+                <div class="flex-1 flex justify-center items-end h-full pb-32">
+                    <div id="p1-sprite"
+                        class="char-sprite text-[10rem] md:text-[14rem] transform scale-x-1 origin-bottom drop-shadow-2xl animate-pulse-fast">
+                        🥋</div>
+                    <div id="p1-dmg"
+                        class="absolute top-1/3 left-1/4 text-6xl font-black text-red-500 opacity-0 italic stroke-black">
+                    </div>
+                </div>
+                <!-- P2 -->
+                <div class="flex-1 flex justify-center items-end h-full pb-32">
+                    <div id="p2-sprite"
+                        class="char-sprite text-[10rem] md:text-[14rem] transform scale-x-[-1] origin-bottom drop-shadow-2xl animate-pulse-fast">
+                        🥷</div>
+                    <div id="p2-dmg"
+                        class="absolute top-1/3 right-1/4 text-6xl font-black text-red-500 opacity-0 italic stroke-black">
+                    </div>
+                </div>
+
+                <!-- Floor (Perspective) -->
+                <div
+                    class="absolute bottom-12 w-[120%] h-32 bg-gradient-to-t from-gray-900 to-transparent transform rotate-x-60 opacity-50">
+                </div>
+            </div>
+
+            <!-- CONTROLS (Bottom Layer - Injected) -->
+            <div id="ui-layer" class="absolute inset-0 z-20 pointer-events-none"></div>
+
+        </section>
+
+        <!-- 3. RESULT -->
+        <section id="screen-result"
+            class="hidden absolute inset-0 bg-black/90 backdrop-blur-xl z-50 flex items-center justify-center">
+            <div class="text-center animate-bounce-in">
+                <h2 id="result-title"
+                    class="font-fun text-8xl font-bold text-yellow-500 mb-2 italic uppercase tracking-tighter drop-shadow-lg">
+                    K.O!</h2>
+                <div id="result-text" class="text-4xl text-white font-bold mb-12 uppercase tracking-widest">PLAYER 1
+                    WINS</div>
+                <div class="flex gap-6 justify-center">
+                    <button onclick="location.reload()"
+                        class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-6 px-12 rounded-2xl shadow-lg text-2xl uppercase tracking-wider transition-transform hover:scale-105">Rematch</button>
+                    <button onclick="window.location.href='playground_ifp.html'"
+                        class="bg-gray-700 hover:bg-gray-600 text-gray-300 font-bold py-6 px-12 rounded-2xl shadow-lg text-2xl uppercase tracking-wider transition-transform hover:scale-105">Exit</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // CONFIG
+        const MAX_HP = 100;
+        let state = {
+            p1: { hp: 100, ult: 0, char: null, ready: false, input: '', mode: 'menu', q: null },
+            p2: { hp: 100, ult: 0, char: null, ready: false, input: '', mode: 'menu', q: null },
+            timer: 99,
+            over: false
+        };
+        const CHARS = ['🥋', '🥷', '🧛', '🦸‍♂️', '🧟', '🧙‍♂️', '🤖', '👾'];
+        const ATTACKS = [
+            { name: 'Light', dmg: 5, icon: '⭐', class: 'bg-green-500', q_diff: 'easy' },
+            { name: 'Medium', dmg: 10, icon: '⭐⭐', class: 'bg-yellow-500', q_diff: 'medium' },
+            { name: 'Heavy', dmg: 20, icon: '⭐⭐⭐', class: 'bg-orange-500', q_diff: 'hard' },
+            { name: 'ULTIMATE', dmg: 40, icon: '💥', class: 'bg-red-600 animate-pulse', q_diff: 'expert', ultReq: 100 }
+        ];
+
+        // UTILS
+        const $ = id => document.getElementById(id);
+        const toggleFullscreen = () => { if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => { }); else document.exitFullscreen(); };
+        const show = id => { document.querySelectorAll('section').forEach(s => s.classList.add('hidden')); $(`screen-${id}`).classList.remove('hidden'); };
+
+        // INIT
+        window.onload = () => { renderCharSelect(); };
+
+        function renderCharSelect() {
+            [1, 2].forEach(pid => {
+                const con = $(`p${pid}-chars`);
+                con.innerHTML = '';
+                CHARS.forEach(c => {
+                    const btn = document.createElement('button');
+                    btn.className = "text-3xl p-2 bg-gray-700 rounded hover:bg-gray-600 transition-transform hover:scale-110";
+                    btn.innerText = c;
+                    btn.onclick = () => selectChar(pid, c);
+                    con.appendChild(btn);
+                });
+
+                $(`p${pid}-ready`).onclick = () => {
+                    state[`p${pid}`].ready = true;
+                    $(`p${pid}-ready`).innerText = "READY!";
+                    $(`p${pid}-ready`).className = "w-full py-4 rounded-xl bg-green-600 text-white font-bold text-xl uppercase animate-pulse";
+                    if (state.p1.ready && state.p2.ready) $('btn-fight').classList.remove('hidden');
+                };
+            });
+        }
+
+        function selectChar(pid, char) {
+            state[`p${pid}`].char = char;
+            $(`p${pid}-preview`).innerText = char;
+            $(`p${pid}-ready`).disabled = false;
+            $(`p${pid}-ready`).className = "w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-xl uppercase hover:bg-blue-500";
+        }
+
+        function startMatch() {
+            state.over = false;
+            state.timer = 99;
+            show('game');
+            // Render Sprites
+            $('p1-sprite').innerText = state.p1.char;
+            $('p2-sprite').innerText = state.p2.char;
+
+            // Render UI
+            renderControls();
+
+            // Start Timer
+            const timerInt = setInterval(() => {
+                if (state.over) { clearInterval(timerInt); return; }
+                state.timer--;
+                $('timer').innerText = state.timer;
+                if (state.timer <= 0) {
+                    clearInterval(timerInt);
+                    if (state.p1.hp > state.p2.hp) endGame(1);
+                    else if (state.p2.hp > state.p1.hp) endGame(2);
+                    else endGame('draw');
+                }
+            }, 1000);
+        }
+
+        function renderControls() {
+            const ui = $('ui-layer'); ui.innerHTML = '';
+            [0, 1].forEach(i => {
+                const pid = i + 1;
+                const pKey = `p${pid}`;
+                const card = document.createElement('div');
+                card.id = `card-${pKey}`;
+
+                // Position
+                card.className = "glass-card absolute p-3 flex flex-col gap-2 pointer-events-auto w-64 md:w-72 transition-all duration-300";
+                card.style.bottom = "20px";
+                if (pid === 1) card.style.left = "5%"; else card.style.left = "auto";
+                if (pid === 2) card.style.right = "5%";
+
+                // Color Theme
+                const color = pid === 1 ? '#002060' : '#C00000';
+                card.style.borderTop = `6px solid ${color}`;
+
+                // Content
+                // Initial Menu View
+                card.innerHTML = buildMenuHTML(pid, color);
+
+                makeDraggable(card);
+                ui.appendChild(card);
+            });
+        }
+
+        function buildMenuHTML(pid, color) {
+            return `
+                 <div id="hint-${pid}" class="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-bounce whitespace-nowrap z-50 pointer-events-none">
+                    👇 Klik dan hold untuk geser kalkulator
+                    <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-yellow-400 rotate-45"></div>
+                </div>
+                <div class="rounded-lg p-2 text-center text-white font-fun text-xl font-bold shadow mb-2 flex justify-between items-center px-4" style="background-color:${color}">
+                    <div class="flex items-center"><span class="material-icons text-white/50 mr-1 text-sm">drag_indicator</span><span>P${pid} ACTIONS</span></div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 h-48">
+                    ${ATTACKS.map((atk, idx) => `
+                        <button onclick="selectAttack(${pid}, ${idx})" class="${atk.class} text-white rounded-xl shadow-md flex flex-col items-center justify-center hover:brightness-110 active:scale-95 transition-all text-shadow">
+                            <span class="text-3xl mb-1">${atk.icon}</span>
+                            <span class="font-bold text-sm uppercase">${atk.name}</span>
+                            <span class="text-xs opacity-80">${atk.dmg} DMG</span>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function buildInputHTML(pid, color, qText) {
+            return `
+                <div class="rounded-lg p-2 text-center text-white font-fun text-xl font-bold shadow mb-1 flex justify-between items-center px-4" style="background-color:${color}">
+                    <span>P${pid} ATTACKING!</span>
+                    <button onclick="cancelAttack(${pid})" class="text-white/80 hover:text-white text-xs bg-white/20 p-1 rounded">CANCEL</button>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-3 text-center mb-1 border-2 border-gray-300">
+                    <div class="text-gray-500 text-xs font-bold uppercase mb-1">SOLVE TO HIT</div>
+                    <div class="text-3xl font-bold text-gray-800 font-mono">${qText}</div>
+                </div>
+                <div id="in-${pid}" class="bg-white rounded h-10 flex items-center justify-center font-bold text-2xl text-gray-700 shadow-inner tracking-widest border border-gray-200 mb-1"></div>
+                 <div class="grid grid-cols-3 gap-1">
+                    ${[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button class="numpad-btn h-10 text-xl" onclick="handleIn(${pid},'${n}')">${n}</button>`).join('')}
+                    <button class="numpad-btn h-10 text-xl font-bold" onclick="handleIn(${pid},'-')">-</button>
+                    <button class="numpad-btn h-10 text-xl" onclick="handleIn(${pid},'0')">0</button>
+                    <button class="numpad-btn bg-red-500 text-white font-bold h-10" onclick="handleIn(${pid},'C')">C</button>
+                </div>
+                <button class="w-full bg-blue-600 text-white font-bold py-2 rounded-lg mt-1 shadow-lg active:scale-95" onclick="handleIn(${pid}, 'OK')">ATTACK!</button>
+            `;
+        }
+
+        function selectAttack(pid, atkIdx) {
+            // Generate Question based on Tier
+            const atk = ATTACKS[atkIdx];
+            const q = generateQuestion(atk.q_diff);
+
+            state[`p${pid}`].mode = 'input';
+            state[`p${pid}`].activeAtk = atk;
+            state[`p${pid}`].q = q;
+            state[`p${pid}`].input = '';
+
+            const card = $(`card-p${pid}`);
+            const color = pid === 1 ? '#002060' : '#C00000';
+            card.innerHTML = buildInputHTML(pid, color, q.t);
+        }
+
+        function cancelAttack(pid) {
+            state[`p${pid}`].mode = 'menu';
+            const card = $(`card-p${pid}`);
+            const color = pid === 1 ? '#002060' : '#C00000';
+            card.innerHTML = buildMenuHTML(pid, color);
+            const hint = card.querySelector('[id^="hint-"]'); if (hint) hint.remove(); // Remove hint if coming back
+        }
+
+        function generateQuestion(diff) {
+            let a, b, op = '+';
+            if (diff === 'easy') { a = r(1, 10); b = r(1, 10); if (Math.random() > 0.5) op = '+'; else { op = '-'; if (a < b) [a, b] = [b, a]; } }
+            else if (diff === 'medium') { a = r(10, 50); b = r(5, 20); if (Math.random() > 0.5) op = '+'; else { op = '-'; if (a < b) [a, b] = [b, a]; } }
+            else if (diff === 'hard') { a = r(2, 9); b = r(2, 9); op = 'x'; }
+            else {
+                // Expert: Mixed Ops (A op1 B op2 C)
+                const ops = ['+', '-', 'x'];
+                const A = r(10, 99); const B = r(10, 99); const C = r(2, 9);
+                const op1 = ops[Math.floor(Math.random() * 3)];
+                const op2 = ops[Math.floor(Math.random() * 3)];
+
+                let exp = `${A}${op1 === 'x' ? '*' : op1}${B}${op2 === 'x' ? '*' : op2}${C}`;
+                const ans = Math.floor(eval(exp));
+                return { t: `${A} ${op1 === 'x' ? '×' : op1} ${B} ${op2 === 'x' ? '×' : op2} ${C} = ?`, a: ans };
+            }
+
+            let ans = 0;
+            if (op === '+') ans = a + b; else if (op === '-') ans = a - b; else ans = a * b;
+            return { t: `${a} ${op === 'x' ? '×' : op} ${b} = ?`, a: ans };
+        }
+        function r(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }
+
+        function handleIn(pid, k) {
+            if (state.over) return;
+            const pState = state[`p${pid}`];
+            const el = $(`in-${pid}`);
+
+            if (k === 'C') { pState.input = ''; }
+            else if (k === 'OK') { checkAnswer(pid); return; }
+            else if (pState.input.length < 8) pState.input += k;
+
+            el.innerText = pState.input;
+        }
+
+        function checkAnswer(pid) {
+            const pState = state[`p${pid}`];
+            const val = parseInt(pState.input);
+
+            if (val === pState.q.a) {
+                // HIT!
+                const dmg = pState.activeAtk.dmg;
+                const targetId = pid === 1 ? 2 : 1;
+                state[`p${targetId}`].hp = Math.max(0, state[`p${targetId}`].hp - dmg);
+
+                // Animate
+                animateHit(pid, targetId, dmg);
+
+                // Return to Menu
+                cancelAttack(pid);
+
+                // Update Bars
+                updateBars();
+
+                if (state[`p${targetId}`].hp <= 0) endGame(pid);
+
+            } else {
+                // MISS!
+                $(`in-${pid}`).classList.add('bg-red-100', 'text-red-500');
+                setTimeout(() => $(`in-${pid}`).classList.remove('bg-red-100', 'text-red-500'), 500);
+            }
+        }
+
+        function animateHit(attackerId, victimId, dmg) {
+            // Shake Victim
+            const vSprite = $(`p${victimId}-sprite`);
+            vSprite.classList.add('animate-shake');
+            vSprite.style.filter = 'brightness(0) sepia(1) hue-rotate(-50deg) saturate(5)'; // Flash Red
+            setTimeout(() => {
+                vSprite.classList.remove('animate-shake');
+                vSprite.style.filter = '';
+            }, 500);
+
+            // Attacker visual (Lunge)
+            const aSprite = $(`p${attackerId}-sprite`);
+            const dir = attackerId === 1 ? '100px' : '-100px';
+            aSprite.style.transform = `translateX(${dir}) scaleX(${attackerId === 1 ? 1 : -1})`;
+            setTimeout(() => aSprite.style.transform = `translateX(0) scaleX(${attackerId === 1 ? 1 : -1})`, 200);
+
+            // Floating Text
+            const dmgText = $(`p${victimId}-dmg`);
+            dmgText.innerText = `-${dmg}`;
+            dmgText.classList.remove('damage-float');
+            void dmgText.offsetWidth; // Trigger reflow
+            dmgText.classList.add('damage-float');
+        }
+
+        function updateBars() {
+            // HP
+            $(`p1-hp-bar`).style.width = `${state.p1.hp}%`;
+            $(`p1-hp-text`).innerText = `${state.p1.hp}%`;
+            $(`p2-hp-bar`).style.width = `${state.p2.hp}%`;
+            $(`p2-hp-text`).innerText = `${state.p2.hp}%`;
+
+            // Color Logic
+            [1, 2].forEach(i => {
+                const hp = state[`p${i}`].hp;
+                const bar = $(`p${i}-hp-bar`);
+                if (hp > 50) bar.className = "h-full bg-green-500 hp-bar-fill w-full";
+                else if (hp > 20) bar.className = "h-full bg-yellow-500 hp-bar-fill w-full";
+                else bar.className = "h-full bg-red-600 hp-bar-fill w-full animate-pulse";
+            });
+        }
+
+        function endGame(winnerId) {
+            state.over = true;
+            if (winnerId === 'draw') {
+                $('result-title').innerText = "DRAW!";
+                $('result-text').innerText = "TIME OUT";
+            } else {
+                $('result-title').innerText = "K.O!";
+                $('result-text').innerText = `PLAYER ${winnerId} WINS!`;
+            }
+            confetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
+            show('result');
+        }
+
+        // DRAG (Robust Version)
+        function makeDraggable(el) {
+            let isDragging = false;
+            let shiftX, shiftY;
+
+            const onStart = (e) => {
+                if (e.target.closest('button')) return; // Ignore buttons
+
+                const hint = el.querySelector('[id^="hint-"]'); if (hint) hint.remove();
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                // Get rects
+                const rect = el.getBoundingClientRect();
+                const parentRect = el.offsetParent.getBoundingClientRect();
+
+                // Calc cursor offset inside element
+                shiftX = clientX - rect.left;
+                shiftY = clientY - rect.top;
+
+                isDragging = true;
+
+                // Convert to Absolute (Relative to Parent)
+                const relLeft = rect.left - parentRect.left;
+                const relTop = rect.top - parentRect.top;
+
+                el.style.position = 'absolute';
+                el.style.left = relLeft + 'px';
+                el.style.top = relTop + 'px';
+                el.style.bottom = 'auto';
+                el.style.right = 'auto';
+                el.style.transform = 'none'; // Clear transforms
+                el.style.zIndex = 100;
+
+                // e.preventDefault(); // Prevents touchscroll
+            };
+
+            const onMove = (e) => {
+                if (!isDragging) return;
+                e.preventDefault(); // Prevent scroll while dragging
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+                const parentRect = el.offsetParent.getBoundingClientRect();
+
+                // New Position = Mouse - Shift - ParentOffset
+                let newLeft = clientX - shiftX - parentRect.left;
+                let newTop = clientY - shiftY - parentRect.top;
+
+                // Optional: Boundaries (keep fully on screen?)
+                // For now, free drag feels better.
+
+                el.style.left = newLeft + 'px';
+                el.style.top = newTop + 'px';
+            };
+
+            const onEnd = () => { isDragging = false; el.style.zIndex = 20; };
+
+            el.addEventListener('mousedown', onStart);
+            window.addEventListener('mousemove', onMove);
+            window.addEventListener('mouseup', onEnd);
+
+            el.addEventListener('touchstart', onStart, { passive: false });
+            window.addEventListener('touchmove', onMove, { passive: false });
+            window.addEventListener('touchend', onEnd);
+        }
+
+    </script>
+</body>
+
+</html>
+
+
+

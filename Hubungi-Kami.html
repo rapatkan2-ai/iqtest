@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - MindTest.id</title>
+    <link rel="icon" type="image/webp" href="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/FaviconNew.webp">
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.1/css/flag-icons.min.css" />
+
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">
+
+    <app-header></app-header>
+
+    <main class="flex-grow py-12 md:py-20 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Hubungi Kami</h1>
+                <p class="text-lg text-gray-600">Punya pertanyaan atau masukan? Kami siap membantu!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-6">
+                        <span class="material-icons text-3xl">email</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Email Support</h3>
+                    <p class="text-gray-500 mb-4">Kirimkan pertanyaan Anda kapan saja.</p>
+                    <a href="mailto:support@mindtest.id"
+                        class="text-blue-600 font-semibold hover:underline">support@mindtest.id</a>
+                </div>
+
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                    <div
+                        class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6">
+                        <span class="material-icons text-3xl">chat</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">WhatsApp Admin</h3>
+                    <p class="text-gray-500 mb-4">Respon cepat di jam kerja.</p>
+                    <a href="https://wa.me/6289526469982" target="_blank"
+                        class="text-green-600 font-semibold hover:underline">Chat via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <app-footer></app-footer>
+    <app-mobile-nav></app-mobile-nav>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="layout.js"></script>
+
+</body>
+
+</html>
+
+
+

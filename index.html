@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tes Intelegensi & Profil Kognitif Standar Internasional - MindTest.id</title>
+  <link rel="icon" type="image/webp" href="assets/FaviconNew.webp">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mindtest.id/">
+  <meta property="og:title" content="Tes Intelegensi & Profil Kognitif Standar Internasional - MindTest.id">
+  <meta property="og:description"
+    content="Temukan potensi tersembunyimu dengan tes IQ dan analisis kecerdasan 8 dimensi di MindTest.id. Cepat, akurat, dan mendalam.">
+  <meta property="og:image" content="assets/og-preview.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://mindtest.id/">
+  <meta property="twitter:title" content="Tes Intelegensi & Profil Kognitif Standar Internasional - MindTest.id">
+  <meta property="twitter:description"
+    content="Temukan potensi tersembunyimu dengan tes IQ dan analisis kecerdasan 8 dimensi di MindTest.id. Cepat, akurat, dan mendalam.">
+  <meta property="twitter:image" content="assets/og-preview.jpg">
+
+  <!-- Schema.org / Google / Fallback for WhatsApp -->
+  <meta itemprop="name" content="MindTest.id - Ukur Potensi Kecerdasanmu">
+  <meta itemprop="description"
+    content="Temukan potensi tersembunyimu dengan tes IQ dan analisis kecerdasan 8 dimensi di MindTest.id. Cepat, akurat, dan mendalam.">
+  <meta itemprop="image" content="assets/og-preview.jpg">
+
+  <link rel="icon" type="image/webp" href="assets/FaviconNew.webp">
+
+  <!-- Preload main stylesheets but load them asynchronously -->
+  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="tailwind_compiled.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="tailwind_compiled.css">
+  </noscript>
+
+  <!-- Non-critical Stylesheets (Deferred) -->
+  <link rel="stylesheet" href="fonts.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.2.1/css/flag-icons.min.css"
+    media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="index_supabase.css" media="print" onload="this.media='all'">
+
+  <!-- Critical CSS (Inlined for instant render) -->
+  <style>
+    /* Inlined from index_supabase.css */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .global-bg {
+      background-color: #f8fafc;
+      background-image: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0, transparent 50%), radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.15) 0, transparent 40%), radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.1) 0, transparent 50%), radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.1) 0, transparent 50%);
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    .bg-grid-pattern {
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+
+    /* Button & Gradient Styles from index_supabase.css */
+    .button {
+      border: none;
+      outline: none;
+      background-color: #3b82f6;
+      width: 280px;
+      height: 60px;
+      font-size: 18px;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .button::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      width: 106%;
+      height: 120%;
+      z-index: -1;
+      border-radius: inherit;
+      transition: all 0.3s;
+    }
+
+    .gradient-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 106%;
+      height: 115%;
+      overflow: hidden;
+      border-radius: inherit;
+      z-index: -2;
+      filter: blur(10px);
+      transition: all 0.3s;
+    }
+
+    .gradient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110%;
+      aspect-ratio: 1;
+      border-radius: 100%;
+      transition: all 0.3s;
+      background-image: linear-gradient(90deg, hsl(180, 81%, 64%), hsl(195, 81%, 64%), hsl(210, 81%, 64%), hsl(225, 81%, 64%), hsl(210, 81%, 64%), hsl(195, 81%, 64%), hsl(180, 81%, 64%), hsl(195, 81%, 64%));
+      animation: rotate 2s linear infinite;
+      filter: blur(10px);
+    }
+
+    .label {
+      width: 256px;
+      height: 45px;
+      text-align: center;
+      line-height: 45px;
+      border-radius: 50px;
+      background-color: rgba(43, 43, 43, 1);
+      background-image: linear-gradient(180deg, rgb(43, 43, 43) 0%, rgb(68, 68, 68) 100%);
+    }
+
+    .button:hover .gradient-container {
+      transform: translate(-50%, -50%) scale(0.98);
+      filter: blur(5px);
+    }
+
+    .button:hover .gradient {
+      filter: blur(5px);
+    }
+
+    @keyframes rotate {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+  </style>
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preload" as="image" href="assets/12.webp">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2"
+    crossorigin>
+  <style>
+    @keyframes scroll-right {
+      0% {
+        transform: translateX(-50%);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .animate-scroll-right {
+      animation: scroll-right 60s linear infinite;
+      width: max-content;
+    }
+
+    .animate-scroll-right:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+
+<body class="global-bg text-text-light">
+
+  <div class="bg-grid-pattern"></div>
+
+  <app-header></app-header>
+
+  <section class="relative pt-12 md:pt-8 pb-12 overflow-hidden animate-fade-in-up">
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-80px)] md:min-h-0 md:h-auto py-2 md:py-8">
+
+        <div class="text-center md:text-left">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight">
+            Ukur Potensi Kecerdasanmu di <span class="text-primary">MindTest.id</span>
+          </h1>
+          <p class="mt-4 text-xs sm:text-base md:text-lg text-slate-600">
+            Mulai tes gratis untuk mendapatkan estimasi skor IQ & gambaran cara berpikirmu
+          </p>
+
+          <div class="mt-4 scale-90">
+            <div class="flex items-center justify-center md:justify-start">
+              <div class="flex -space-x-2">
+                <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/user1.jpg" alt="User 1" width="32"
+                  height="32">
+                <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/user2.jpg" alt="User 2" width="32"
+                  height="32">
+                <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/user3.jpg" alt="User 3" width="32"
+                  height="32">
+                <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/user4.jpg" alt="User 4" width="32"
+                  height="32">
+              </div>
+              <div class="ml-2 text-left">
+                <div class="flex items-center text-yellow-500">
+                  <span class="material-icons text-sm">star</span>
+                  <span class="material-icons text-sm">star</span>
+                  <span class="material-icons text-sm">star</span>
+                  <span class="material-icons text-sm">star</span>
+                  <span class="material-icons text-sm">star</span>
+                </div>
+                <p class="text-[10px] font-semibold text-slate-700">
+                  <strong id="test-counter">12.066</strong> Tes Diikuti Hari Ini!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 hidden md:block">
+            <a href="quizz.html" class="button start-quiz-btn">
+              <div class="gradient-container">
+                <div class="gradient"></div>
+              </div>
+              <span class="label">Mulai Sekarang!</span>
+            </a>
+            <div class="mt-6 flex flex-row items-center gap-2 text-slate-500 font-medium tracking-tight"
+              style="font-size: 10px;">
+              <span class="flex items-center gap-1">
+                <span class="material-icons text-green-500" style="font-size: 10px;">check_circle</span>
+                Terverifikasi Ilmiah
+              </span>
+              <span class="flex items-center gap-1">
+                <span class="material-icons text-green-500" style="font-size: 10px;">check_circle</span>
+                Tanpa langganan
+              </span>
+              <span class="flex items-center gap-1">
+                <span class="material-icons text-green-500" style="font-size: 10px;">check_circle</span>
+                Hasil langsung keluar
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative -mt-10 md:hidden h-80 sm:h-96">
+          <div id="hero-slider-mobile" class="relative h-full">
+            <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/12.webp"
+              class="w-full h-full object-contain drop-shadow-2xl animate-fade-in"
+              style="transform: scale(1.1) translateY(-30px); transform-origin: center bottom; animation: fadeIn 0.5s"
+              alt="IQ Test Illustration Mobile" fetchpriority="high" width="500" height="500">
+          </div>
+        </div>
+        <div class="hidden md:block absolute right-0 top-0 h-full w-1/2 z-10">
+          <div id="hero-slider-desktop" class="relative h-full" style="top: 5px;">
+            <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/12.webp"
+              class="w-full h-full object-contain drop-shadow-2xl animate-fade-in"
+              style="transform: scale(1.2); transform-origin: bottom; animation: fadeIn 0.5s"
+              alt="IQ Test Illustration Desktop" fetchpriority="high" width="800" height="800">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="relative z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+      <div class="md:hidden flex flex-col items-center justify-center -mt-24 mb-0 relative z-50"
+        style="transform: translateY(-55px);">
+        <a href="quizz.html" class="button start-quiz-btn">
+          <div class="gradient-container">
+            <div class="gradient"></div>
+          </div>
+          <span class="label">Mulai Sekarang!</span>
+        </a>
+        <div class="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-1 text-slate-600 font-medium px-4"
+          style="font-size: 10px;">
+          <span class="flex items-center gap-1 whitespace-nowrap">
+            <span class="material-icons text-green-500" style="font-size: 9px;">check_circle</span> Terverifikasi
+            Ilmiah
+          </span>
+          <span class="flex items-center gap-1 whitespace-nowrap">
+            <span class="material-icons text-green-500" style="font-size: 9px;">check_circle</span> Tanpa langganan
+          </span>
+          <span class="flex items-center gap-1 whitespace-nowrap">
+            <span class="material-icons text-green-500" style="font-size: 9px;">check_circle</span> Hasil langsung
+            keluar
+          </span>
+        </div>
+      </div>
+      <div class="text-center md:hidden pt-0 md:pt-0">
+        <div class="flex items-center justify-center space-x-3 md:hidden">
+          <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/FaviconNew.webp" alt="MindTest.id Logo"
+            class="h-12 w-auto align-bottom" width="48" height="48">
+          <h1 class="text-4xl font-extrabold text-primary">MindTest.id</h1>
+        </div>
+
+      </div>
+
+
+
+      <div class="mt-4 md:mt-8">
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center space-x-2">
+            <span class="text-yellow-400 material-icons">star</span>
+            <h2 class="text-2xl font-bold text-text-light">Kuis Paling Populer</h2>
+          </div>
+          <div class="relative">
+            <select
+              class="bg-white border border-gray-300 rounded-full text-sm font-semibold py-2 pl-4 pr-8 appearance-none focus:outline-none focus:ring-2 focus:ring-primary">
+              <option>Semua Kategori</option>
+              <option>Tes Logika</option>
+              <option>Kepribadian</option>
+              <option>Kuis Seru</option>
+            </select>
+            <span
+              class="material-icons absolute right-2 top-1/2 -translate-y-1/2 text-text-light-secondary pointer-events-none">expand_more</span>
+          </div>
+        </div>
+        <div class="mt-8 -mx-4 px-4 md:mx-0 md:px-0 overflow-x-auto scrollbar-hide">
+          <div class="flex pb-4 space-x-6 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:space-x-0">
+
+            <div
+              class="flex-shrink-0 w-[280px] md:w-auto rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative group overflow-hidden"
+              style="position: relative; background: radial-gradient(60% 50% at 50% 95%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 60%), linear-gradient(135deg, #0ea5e9 0%, #2563eb 45%, #7c3aed 100%); color: white;">
+
+              <span
+                style="position:absolute;top:0;right:0;height:1.5rem;width:1.5rem; background: radial-gradient(100% 75% at 55%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%); border-bottom-left-radius:0.75rem; border-top-right-radius:1rem; box-shadow:0 0 4px rgba(0,0,0,0.25); overflow:hidden;">
+                <span
+                  style="position:absolute;top:0;right:0;width:150%;height:150%;transform:rotate(45deg) translateY(-22px);background-color:rgba(255,255,255,0.7);"></span>
+              </span>
+
+              <span
+                style="position:absolute;inset:0;pointer-events:none;background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0); background-size: 18px 18px; opacity: 0.8;"></span>
+
+              <div id="container" class="paused"
+                style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5;">
+                <div id="container-inside"
+                  style="position:relative;width:100%;height:100%;min-width:0;min-height:0;overflow:visible;">
+                  <div id="circle-small"
+                    style="will-change: transform, opacity; animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; position: absolute; top: 40%; left: -80px; background: #fff; width: 120px; height: 120px; border-radius: 50%; opacity: 0.35;">
+                  </div>
+                  <div id="circle-medium"
+                    style="will-change: transform, opacity; animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 0.3s; position: absolute; top: 15%; left: -140px; background: #fff; width: 220px; height: 220px; border-radius: 50%; opacity: 0.28;">
+                  </div>
+                  <div id="circle-large"
+                    style="will-change: transform, opacity; animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 0.6s; position: absolute; top: -10%; left: -200px; background: #fff; width: 340px; height: 340px; border-radius: 50%; opacity: 0.22;">
+                  </div>
+                  <div id="circle-xlarge"
+                    style="will-change: transform, opacity; animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 0.9s; position: absolute; top: -30%; left: -260px; background: #fff; width: 480px; height: 480px; border-radius: 50%; opacity: 0.12;">
+                  </div>
+                  <div id="circle-xxlarge"
+                    style="will-change: transform, opacity; animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 1.2s; position: absolute; top: -50%; left: -320px; background: #fff; width: 620px; height: 620px; border-radius: 50%; opacity: 0.07;">
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="p-4 flex flex-col relative z-10">
+                <div
+                  class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white font-semibold text-xs px-3 py-1 rounded-full mb-3 self-start">
+                  <span class="material-icons text-sm mr-1.5">article</span> Standar Internasional
+                </div>
+                <div class="rounded-lg p-2 bg-white/10">
+                  <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/Tes_IQ_Picture.webp"
+                    alt="Tes IQ Jenius"
+                    class="w-full h-40 object-contain transform scale-[1.4] transition-transform duration-300"
+                    width="320" height="320" loading="lazy" />
+                </div>
+              </div>
+              <div class="p-5 pt-0 flex flex-col flex-grow bg-white text-gray-800 rounded-b-2xl z-10 relative">
+                <p
+                  style="cursor: pointer; border: none; border-radius: 30px; display: inline-flex; align-items: center; justify-content: flex-start; gap: 4px; color: white; font-weight: 600; background: linear-gradient(to right, #8be3fc, #576bff); box-shadow: 0 10px 15px -7px rgba(97, 118, 238, 0.5); padding: 0.2rem 0.8rem; font-size: 0.7rem; position: relative; top: 5px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    style="width: 14px; height: 14px; fill: #facc15;">
+                    <path
+                      d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                    </path>
+                  </svg>
+                  <span>Tes Logika & Kognitif</span>
+                </p>
+                <h3 class="font-bold text-lg mt-1 text-gray-800">Tes IQ & Profil Kognitif</h3>
+                <ul class="mt-3 space-y-2 text-sm text-gray-600 flex-grow">
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Tes
+                        Kepribadian Terstandar</strong> <br><span class="text-xs text-gray-500 font-normal">25 soal
+                        berbasis kerangka psikologi </span></span></li>
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Hasil
+                        Komprehensif & Terukur</strong> <br><span class="text-xs text-gray-500 font-normal">Laporan,
+                        sertifikat, serta peringkat global untuk perbandingan objektif</span></span></li>
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Insight
+                        & Rekomendasi Praktis</strong> <br><span class="text-xs text-gray-500 font-normal">Analisis
+                        kepribadian yang mudah dipahami disertai saran pengembangan diri</span></span></li>
+                </ul>
+
+                <a href="quizz.html"
+                  class="mt-4 w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Mulai Tes
+                </a>
+                <a href="quizz.html" class="text-center mt-3 text-sm font-semibold text-blue-600 hover:underline">Lihat
+                  Detail Tes IQ</a>
+              </div>
+            </div>
+
+            <div
+              class="flex-shrink-0 w-[280px] md:w-auto rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative group overflow-hidden"
+              style="position: relative; background: radial-gradient(60% 50% at 50% 95%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%), linear-gradient(135deg, #7c3aed 0%, #5b21b6 55%, #0f172a 100%); color: white;">
+
+              <span
+                style="position:absolute;top:0;right:0;height:1.5rem;width:1.5rem; background: radial-gradient(100% 75% at 55%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%); border-bottom-left-radius:0.75rem; border-top-right-radius:1rem; box-shadow:0 0 4px rgba(0,0,0,0.25); overflow:hidden;">
+                <span
+                  style="position:absolute;top:0;right:0;width:150%;height:150%;transform:rotate(45deg) translateY(-22px);background-color:rgba(255,255,255,0.7);"></span>
+              </span>
+              <span
+                style="position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);background-size:18px 18px;opacity:0.8;"></span>
+              <div id="container-c2" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5;">
+                <div id="container-inside-c2" style="position:relative;width:100%;height:100%;">
+                  <div id="circle-small-c2"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; position: absolute; top: 38%; left: -70px; background: #fff; width: 110px; height: 110px; border-radius: 50%; opacity: 0.34;">
+                  </div>
+                  <div id="circle-medium-c2"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 0.28s; position:absolute; top:12%; left:-120px; background:#fff; width:200px; height:200px; border-radius:50%; opacity:0.26;">
+                  </div>
+                  <div id="circle-large-c2"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 0.56s; position:absolute; top:-12%; left:-170px; background:#fff; width:310px; height:310px; border-radius:50%; opacity:0.20;">
+                  </div>
+                  <div id="circle-xlarge-c2"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 0.84s; position:absolute; top:-30%; left:-220px; background:#fff; width:440px; height:440px; border-radius:50%; opacity:0.11;">
+                  </div>
+                  <div id="circle-xxlarge-c2"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay: 1.12s; position:absolute; top:-48%; left:-270px; background:#fff; width:560px; height:560px; border-radius:50%; opacity:0.06;">
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 flex flex-col relative z-10">
+                <div
+                  class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white font-semibold text-xs px-3 py-1 rounded-full mb-3 self-start">
+                  <span class="material-icons text-sm mr-1.5">self_improvement</span> Pengembangan Diri
+                </div>
+                <div class="rounded-lg p-2 bg-white/10">
+                  <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/4.webp" alt="Tes Kepribadian"
+                    class="w-full h-40 object-contain transform scale-[1.4] transition-transform duration-300"
+                    width="320" height="320" loading="lazy" />
+                </div>
+              </div>
+              <div class="p-5 pt-0 flex flex-col flex-grow bg-white text-gray-800 rounded-b-2xl z-10 relative">
+                <p
+                  style="cursor: pointer; border: none; border-radius: 30px; display: inline-flex; align-items: center; justify-content: flex-start; gap: 4px; color: white; font-weight: 600; background: linear-gradient(to right, #8be3fc, #576bff); box-shadow: 0 10px 15px -7px rgba(97, 118, 238, 0.5); padding: 0.2rem 0.8rem; font-size: 0.7rem; position: relative; top: 5px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    style="width: 14px; height: 14px; fill: #facc15;">
+                    <path
+                      d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                    </path>
+                  </svg>
+                  <span>Tes Kepribadian</span>
+                </p>
+                <h3 class="font-bold text-lg mt-1 text-gray-800">Siapa Aku Sebenarnya?</h3>
+                <ul class="mt-3 space-y-2 text-sm text-gray-600 flex-grow">
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Personality
+                        Exploration Test</strong> <br><span class="text-xs text-gray-500 font-normal">Dapatkan analisa
+                        berbasis kerangka tipe kepribadian MBTI®</span></span></li>
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Personality
+                        Type Assessment</strong> <br><span class="text-xs text-gray-500 font-normal">Dirancang
+                        untuk membantu memahami kecenderungan kepribadian dan pengembangan diri</span></span></li>
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Personality
+                        Insight Test</strong> <br><span class="text-xs text-gray-500 font-normal">Cocok untuk
+                        eksplorasi tipe kepribadian secara reflektif</span></span></li>
+                </ul>
+
+                <div class="relative mt-auto pt-6">
+                  <div
+                    class="absolute top-0 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                    SEGERA HADIR
+                  </div>
+                  <button type="button" disabled
+                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                      </path>
+                    </svg>
+                    Mulai Tes
+                  </button>
+                </div>
+                <a href="#" class="text-center mt-3 text-sm font-semibold text-blue-600 hover:underline">Lihat
+                  Detail Kepribadian</a>
+              </div>
+            </div>
+
+            <div
+              class="flex-shrink-0 w-[280px] md:w-auto rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col relative group overflow-hidden"
+              style="position: relative; background: radial-gradient(60% 50% at 50% 95%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%), linear-gradient(135deg, #ff7aa2 0%, #ef4444 50%, #7c2d5a 100%); color: white;">
+
+              <span
+                style="position:absolute;top:0;right:0;height:1.5rem;width:1.5rem; background: radial-gradient(100% 75% at 55%, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%); border-bottom-left-radius:0.75rem; border-top-right-radius:1rem; box-shadow:0 0 4px rgba(0,0,0,0.25); overflow:hidden;">
+                <span
+                  style="position:absolute;top:0;right:0;width:150%;height:150%;transform:rotate(45deg) translateY(-22px);background-color:rgba(255,255,255,0.7);"></span>
+              </span>
+              <span
+                style="position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);background-size:18px 18px;opacity:0.8;"></span>
+              <div id="container-c3" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:5;">
+                <div id="container-inside-c3" style="position:relative;width:100%;height:100%;">
+                  <div id="circle-small-c3"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; position:absolute; top:40%; left:-70px; background:#fff; width:110px; height:110px; border-radius:50%; opacity:0.34;">
+                  </div>
+                  <div id="circle-medium-c3"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay:0.28s; position:absolute; top:12%; left:-120px; background:#fff; width:200px; height:200px; border-radius:50%; opacity:0.26;">
+                  </div>
+                  <div id="circle-large-c3"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay:0.56s; position:absolute; top:-12%; left:-170px; background:#fff; width:310px; height:310px; border-radius:50%; opacity:0.20;">
+                  </div>
+                  <div id="circle-xlarge-c3"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay:0.84s; position:absolute; top:-30%; left:-220px; background:#fff; width:440px; height:440px; border-radius:50%; opacity:0.11;">
+                  </div>
+                  <div id="circle-xxlarge-c3"
+                    style="animation: circle-small-scale 3s cubic-bezier(.6,0,.4,1) infinite alternate; animation-delay:1.12s; position:absolute; top:-48%; left:-270px; background:#fff; width:560px; height:560px; border-radius:50%; opacity:0.06;">
+                  </div>
+                </div>
+              </div>
+              <div class="p-4 flex flex-col relative z-10">
+                <div
+                  class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white font-semibold text-xs px-3 py-1 rounded-full mb-3 self-start">
+                  <span class="material-icons text-sm mr-1.5">public</span> Global Opportunities
+                </div>
+                <div class="rounded-lg p-2 bg-white/10">
+                  <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/coin_2.webp"
+                    alt="English Proficiency"
+                    class="w-full h-40 object-contain transform scale-[1.4] transition-transform duration-300"
+                    width="320" height="320" loading="lazy" />
+                </div>
+              </div>
+              <div class="p-5 pt-0 flex flex-col flex-grow bg-white text-gray-800 rounded-b-2xl z-10 relative">
+                <p
+                  style="cursor: pointer; border: none; border-radius: 30px; display: inline-flex; align-items: center; justify-content: flex-start; gap: 4px; color: white; font-weight: 600; background: linear-gradient(to right, #8be3fc, #576bff); box-shadow: 0 10px 15px -7px rgba(97, 118, 238, 0.5); padding: 0.2rem 0.8rem; font-size: 0.7rem; position: relative; top: 5px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    style="width: 14px; height: 14px; fill: #facc15;">
+                    <path
+                      d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z">
+                    </path>
+                  </svg>
+                  <span>Tes Bahasa Inggris</span>
+                </p>
+                <h3 class="font-bold text-lg mt-1 text-gray-800">English Proficiency Tests</h3>
+                <ul class="mt-3 space-y-2 text-sm text-gray-600 flex-grow">
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Professional
+                        English Practice Test</strong> <br><span class="text-xs text-gray-500 font-normal">Designed for
+                        TOEIC® & IELTS General preparation</span></span></li>
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Academic
+                        English Practice Test</strong> <br><span class="text-xs text-gray-500 font-normal">Practice
+                        materials for IELTS Academic® preparation</span></span></li>
+                  <li class="flex items-start"><span
+                      class="material-icons text-blue-500 text-base mr-2 mt-px">check_circle</span><span><strong>Workplace
+                        English Mock Test</strong> <br><span class="text-xs text-gray-500 font-normal">Suitable for
+                        TOEIC® exam preparation</span></span></li>
+                </ul>
+
+                <div class="relative mt-auto pt-6">
+                  <div
+                    class="absolute top-0 right-2 z-10 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-3 py-1 rounded shadow-md transform rotate-3 border border-yellow-200">
+                    SEGERA HADIR
+                  </div>
+                  <button type="button" disabled
+                    class="w-full inline-flex items-center justify-center gap-2 px-4 py-3.5 bg-gray-100 text-gray-400 font-semibold rounded-xl shadow-inner cursor-not-allowed border border-gray-200">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-5 h-5">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                      </path>
+                    </svg>
+                    Mulai Tes
+                  </button>
+                </div>
+                <a href="#" class="text-center mt-3 text-sm font-semibold text-blue-600 hover:underline">Lihat
+                  Detail Tes Inggris</a>
+              </div>
+            </div>
+
+            <a href="daftar_tes.html"
+              class="flex-shrink-0 w-[280px] md:w-auto rounded-2xl border-2 border-dashed border-gray-300 hover:border-primary transition-all duration-300 flex flex-col items-center p-6 text-center group relative overflow-hidden bg-slate-50 justify-between">
+              <div class="relative z-10 flex flex-col items-center">
+                <h3 class="font-bold text-lg text-gray-800">Eksplorasi semua tes</h3>
+                <p class="text-sm text-gray-500 mt-1">Jelajahi semua tes dari MindTest.id</p>
+              </div>
+              <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/Hero_Image.webp"
+                alt="Lihat Semua Kuis"
+                class="relative w-full h-auto max-h-64 object-contain mt-4 opacity-90 group-hover:opacity-100 transition-opacity transform scale-130"
+                width="500" height="500" loading="lazy">
+              <div class="relative z-10 mt-4">
+                <div class="bg-white group-hover:bg-primary/10 transition-colors rounded-full p-3">
+                  <svg class="w-6 h-6 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <section class="py-8 md:py-24 relative overflow-hidden bg-slate-50">
+
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div
+            class="absolute top-[-10%] left-[-5%] w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob">
+          </div>
+          <div
+            class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+          </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          <div class="text-center max-w-3xl mx-auto mb-8 md:mb-16">
+            <span
+              class="text-primary font-bold tracking-wider text-xs md:text-sm uppercase mb-3 block animate-[fade-in_1s_ease-out]">Apa
+              Bedanya Tes Ini dengan Tes Lain?</span>
+            <h2
+              class="text-xl md:text-5xl font-extrabold text-slate-900 leading-none mb-4 animate-[fade-in-up_1s_ease-out] delay-200">
+              Kenali Potensimu<br class="hidden md:block" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">dengan Metode
+                Raven’s Matrices</span>
+            </h2>
+            <p class="text-slate-600 text-sm md:text-base">Ketahui cara berpikirmu yang sesungguhnya dan potensi yang
+              selama ini belum kamu sadari</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+            <div
+              class="md:col-span-12 lg:col-span-8 group relative overflow-hidden rounded-[2.5rem] bg-[#0B1121] text-white shadow-2xl transition-all hover:shadow-blue-900/20 border border-slate-800">
+
+              <div class="absolute inset-0 opacity-10"
+                style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 40px 40px;">
+              </div>
+
+              <div class="relative h-full flex flex-col md:flex-row">
+
+                <div
+                  class="p-8 md:p-10 flex flex-col justify-between z-10 md:w-3/5 relative border-b md:border-b-0 md:border-r border-slate-800/50">
+                  <div>
+
+                    <div class="flex items-center gap-3 mb-5">
+                      <div class="h-px w-8 bg-blue-500"></div>
+                      <span class="text-blue-400 font-mono text-xs tracking-[0.2em] uppercase">Est. 1938 • UK</span>
+                    </div>
+
+                    <h3 class="text-xl md:text-3xl font-bold mb-4 font-display tracking-tight text-white leading-tight">
+                      Banyak Orang <br /><span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Keliru
+                        Memahami Potensi Dirinya</span>
+                    </h3>
+
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4 font-light text-justify">
+                      Banyak orang berhenti mencoba karena merasa sudah mentok, padahal potensi sebenarnya belum
+                      terukur. Dengan tes Raven-Matrices di MindTest.id, kamu bisa menggali lebih dalam cara berpikir
+                      dan menemukan potensi tersembunyimu
+                    </p>
+                    <div
+                      class="bg-indigo-900/30 border border-indigo-500/30 rounded-xl p-4 mb-6 flex gap-4 items-start relative overflow-hidden group/highlight">
+
+                      <div
+                        class="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 blur-2xl rounded-full -mr-10 -mt-10 pointer-events-none">
+                      </div>
+
+                      <div
+                        class="bg-blue-600/20 rounded-lg p-2 text-blue-400 shrink-0 mt-0.5 border border-blue-500/20 shadow-[0_0_15px_rgba(59,130,246,0.15)]">
+                        <span class="material-icons-round text-xl">psychology</span>
+                      </div>
+                      <div class="flex flex-col justify-center">
+                        <button onclick="openMethodologyModal()"
+                          class="text-left text-blue-300 hover:text-white text-sm font-semibold underline decoration-blue-500/50 underline-offset-4 transition-colors flex items-center gap-2 group-hover/highlight:text-blue-200">
+                          Raven Progressive Matrices
+                          <span class="material-icons-round text-xs">open_in_new</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800/60">
+                    <div class="group/stat">
+                      <div class="flex items-end gap-1 mb-1">
+                        <span
+                          class="text-2xl font-bold text-white group-hover/stat:text-blue-400 transition-colors">99.8%</span>
+                        <span class="text-[10px] text-blue-500/60 mb-1 material-icons text-sm">verified</span>
+                      </div>
+                      <div class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Tingkat Validitas
+                      </div>
+                    </div>
+                    <div class="group/stat">
+                      <div class="flex items-end gap-1 mb-1">
+                        <span
+                          class="text-2xl font-bold text-white group-hover/stat:text-blue-400 transition-colors">Global</span>
+                        <span class="text-[10px] text-blue-500/60 mb-1 material-icons text-sm">public</span>
+                      </div>
+                      <div class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Standar Industri
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="relative md:w-2/5 min-h-[300px] md:min-h-full overflow-hidden bg-gradient-to-b from-[#0B1121] to-[#1e293b]">
+
+                  <div class="absolute top-0 right-0 p-6 opacity-20">
+                    <div class="grid grid-cols-3 gap-1 w-24">
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-white rounded-sm"></div>
+                      <div class="h-1.5 bg-blue-500 rounded-sm animate-pulse"></div>
+                    </div>
+                  </div>
+
+                  <div class="absolute top-[20%] right-6 z-10 text-right opacity-60">
+                    <span
+                      class="text-[10px] text-white/50 uppercase tracking-[0.2em] font-light block">Psychologist</span>
+                    <span class="text-xs text-white/80 font-serif italic tracking-wide">John Carlyle Raven</span>
+                  </div>
+
+                  <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/raven_preview.webp"
+                    alt="J.C. Raven"
+                    class="absolute bottom-14 right-0 w-[90%] md:w-[85%] h-auto object-contain object-bottom filter grayscale contrast-125 opacity-60 group-hover:scale-105 group-hover:opacity-90 group-hover:grayscale-0 transition-all duration-700 ease-out z-0"
+                    width="640" height="640" loading="lazy">
+
+                  <div class="absolute bottom-6 left-6 right-6 z-10">
+                    <div
+                      class="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-3 flex items-center gap-3 shadow-lg">
+                      <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400">
+                        <span class="material-icons text-sm">psychology</span>
+                      </div>
+                      <div>
+                        <div class="text-[10px] text-slate-400 uppercase tracking-wide">Diakui Oleh</div>
+                        <div class="text-xs font-bold text-white">Mensa & Psikolog Klinis</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0B1121] to-transparent pointer-events-none">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="md:col-span-6 lg:col-span-4 row-span-2 rounded-[2.5rem] bg-white border border-slate-100 shadow-xl p-6 md:p-8 flex flex-col relative overflow-hidden group hover:border-blue-200 transition-all duration-500">
+
+              <div
+                class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-purple-50 rounded-full blur-3xl -z-10 opacity-60">
+              </div>
+
+              <div class="mb-6 z-10 relative h-full flex flex-col justify-between">
+                <div>
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-6 shadow-sm group-hover:scale-110 rotate-3 transition-transform duration-300">
+                    <span class="material-icons">psychology_alt</span>
+                  </div>
+
+                  <h3 class="text-lg md:text-2xl font-bold text-slate-900 leading-tight mb-8">Setelah Mengikuti Tes
+                    MindTest.id
+                    kamu akan menjadi:</h3>
+
+                  <ul class="space-y-6">
+                    <li class="flex items-start gap-4 group/item">
+                      <div
+                        class="mt-0.5 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0 group-hover/item:bg-green-500 transition-colors duration-300">
+                        <span
+                          class="material-icons text-green-600 text-[14px] group-hover/item:text-white transition-colors">check</span>
+                      </div>
+                      <span
+                        class="text-slate-600 text-sm md:text-base font-medium leading-relaxed group-hover/item:text-slate-900 transition-colors">Lebih
+                        percaya diri dengan kemampuan intelektualmu</span>
+                    </li>
+                    <li class="flex items-start gap-4 group/item">
+                      <div
+                        class="mt-0.5 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0 group-hover/item:bg-green-500 transition-colors duration-300">
+                        <span
+                          class="material-icons text-green-600 text-[14px] group-hover/item:text-white transition-colors">check</span>
+                      </div>
+                      <span
+                        class="text-slate-600 text-sm md:text-base font-medium leading-relaxed group-hover/item:text-slate-900 transition-colors">Memahami
+                        kekuatan cara berpikir, bukan sekadar pintar atau tidak</span>
+                    </li>
+                    <li class="flex items-start gap-4 group/item">
+                      <div
+                        class="mt-0.5 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0 group-hover/item:bg-green-500 transition-colors duration-300">
+                        <span
+                          class="material-icons text-green-600 text-[14px] group-hover/item:text-white transition-colors">check</span>
+                      </div>
+                      <span
+                        class="text-slate-600 text-sm md:text-base font-medium leading-relaxed group-hover/item:text-slate-900 transition-colors">Punya
+                        dasar yang jelas untuk belajar, memilih jalur, dan berkembang</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="flex-grow flex items-center justify-center py-4 relative opacity-60">
+
+                  <div class="absolute w-full h-full flex justify-between items-center px-4">
+                    <div
+                      class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 animate-[float_4s_ease-in-out_infinite] shadow-sm">
+                      <span class="material-icons text-lg">lightbulb</span>
+                    </div>
+                    <div
+                      class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 animate-[float_5s_ease-in-out_infinite_1s] mt-12 shadow-sm">
+                      <span class="material-icons text-sm">trending_up</span>
+                    </div>
+                    <div
+                      class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-500 animate-[float_6s_ease-in-out_infinite_0.5s] shadow-sm">
+                      <span class="material-icons text-xl">psychology</span>
+                    </div>
+                  </div>
+
+                  <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20" viewBox="0 0 300 100"
+                    preserveAspectRatio="none">
+                    <path d="M50,50 Q150,20 250,50" fill="none" stroke="#6366f1" stroke-width="2"
+                      stroke-dasharray="5,5" />
+                    <path d="M50,50 Q150,80 250,50" fill="none" stroke="#6366f1" stroke-width="2"
+                      stroke-dasharray="5,5" />
+                  </svg>
+                </div>
+
+                <div class="mt-2">
+                  <div
+                    class="relative p-6 bg-gradient-to-br from-indigo-50/50 to-blue-50/50 rounded-3xl border border-slate-100 transition-all hover:shadow-md hover:border-blue-200 group/quote">
+                    <span
+                      class="absolute top-2 left-4 material-icons text-5xl text-blue-100/50 transform -translate-y-2 -translate-x-2 select-none">format_quote</span>
+                    <p
+                      class="relative z-10 text-slate-700 text-sm md:text-base font-medium italic leading-relaxed text-center px-2">
+                      Tidak memahami potensi diri sering kali membuat seseorang tertahan di titik yang sama lebih lama
+                      dari seharusnya
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hidden">
+
+                <div
+                  class="absolute top-4 right-4 bg-white shadow-md border border-slate-100 rounded-xl p-2 pr-3 flex items-center gap-2 animate-[bounce_3s_infinite]">
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <span class="text-[10px] font-bold text-slate-600">Tren Positif</span>
+                </div>
+
+                <div class="relative h-32 w-full mt-2">
+                  <svg viewBox="0 0 200 100" class="w-full h-full overflow-visible">
+                    <defs>
+                      <linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#60A5FA" />
+                        <stop offset="100%" stop-color="#8B5CF6" />
+                      </linearGradient>
+                      <linearGradient id="areaGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.2" />
+                        <stop offset="100%" stop-color="#60A5FA" stop-opacity="0" />
+                      </linearGradient>
+                    </defs>
+
+                    <line x1="0" y1="25" x2="200" y2="25" stroke="#cbd5e1" stroke-width="0.5" stroke-dasharray="3" />
+                    <line x1="0" y1="50" x2="200" y2="50" stroke="#cbd5e1" stroke-width="0.5" stroke-dasharray="3" />
+                    <line x1="0" y1="75" x2="200" y2="75" stroke="#cbd5e1" stroke-width="0.5" stroke-dasharray="3" />
+
+                    <path d="M0,90 C50,85 100,80 150,75 200,70" fill="none" stroke="#94a3b8" stroke-width="1.5"
+                      stroke-dasharray="4" opacity="0.6" />
+                    <text x="5" y="86" font-size="6" fill="#94a3b8">Rata-rata</text>
+
+                    <path d="M0,80 C40,80 60,60 100,40 S160,15 200,25 V100 H0 Z" fill="url(#areaGradient)" />
+
+                    <path d="M0,80 C40,80 60,60 100,40 S160,15 200,25" fill="none" stroke="url(#lineGradient)"
+                      stroke-width="3" stroke-linecap="round" class="drop-shadow-sm" />
+
+                    <circle cx="100" cy="40" r="4" fill="#fff" stroke="#60A5FA" stroke-width="2"
+                      class="group-hover/chart:scale-150 transition-transform duration-300 ease-out origin-center" />
+                    <circle cx="200" cy="25" r="4" fill="#fff" stroke="#8B5CF6" stroke-width="2" />
+
+                    <g transform="translate(160, 5)" class="opacity-100 transition-opacity duration-500">
+                      <rect width="40" height="18" rx="4" fill="#1e293b" />
+                      <text x="20" y="12" font-size="9" font-weight="bold" fill="white" text-anchor="middle">IQ
+                        138</text>
+                      <path d="M20,18 L25,23 L15,23 Z" fill="#1e293b" />
+                    </g>
+                  </svg>
+                </div>
+
+                <div class="mt-4 grid grid-cols-3 gap-2">
+                  <div
+                    class="bg-white rounded-xl p-2 py-3 shadow-sm border border-slate-100 text-center group-hover/chart:border-blue-100 transition-colors">
+                    <div class="text-[8px] text-slate-400 font-bold uppercase tracking-wider mb-1">Akurasi</div>
+                    <div class="text-sm font-extrabold text-slate-800">94%</div>
+                  </div>
+                  <div
+                    class="bg-white rounded-xl p-2 py-3 shadow-sm border border-slate-100 text-center group-hover/chart:border-blue-100 transition-colors">
+                    <div class="text-[8px] text-slate-400 font-bold uppercase tracking-wider mb-1">Persentil</div>
+                    <div class="text-sm font-extrabold text-slate-800">Top 5%</div>
+                  </div>
+                  <div
+                    class="bg-white rounded-xl p-2 py-3 shadow-sm border border-slate-100 text-center group-hover/chart:border-blue-100 transition-colors">
+                    <div class="text-[8px] text-slate-400 font-bold uppercase tracking-wider mb-1">Tipe Otak</div>
+                    <div class="text-sm font-extrabold text-blue-600">Logis</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="md:col-span-6 lg:col-span-8 rounded-[2.5rem] bg-gradient-to-br from-white to-blue-50 border border-blue-100 shadow-xl p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden group">
+
+              <div class="flex-1 relative z-10">
+                <div
+                  class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold w-fit mb-4">
+                  <span class="material-icons text-sm">work</span> CAREER BOOST
+                </div>
+                <h3 class="text-lg md:text-2xl font-bold text-slate-900 mb-3">Level Up Karier & Studi Kamu</h3>
+                <p class="text-slate-600 mb-6 leading-relaxed text-sm md:text-base">
+                  Dapatkan insight yang jelas tentang kemampuanmu dan gunakan sebagai pijakan untuk belajar lebih fokus.
+                  Sertifikat <strong>MindTest.id</strong> memperkuat perjalanan pengembangan dirimu
+                </p>
+                <div class="flex gap-4">
+                  <div class="flex -space-x-3">
+                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                      src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/user_men_32.jpg" alt="User"
+                      width="40" height="40" loading="lazy">
+                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                      src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/user_women_44.jpg" alt="User"
+                      width="40" height="40" loading="lazy">
+                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                      src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/user_men_85.jpg" alt="User"
+                      width="40" height="40" loading="lazy">
+                    <div
+                      class="w-10 h-10 rounded-full border-2 border-white bg-slate-800 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+                      +2k</div>
+                  </div>
+                  <div class="flex flex-col justify-center">
+                    <span class="text-xs font-bold text-slate-800">Telah digunakan oleh</span>
+                    <span class="text-xs text-slate-500">Mahasiswa & Profesional</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-full md:w-1/3 relative h-48 md:h-full flex items-center justify-center">
+                <div
+                  class="absolute inset-0 bg-gradient-to-tr from-blue-200/50 to-purple-200/50 rounded-full filter blur-3xl">
+                </div>
+                <div
+                  class="relative bg-white p-4 rounded-xl shadow-lg transform rotate-[-6deg] group-hover:rotate-0 transition-transform duration-500 border border-slate-100 w-48">
+                  <div class="h-3 w-2/3 bg-slate-200 rounded mb-3"></div>
+                  <div class="h-2 w-full bg-slate-100 rounded mb-2"></div>
+                  <div class="h-2 w-full bg-slate-100 rounded mb-2"></div>
+                  <div class="h-2 w-4/5 bg-slate-100 rounded mb-4"></div>
+                  <div class="flex justify-between items-end">
+                    <div class="h-8 w-8 rounded-full bg-yellow-400/20 flex items-center justify-center text-yellow-600">
+                      <span class="material-icons text-sm">emoji_events</span>
+                    </div>
+                    <div
+                      class="h-8 w-16 bg-primary text-white text-[10px] font-bold flex items-center justify-center rounded-lg">
+                      CERTIFIED
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <section class="py-10 md:py-16 font-[Poppins]">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+              Apa yang Akan Kamu Dapatkan?
+            </h2>
+            <p class="mt-3 text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+
+            <div
+              class="group relative p-8 md:p-10 bg-white rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 overflow-hidden flex flex-col h-full">
+
+
+              <div
+                class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+
+
+              <div class="flex items-start justify-between mb-8">
+                <div
+                  class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <span
+                  class="bg-blue-100 text-blue-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Official
+                  Verified</span>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
+                  Sertifikat Digital Profesional</h3>
+
+
+                <div class="mb-4">
+                  <div class="flex items-center justify-between mb-3">
+                    <p class="text-xs font-bold text-slate-500 uppercase tracking-wide">Preview Sertifikat</p>
+                    <span class="text-[10px] text-blue-500 bg-blue-50 px-2 py-0.5 rounded flex items-center gap-1">
+                      <span class="material-icons text-[10px]">touch_app</span> Klik untuk perbesar
+                    </span>
+                  </div>
+                  <div class="flex gap-3 overflow-x-auto pb-4 scrollbar-hide snap-x pt-2">
+                    <div class="relative group/thumb cursor-pointer snap-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/report1.webp"
+                        class="certificate-thumb w-32 md:w-40 h-auto rounded-lg shadow-md border-2 border-white group-hover/thumb:border-blue-400 transition-all group-hover/thumb:scale-105 group-hover/thumb:shadow-lg object-cover"
+                        alt="Contoh Sertifikat 1" width="160" height="226" loading="lazy">
+                    </div>
+                    <div class="relative group/thumb cursor-pointer snap-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/report2.webp"
+                        class="certificate-thumb w-32 md:w-40 h-auto rounded-lg shadow-md border-2 border-white group-hover/thumb:border-blue-400 transition-all group-hover/thumb:scale-105 group-hover/thumb:shadow-lg object-cover"
+                        alt="Contoh Sertifikat 2" width="160" height="226" loading="lazy">
+                    </div>
+                    <div class="relative group/thumb cursor-pointer snap-center shrink-0">
+                      <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/report3.webp"
+                        class="certificate-thumb w-32 md:w-40 h-auto rounded-lg shadow-md border-2 border-white group-hover/thumb:border-blue-400 transition-all group-hover/thumb:scale-105 group-hover/thumb:shadow-lg object-cover"
+                        alt="Contoh Sertifikat 3" width="160" height="226" loading="lazy">
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-slate-600 text-base leading-relaxed">
+                  Tingkatkan kredibilitas profilmu dengan sertifikat resmi. Dilengkapi dengan sistem
+                  verifikasi digital, cocok untuk dilampirkan dalam CV, LinkedIn, atau portofolio karier
+                </p>
+              </div>
+
+
+              <div class="space-y-4 mb-8 flex-grow">
+                <div
+                  class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 group-hover:bg-blue-50/50 transition-colors border border-slate-100">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                    <span class="material-icons text-sm">qr_code</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-800">QR Code Verifikasi</h4>
+                    <p class="text-xs text-slate-500">Kredibilitas terjamin dengan validasi instan</p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 group-hover:bg-blue-50/50 transition-colors border border-slate-100">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                    <span class="material-icons text-sm">share</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-800">LinkedIn Compatible</h4>
+                    <p class="text-xs text-slate-500">Mudah dibagikan ke jaringan profesional</p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 group-hover:bg-blue-50/50 transition-colors border border-slate-100">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+                    <span class="material-icons text-sm">print</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-800">High-Res Print Ready</h4>
+                    <p class="text-xs text-slate-500">Format PDF kualitas tinggi siap cetak</p>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+
+
+            <div
+              class="group relative p-8 md:p-10 bg-white rounded-3xl border border-gray-100 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 overflow-hidden flex flex-col h-full">
+
+
+              <div
+                class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+
+
+              <div class="flex items-start justify-between mb-8">
+                <div
+                  class="w-16 h-16 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+                  </svg>
+                </div>
+                <span
+                  class="bg-purple-100 text-purple-700 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Premium
+                  Insights</span>
+              </div>
+
+              <div class="mb-6">
+                <h3 class="text-2xl font-bold text-slate-900 mb-4 group-hover:text-purple-600 transition-colors">
+                  Analisis Kepribadian & IQ</h3>
+
+                <div class="relative group/dash mb-4">
+                  <div
+                    class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-5 group-hover/dash:opacity-20 transition duration-1000 group-hover/dash:duration-200">
+                  </div>
+                  <div class="relative rounded-xl overflow-hidden border border-slate-200 shadow-lg bg-white">
+                    <div
+                      class="absolute top-0 left-0 w-full h-6 bg-slate-50 border-b border-slate-100 flex items-center px-3 gap-2">
+                      <div class="w-2 h-2 rounded-full bg-red-400"></div>
+                      <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+                      <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                    </div>
+                    <img src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/Dashboard.webp"
+                      class="certificate-thumb w-full h-auto mt-6 object-cover transform transition-transform duration-700 group-hover/dash:scale-105 cursor-pointer"
+                      alt="Contoh Dashboard Analisis">
+
+                    <div
+                      class="absolute inset-0 flex items-center justify-center opacity-0 group-hover/dash:opacity-100 transition-opacity duration-300 pointer-events-none">
+                      <div
+                        class="bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full flex items-center gap-2 transform translate-y-4 group-hover/dash:translate-y-0 transition-transform duration-300">
+                        <span class="material-icons text-sm">visibility</span>
+                        <span class="text-xs font-bold">Lihat Dashboard</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-slate-600 text-base leading-relaxed">
+                  Bongkar potensi tersembunyimu dengan laporan analisis mendalam. Bukan hanya angka, tapi
+                  juga peta jalan pengembangan diri yang personal berdasarkan 8 dimensi kecerdasan
+                </p>
+              </div>
+
+
+              <div class="space-y-4 mb-8 flex-grow">
+                <div
+                  class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 group-hover:bg-purple-50/50 transition-colors border border-slate-100">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+                    <span class="material-icons text-sm">psychology</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-800">8 Dimensi Kecerdasan</h4>
+                    <p class="text-xs text-slate-500">Analisis menyeluruh kekuatan kognitifmu</p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 group-hover:bg-purple-50/50 transition-colors border border-slate-100">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+                    <span class="material-icons text-sm">trending_up</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-800">Rekomendasi Karier</h4>
+                    <p class="text-xs text-slate-500">Saran profesi yang cocok dengan profilmu</p>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-3 rounded-lg bg-slate-50 group-hover:bg-purple-50/50 transition-colors border border-slate-100">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center">
+                    <span class="material-icons text-sm">compare_arrows</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-800">Komparasi Data Global</h4>
+                    <p class="text-xs text-slate-500">Lihat posisimu di antara populasi dunia</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dashboard Preview -->
+
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+      <section id="pricing" class="relative py-16 md:py-24 px-4 bg-slate-50 overflow-hidden">
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-purple-200/30 blur-[100px] rounded-full pointer-events-none -z-10">
+        </div>
+
+        <div class="container mx-auto">
+          <div class="text-center mb-16 md:mb-20">
+            <h2 class="text-xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Pilih Paket yang <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Paling Cocok</span>
+              Buat Kamu
+            </h2>
+            <p class="mt-4 text-sm md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
+              Kuasai <span class="font-semibold text-slate-800">tes-tes berkualitas</span> & raih
+              <span class="font-semibold text-purple-700">sertifikat resmi</span> untuk memperkuat CV dan portofoliomu
+            </p>
+
+            <div
+              class="mt-8 inline-flex items-center gap-3 rounded-full bg-white/80 backdrop-blur-sm px-5 py-2.5 border border-yellow-200/60 shadow-lg shadow-yellow-100/50">
+              <div class="flex items-center space-x-1">
+                <svg class="w-4 h-4 text-yellow-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg class="w-4 h-4 text-yellow-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg class="w-4 h-4 text-yellow-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg class="w-4 h-4 text-yellow-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                <svg class="w-4 h-4 text-yellow-400 drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              </div>
+              <div class="h-4 w-px bg-slate-200"></div>
+              <span class="text-[10px] md:text-xs font-bold text-slate-700 uppercase tracking-wide">
+                Dipercaya 12.000+ peserta
+              </span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+
+            <div
+              class="relative w-full bg-white rounded-3xl border-2 border-purple-100 p-6 md:p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-purple-100 hover:-translate-y-2 md:scale-110 md:z-10 shadow-xl shadow-slate-200/50">
+              <div class="absolute top-0 right-0 overflow-hidden rounded-tr-3xl rounded-bl-3xl">
+                <div
+                  class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[10px] font-bold px-6 py-2 shadow-sm tracking-wider uppercase">
+                  Paling Populer
+                </div>
+              </div>
+
+              <div class="mb-8">
+                <h3 class="text-lg font-bold text-purple-600 uppercase tracking-widest mb-2">Akses Unlimited</h3>
+                <div class="flex flex-col items-center">
+                  <span class="text-slate-400 text-lg font-semibold"
+                    style="text-decoration: line-through; text-decoration-color: #f87171; text-decoration-thickness: 2px;">Rp
+                    149.000</span>
+                  <div class="flex items-baseline -mt-1">
+                    <span
+                      class="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 tracking-tight">35<span
+                        class="text-3xl md:text-4xl text-slate-700">rb</span></span>
+                  </div>
+                  <span class="text-xs font-bold text-white bg-green-500 px-2 py-0.5 rounded-md shadow-sm mt-1">Diskon
+                    75% Hari Ini</span>
+                </div>
+                <p class="text-sm text-slate-500 mt-4 leading-relaxed font-light">Sekali bayar, nikmati semua tes &
+                  sertifikat tanpa batas waktu. Investasi terbaik</p>
+              </div>
+
+              <ul class="space-y-4 mb-8 flex-1">
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                    <svg class="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5 font-medium">Akses <strong>semua tes</strong> tanpa batas</span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                    <svg class="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5 font-medium"><strong>Sertifikat resmi</strong> semua tes</span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                    <svg class="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Update konten <strong>gratis selamanya</strong></span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-purple-50 p-1 mr-3 group-hover:bg-purple-100 transition-colors">
+                    <svg class="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Garansi puas 7 hari — <strong>uang kembali*</strong></span>
+                </li>
+              </ul>
+
+              <a href="checkout.html"
+                class="block w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white text-center font-bold text-sm md:text-base py-3 md:py-4 rounded-xl transition-all shadow-lg shadow-purple-200 hover:shadow-purple-300 transform active:scale-95 cursor-pointer flex items-center justify-center gap-2 group">
+                <span class="whitespace-nowrap">Dapatkan Akses Unlimited</span>
+                <span class="material-icons-round group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+
+            <div
+              class="relative w-full bg-white rounded-3xl border-2 border-blue-100 p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-blue-100 hover:-translate-y-2 shadow-xl shadow-slate-200/50">
+              <div class="absolute top-0 right-0 overflow-hidden rounded-tr-3xl rounded-bl-3xl">
+                <div style="background-color: #2563EB;"
+                  class="bg-blue-600 text-white text-[10px] font-bold px-6 py-2 shadow-sm tracking-wider uppercase">
+                  Untuk Korporasi/Sekolah
+                </div>
+              </div>
+
+              <div class="mb-8">
+                <h3 class="text-lg font-bold text-blue-600 uppercase tracking-widest mb-2">Paket Organisasi</h3>
+                <div class="flex items-baseline">
+                  <span class="text-5xl font-extrabold text-slate-900 tracking-tight">5.5<span
+                      class="text-3xl">rb</span></span>
+                  <span class="text-sm font-medium text-slate-400 ml-2">/ orang</span>
+                </div>
+                <p class="text-sm text-slate-500 mt-4 leading-relaxed font-light">Solusi hemat untuk perusahaan, sekolah
+                  atau
+                  instansi. Tes massal jadi lebih mudah & terjangkau</p>
+              </div>
+
+              <ul class="space-y-4 mb-8 flex-1">
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-blue-50 p-1 mr-3 group-hover:bg-blue-100 transition-colors">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Minimal pemesanan <strong>10 orang</strong></span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-blue-50 p-1 mr-3 group-hover:bg-blue-100 transition-colors">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5"><strong>Sertifikat resmi</strong> & validasi QR</span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-blue-50 p-1 mr-3 group-hover:bg-blue-100 transition-colors">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Laporan hasil kolektif (Excel/PDF)</span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-blue-50 p-1 mr-3 group-hover:bg-blue-100 transition-colors">
+                    <svg class="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Dukungan <strong>prioritas admin</strong></span>
+                </li>
+              </ul>
+
+              <a href="https://wa.me/6289526469982?text=Halo%20MindTest.id%2C%20saya%20ingin%20memesan%20paket%20organisasi"
+                target="_blank" style="background-color: #2563EB;"
+                class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-200 hover:shadow-blue-300 transform active:scale-95 flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                </svg>
+                <span>Hubungi Admin</span>
+              </a>
+            </div>
+
+            <div
+              class="relative w-full bg-white rounded-3xl border-2 border-emerald-100 p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-emerald-100 hover:-translate-y-2 shadow-xl shadow-slate-200/50">
+              <div class="absolute top-0 right-0 overflow-hidden rounded-tr-3xl rounded-bl-3xl">
+                <div style="background-color: #10B981;"
+                  class="bg-emerald-500 text-white text-[10px] font-bold px-6 py-2 shadow-sm tracking-wider uppercase">
+                  Custom
+                </div>
+              </div>
+
+              <div class="mb-8">
+                <h3 class="text-lg font-bold text-emerald-600 uppercase tracking-widest mb-2">Buat tesmu sendiri</h3>
+                <div class="flex items-baseline">
+                  <span class="text-4xl font-extrabold text-slate-900 tracking-tight">150<span
+                      class="text-2xl">rb</span></span>
+                  <span class="text-sm font-medium text-slate-400 ml-2">/ tes</span>
+                </div>
+                <p class="text-sm text-slate-500 mt-4 leading-relaxed font-light">Buat tes khusus sesuai kebutuhan
+                  rekrutmen atau asesmen spesifik</p>
+              </div>
+
+              <ul class="space-y-4 mb-8 flex-1">
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-emerald-50 p-1 mr-3 group-hover:bg-emerald-100 transition-colors">
+                    <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Konten & pertanyaan kustom</span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-emerald-50 p-1 mr-3 group-hover:bg-emerald-100 transition-colors">
+                    <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Sesuai kebutuhan spesifik</span>
+                </li>
+                <li class="flex items-start text-sm text-slate-700 group">
+                  <div class="rounded-full bg-emerald-50 p-1 mr-3 group-hover:bg-emerald-100 transition-colors">
+                    <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="py-0.5">Cocok untuk <strong>rekrutmen</strong></span>
+                </li>
+              </ul>
+
+              <a href="https://wa.me/6289526469982?text=Halo%20MindTest.id%2C%20saya%20ingin%20memesan%20paket%20custom%20test"
+                target="_blank" style="background-color: #10B981;"
+                class="block w-full bg-emerald-500 hover:bg-emerald-600 text-white text-center font-bold py-4 rounded-xl transition-all shadow-lg shadow-emerald-200 hover:shadow-emerald-300 transform active:scale-95 flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                </svg>
+                <span>Hubungi Admin</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <div id="inline-testimonials">
+
+        <section class="max-w-6xl mx-auto px-4 py-8">
+
+          <div class="text-center max-w-3xl mx-auto px-4 mb-8 relative z-10">
+            <span class="text-blue-600 font-bold tracking-wider text-xs uppercase mb-3 block">Testimonial</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2 leading-tight">Kata Mereka yang Udah Coba
+            </h2>
+            <p class="text-slate-600 text-base">Ribuan orang udah buktiin potensi mereka di sini. Sekarang giliran kamu!
+            </p>
+          </div>
+
+          <div class="relative w-full overflow-hidden -mx-6 md:-mx-12 lg:-mx-16">
+
+            <div
+              class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white/90 md:from-slate-50/90 to-transparent z-10 pointer-events-none">
+            </div>
+            <div
+              class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white/90 md:from-slate-50/90 to-transparent z-10 pointer-events-none">
+            </div>
+
+            <div class="flex animate-scroll-right px-6 md:px-12 lg:px-16 hover:pause">
+
+              <div class="flex gap-4 pr-4">
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-blue-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8.448 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/raka.jpg"
+                        class="w-full h-full object-cover" alt="Raka Aditya">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Raka Aditya</h4>
+                      <p class="text-xs font-medium text-slate-500">Fresh Graduate • Jakarta</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    Iseng nyobain, eh hasilnya lumayan bikin kaget. Nilai logika gue lebih tinggi dari perkiraan, jadi
+                    masukin sertifikat ke CV
+                  </p>
+                </article>
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-purple-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/sarah.jpg"
+                        class="w-full h-full object-cover" alt="Sarah Wilandari">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Sarah Wilandari</h4>
+                      <p class="text-xs font-medium text-slate-500">HR Manager • Surabaya</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    Biasanya saya pakai buat screening kandidat. Ringkas, hasilnya cepat, dan cukup jelas buat lihat
+                    skill dasar
+                  </p>
+                </article>
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-green-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-green-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/dimas.jpg"
+                        class="w-full h-full object-cover" alt="Dimas Pratama">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Dimas Pratama</h4>
+                      <p class="text-xs font-medium text-slate-500">Mahasiswa IT • Bandung</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star_half</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    Soal-soalnya asik, kadang ngeselin tapi seru. Grafik progresnya nunjukin apa yang harus diasah
+                  </p>
+                </article>
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-pink-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-pink-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8.448 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/bella.jpg"
+                        class="w-full h-full object-cover" alt="Bella Putri">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Bella Putri</h4>
+                      <p class="text-xs font-medium text-slate-500">Content Creator • Bali</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    UI-nya enak dilihat dan terasa profesional. Sertifikatnya kelihatan bagus saat dipamerin
+                  </p>
+                </article>
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-indigo-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-indigo-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/andre.jpg"
+                        class="w-full h-full object-cover" alt="Andre Santoso">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Andre Santoso</h4>
+                      <p class="text-xs font-medium text-slate-500">Karyawan Swasta • Jakarta</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star_half</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    Ngebantu banget pas mau apply kerja. Ringkas, jelas, dan kadang jadi bahan obrolan waktu interview
+                  </p>
+                </article>
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-yellow-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-yellow-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/livia.jpg"
+                        class="w-full h-full object-cover" alt="Livia Putri">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Livia Putri</h4>
+                      <p class="text-xs font-medium text-slate-500">Pelajar SMA • Bandung</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star_border</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    Mulai iseng belajar, lama-lama ketagihan. Nilai jadi patokan buat latihan lagi
+                  </p>
+                </article>
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-emerald-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-emerald-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/kevin.jpg"
+                        class="w-full h-full object-cover" alt="Kevin Wijaya">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Kevin Wijaya</h4>
+                      <p class="text-xs font-medium text-slate-500">Freelancer • Yogyakarta</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star_border</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    Beneran ngebantu jelasin strengths gue buat kerja freelance. Singkat, padat, langsung ke inti
+                  </p>
+                </article>
+
+                <article
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-rose-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  role="listitem">
+                  <div class="absolute top-6 right-6 text-slate-200 group-hover:text-rose-100 transition-colors">
+                    <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
+                      <path
+                        d="M14.017 21L14.017 18C14.017 16.896 14.911 16 16.017 16H19.017C19.569 16 20.017 15.552 20.017 15V9C20.017 8.448 19.569 8 19.017 8H15.017C14.465 8 14.017 8 14.017 9V11C14.017 11.552 13.569 12 13.017 12H12.017V5H22.017V15C22.017 18.314 19.331 21 16.017 21H14.017V21ZM5.01697 21L5.01697 18C5.01697 16.896 5.91097 16 7.01697 16H10.017C10.569 16 11.017 15.552 11.017 15V9C11.017 8.448 10.569 8 10.017 8H6.01697C5.46497 8 5.01697 8 5.01697 9V11C5.01697 11.552 4.56897 12 4.01697 12H3.01697V5H13.017V15C13.017 18.314 10.331 21 7.01697 21H5.01697V21Z" />
+                    </svg>
+                  </div>
+
+                  <div class="flex items-center gap-4 mb-5 relative z-10">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/testimonials/maya.jpg"
+                        class="w-full h-full object-cover" alt="Maya Lestari">
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-lg">Maya Lestari</h4>
+                      <p class="text-xs font-medium text-slate-500">Ibu Rumah Tangga • Semarang</p>
+                    </div>
+                  </div>
+
+                  <div class="flex text-yellow-400 mb-4 gap-1">
+                    <span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star</span><span
+                      class="material-icons text-sm">star</span><span class="material-icons text-sm">star_border</span>
+                  </div>
+
+                  <p class="text-slate-600 text-[15px] leading-relaxed italic">
+                    Cuma coba-coba karena penasaran. Ternyata straightforward dan gak ribet — gampang dimengerti
+                  </p>
+                </article>
+
+              </div>
+            </div>
+          </div>
+      </div>
+      </section>
+
+    </div>
+
+    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        class="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative">
+
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full mix-blend-multiply filter blur-3xl opacity-50 pointer-events-none transform translate-x-1/2 -translate-y-1/2">
+        </div>
+
+        <div class="p-8 md:p-16 grid md:grid-cols-12 gap-8 md:gap-16 relative z-10">
+
+          <div class="md:col-span-4">
+            <div class="sticky top-24">
+              <span
+                class="inline-block px-4 py-1.5 text-xs font-bold tracking-wider text-blue-700 bg-blue-50 border border-blue-100 rounded-full mb-6 uppercase">
+                Pusat Bantuan
+              </span>
+              <h2 class="text-3xl font-bold text-slate-900 mb-4 leading-tight">
+                Punya Pertanyaan?
+              </h2>
+              <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
+                Cari jawaban cepat di sini seputar tes, pembayaran, atau cara membaca hasil analisismu
+              </p>
+              <a href="#"
+                class="inline-flex items-center text-xs md:text-sm font-semibold text-blue-600 hover:text-blue-700 group">
+                Hubungi Customer Service
+                <span
+                  class="material-icons text-base ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="md:col-span-8 space-y-4" id="faq-container">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+
+
+  <app-footer></app-footer>
+
+  <app-mobile-nav></app-mobile-nav>
+
+
+
+  <div id="pdf-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[110]">
+    <div class="bg-white rounded-lg w-full h-full max-w-4xl max-h-[90vh] flex flex-col">
+      <div class="flex justify-between items-center p-4 border-b">
+        <h3 class="font-bold">Raven's Progressive Matrices Paper</h3>
+        <button id="close-pdf-modal"><span class="material-icons">close</span></button>
+      </div>
+      <iframe id="pdf-iframe" class="flex-grow w-full" src=""></iframe>
+    </div>
+  </div>
+
+
+  <div id="cert-lightbox-modal"
+    class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4 z-[99999] backdrop-blur-sm transition-opacity duration-300"
+    style="z-index: 99999; background-color: rgba(0,0,0,0.9);">
+
+    <div
+      class="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-auto flex flex-col overflow-hidden animate-fade-in-up">
+
+      <div class="flex justify-between items-center px-4 py-3 border-b border-gray-100 bg-gray-50">
+        <h3 class="text-sm font-bold text-gray-700 uppercase tracking-wide">Preview</h3>
+        <button id="close-cert-lightbox"
+          class="text-gray-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-red-50">
+          <span class="material-icons text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-4 bg-gray-50 flex justify-center items-center">
+        <img id="cert-lightbox-img" src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/assets/Dashboard.webp"
+          alt="Certificate Preview" class="max-w-full max-h-[60vh] w-auto h-auto rounded-lg shadow-sm object-contain">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="supabase-init.js" defer></script>
+  <script src="layout.js" defer></script>
+  <script src="index_supabase.js" defer></script>
+
+
+
+
+  <div id="methodologyModal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
+
+    <div class="fixed inset-0 bg-slate-900/75 backdrop-blur-sm transition-opacity opacity-0 pointer-events-none"
+      id="methodologyBackdrop"></div>
+
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+
+        <div
+          class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 max-w-md mx-auto scale-95 opacity-0 pointer-events-none"
+          style="max-width: 500px; width: 100%; margin-left: auto; margin-right: auto;" id="methodologyPanel">
+          <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div class="sm:flex sm:items-start justify-center">
+              <div
+                class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                <span class="material-icons text-blue-600">psychology</span>
+              </div>
+              <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                <h3 class="text-base font-semibold leading-6 text-slate-900" id="modal-title">Metode Raven Progressive
+                  Matrices</h3>
+                <div class="mt-2">
+                  <p class="text-sm text-slate-500 leading-relaxed">
+                    Metode Raven’s Matrices Dirancang khusus untuk mengukur <strong class="text-slate-700">Fluid
+                      Intelligence (Gf)</strong>—serta 8 dimensi kecerdasan lain, tanpa memandang jenjang pendidikan
+                    atau background sosial-budaya.
+                  </p>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button type="button" onclick="closeMethodologyModal()"
+                class="inline-flex w-full justify-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Paham</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+</body>
+
+</html>
+<!-- BUILD_ID: 20260127-1018-UNIQUE-DEPLOY -->

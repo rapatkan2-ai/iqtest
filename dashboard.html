@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MindTest Dashboard</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/FaviconNew.webp">
+    <!-- SUPABASE RESOURCE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.1/dist/dotlottie-wc.js" type="module"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Skeleton Animation */
+        @keyframes pulse-fast {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .5;
+            }
+        }
+
+        .animate-pulse-fast {
+            animation: pulse-fast 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Shared Header Style */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300 antialiased selection:bg-primary-500 selection:text-white">
+
+    <app-sidebar></app-sidebar>
+
+    <main class="min-h-screen pt-24 md:pt-10 pb-24 px-4 sm:px-6 lg:px-8 md:ml-64 transition-all duration-300">
+        <div class="w-full max-w-6xl mx-auto space-y-10">
+
+            <!-- Welcome Section -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Halo, <span
+                            id="user-greeting">Pengguna</span> 👋</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Selamat datang kembali di pusat pengembangan
+                        potensimu.</p>
+                </div>
+                <div id="login-container-main" class="hidden md:block">
+                    <!-- Pindahkan tombol login kesini jika belum login -->
+                </div>
+            </div>
+
+            <!-- Test Hub Grid -->
+            <div>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                    <span class="material-icons-round text-primary-500">grid_view</span> Tes yang Diselesaikan
+                </h3>
+
+                <!-- Container Grid -->
+                <div id="tests-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Content injected via JS -->
+                    <!-- Loading Skeleton -->
+                    <div class="glass-card rounded-3xl p-6 h-64 animate-pulse-fast bg-slate-100 dark:bg-slate-800">
+                    </div>
+                    <div class="glass-card rounded-3xl p-6 h-64 animate-pulse-fast bg-slate-100 dark:bg-slate-800">
+                    </div>
+                    <div class="glass-card rounded-3xl p-6 h-64 animate-pulse-fast bg-slate-100 dark:bg-slate-800">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Section (Restored) -->
+
+
+    </main>
+
+
+
+
+    <!-- MAIN LOGIC SCRIPT -->
+    <script src="layout.js"></script>
+    <script>
+        // --- AUTH & DATA LOGIC ---
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Config Supabase
+            let supabase = window.supabaseClient;
+            if (!supabase) {
+                console.warn("Supabase client not found. Waiting for global init...");
+            }
+
+            // 2. Define Tests Data
+            const availableTests = [
+                {
+                    id: 'iq_test',
+                    title: 'Tes IQ & Profil Kognitif',
+                    desc: 'Laporan lengkap mengenai 8 dimensi kecerdasan, potensi karir, dan gaya belajarmu.',
+                    icon: 'psychology',
+                    img: 'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/Tes%20IQ%20Picture.webp',
+                    color: 'indigo',
+                    url: 'dashboardIQ.html',
+                    isReady: true
+                },
+                {
+                    id: 'mbti_test',
+                    title: 'Tes Kepribadian (MBTI)',
+                    desc: 'Kenali tipe kepribadianmu lebih dalam untuk hubungan sosial yang lebih baik.',
+                    icon: 'favorite',
+                    img: 'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/4.webp',
+                    color: 'purple',
+                    url: '#',
+                    isReady: false
+                },
+                {
+                    id: 'english_test',
+                    title: 'English Proficiency Tests',
+                    desc: 'Uji kemampuan Bahasa Inggris Anda (Grammar, Vocabulary) dengan standar internasional.',
+                    icon: 'language',
+                    img: 'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/coin%20(2).webp',
+                    color: 'rose',
+                    url: '#',
+                    isReady: false
+                },
+                {
+                    id: 'multiple_intelligence',
+                    title: 'Analisa Kecerdasan Majemuk',
+                    desc: 'Temukan potensi dominanmu dari 8 tipe kecerdasan.',
+                    icon: 'lightbulb',
+                    img: 'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/6.webp',
+                    color: 'green',
+                    url: '#',
+                    isReady: false
+                },
+                {
+                    id: 'career_riasec',
+                    title: 'Minat Karir RIASEC',
+                    desc: 'Jelajahi profil minat kerjamu: Realistik, Investigatif, Artistik, dst.',
+                    icon: 'work',
+                    img: 'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/7%20(1).webp',
+                    color: 'orange',
+                    url: '#',
+                    isReady: false
+                },
+                {
+                    id: 'eq_test',
+                    title: 'Tes EQ (Kecerdasan Emosional)',
+                    desc: 'Ukur seberapa baik kamu mengelola emosi diri dan berempati.',
+                    icon: 'sentiment_satisfied',
+                    img: 'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/8%20(1).webp',
+                    color: 'teal',
+                    url: '#',
+                    isReady: false
+                },
+                {
+                    id: 'big_five',
+                    title: 'Profil Kepribadian Big Five',
+                    desc: 'Analisa mendalam 5 faktor utama kepribadianmu.',
+                    icon: 'face',
+                    img: 'https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@main/9%20(2).webp',
+                    color: 'cyan',
+                    url: '#',
+                    isReady: false
+                }
+            ];
+
+            // 3. Update UI Function
+            async function updateUI(user) {
+                const grid = document.getElementById('tests-grid');
+                // grid.innerHTML = ''; // REMOVED to prevent skeleton flash / race condition
+
+                if (user) {
+                    const name = user.user_metadata.full_name || 'User';
+                    document.getElementById('user-greeting').textContent = name.split(' ')[0];
+
+                    // Hide main login container if exists
+                    document.getElementById('login-container-main').innerHTML = '';
+
+                    // SETUP HISTORY
+                    await renderTestsWithHistory(user.id);
+                    await fetchHistory(user.id);
+
+                } else {
+                    // Guest Mode
+                    document.getElementById('user-greeting').textContent = 'Pengguna (Guest)';
+
+                    // Show Login Button in Header Area (Welcome Section)
+                    // Note: app-header already has a login button, but this is for the welcome message call-to-action
+                    document.getElementById('login-container-main').innerHTML = `
+                        <a href="#" id="welcomeLoginBtn" class="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold px-5 py-2 rounded-xl shadow-md hover:shadow-lg transition-all">
+                            <span class="material-icons-round text-sm">login</span> Masuk
+                        </a>
+                     `;
+                    // Bind click to global login modal opener if available, or finding the button in header
+                    const btn = document.getElementById('welcomeLoginBtn');
+                    if (btn) {
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const headerLoginBtn = document.getElementById('openLoginModalBtn');
+                            if (headerLoginBtn) headerLoginBtn.click(); // Trigger header modal
+                        });
+                    }
+
+                    renderTestsGuest();
+                    const historySection = document.getElementById('history-section');
+                    if (historySection) historySection.classList.add('hidden');
+                }
+            }
+
+            // 4. Render Functions
+            async function renderTestsWithHistory(userId) {
+                const grid = document.getElementById('tests-grid');
+                // Fetch real history for IQ Test
+                let iqScore = null;
+
+                // 1. Check Supabase
+                const { data: results, error } = await supabase
+                    .from('quiz_results')
+                    .select('*')
+                    .eq('user_id', userId)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+
+                if (results && results.length > 0) {
+                    iqScore = results[0].score;
+                }
+
+                // 2. Fallback to LocalStorage
+                if (iqScore === null) {
+                    const localJSON = localStorage.getItem('mindtest_latestResult');
+                    if (localJSON) {
+                        try {
+                            const localData = JSON.parse(localJSON);
+                            if (localData && localData.iqScore) {
+                                iqScore = localData.iqScore;
+                            }
+                        } catch (e) {
+                            console.error("Dashboard: Error parsing local storage", e);
+                        }
+                    }
+                }
+
+                // 3. Premium Check & Score Formatting
+                const isPremium = localStorage.getItem('mindtest_isPremium') === 'true';
+
+                // Helper to format score
+                const formatScore = (score) => {
+                    if (isPremium) return `Skor: ${score}`;
+                    const lower = Math.floor(score / 10) * 10;
+                    const upper = lower + 10;
+                    return `Estimasi: ${lower}-${upper}`;
+                };
+
+                // Loop Tests
+                grid.innerHTML = '';
+                availableTests.forEach(test => {
+                    const isCompleted = (test.id === 'iq_test' && iqScore !== null);
+                    let badgeHTML = '';
+                    let actionHTML = '';
+
+                    // Logic Per Card
+                    if (test.id === 'iq_test') {
+                        if (isCompleted) {
+                            const scoreText = formatScore(iqScore);
+                            const badgeColor = isPremium ? 'emerald' : 'amber';
+
+                            badgeHTML = `<span class="text-xs font-semibold text-${badgeColor}-500 bg-${badgeColor}-50 dark:bg-${badgeColor}-900/20 px-3 py-1 rounded-full border border-${badgeColor}-100 dark:border-${badgeColor}-800">${scoreText}</span>`;
+
+                            actionHTML = `
+                                <button class="flex items-center gap-1 text-sm font-bold text-indigo-600 dark:text-indigo-400 group-hover:gap-2 transition-all">
+                                    Lihat Detail <span class="material-icons-round text-base">arrow_forward</span>
+                                </button>
+                            `;
+                        } else {
+                            badgeHTML = `<span class="text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800">Belum Tes</span>`;
+                            actionHTML = `
+                                <button class="flex items-center gap-1 text-sm font-bold text-blue-600 dark:text-blue-400 group-hover:gap-2 transition-all">
+                                    Mulai Tes <span class="material-icons-round text-base">play_arrow</span>
+                                </button>
+                            `;
+                        }
+                    } else {
+                        // Coming Soon Logic
+                        badgeHTML = `<span class="text-xs font-semibold text-gray-400 bg-gray-50 dark:bg-gray-800 px-3 py-1 rounded-full">Coming Soon</span>`;
+                        actionHTML = `<span class="text-sm font-bold text-gray-400 cursor-not-allowed">Segera Hadir</span>`;
+                    }
+
+                    // Render Card
+                    const card = document.createElement('div');
+                    // Add click handler only if active
+                    if (test.isReady || (test.id === 'iq_test')) {
+                        card.onclick = () => window.location.href = test.url;
+                        card.className = "group relative rounded-3xl overflow-hidden hover-card transition-all cursor-pointer h-full border border-white/20 shadow-xl";
+                    } else {
+                        card.className = "group relative rounded-3xl overflow-hidden h-full border border-white/20 shadow-xl opacity-80 cursor-not-allowed";
+                    }
+
+                    card.innerHTML = `
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                             style="background-image: url('${test.img}');">
+                        </div>
+                        
+                        <div class="absolute inset-0 bg-white/90 dark:bg-slate-900/90 transition-opacity duration-300 group-hover:bg-white/80 dark:group-hover:bg-slate-900/80"></div>
+
+                        <div class="relative z-10 p-6 flex flex-col h-full">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-${test.color}-50/80 dark:bg-${test.color}-900/50 backdrop-blur-sm flex items-center justify-center text-${test.color}-600 dark:text-${test.color}-400 shadow-sm border border-${test.color}-100/50">
+                                    <span class="material-icons-round text-2xl">${test.icon}</span>
+                                </div>
+                                ${badgeHTML} 
+                            </div>
+
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-${test.color}-600 dark:group-hover:text-${test.color}-400 transition-colors drop-shadow-sm">
+                                ${test.title}
+                            </h3>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mb-6 leading-relaxed line-clamp-3">
+                                ${test.desc}
+                            </p>
+
+                            <div class="mt-auto pt-4 border-t border-slate-200/50 dark:border-slate-700/50 flex items-center justify-end">
+                                ${actionHTML}
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            async function fetchHistory(userId) {
+                const list = document.getElementById('history-list');
+                const section = document.getElementById('history-section');
+
+                if (!userId || !list || !section) return;
+
+                const { data: results, error } = await supabase
+                    .from('quiz_results')
+                    .select('*')
+                    .eq('user_id', userId)
+                    .order('created_at', { ascending: false });
+
+                if (error) {
+                    console.error("Error fetching history:", error);
+                    return;
+                }
+
+                if (results && results.length > 0) {
+                    list.innerHTML = '';
+                    results.forEach(result => {
+                        // Find matching test meta (fallback to unknown if ID mismatch)
+                        const meta = availableTests.find(t => t.id === result.quiz_id) || {
+                            title: 'Tes Tidak Diketahui',
+                            icon: 'help_outline',
+                            color: 'gray'
+                        };
+
+                        const date = new Date(result.created_at).toLocaleDateString('id-ID', {
+                            day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                        });
+
+                        const item = document.createElement('div');
+                        item.className = "flex items-center justify-between p-4 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 backdrop-blur-sm transition-all hover:bg-white/80 dark:hover:bg-slate-800";
+                        item.innerHTML = `
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-${meta.color}-50 dark:bg-${meta.color}-900/30 flex items-center justify-center text-${meta.color}-600 dark:text-${meta.color}-400">
+                                    <span class="material-icons-round">${meta.icon}</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white text-sm">${meta.title}</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400">${date}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="px-3 py-1 rounded-full bg-${meta.color}-100 dark:bg-${meta.color}-900/50 text-${meta.color}-700 dark:text-${meta.color}-300 text-xs font-bold">
+                                    Skor: ${result.score}
+                                </span>
+                            </div>
+                         `;
+                        list.appendChild(item);
+                    });
+                    section.classList.remove('hidden');
+                } else {
+                    section.classList.add('hidden');
+                }
+            }
+
+            async function renderTestsGuest() {
+                const grid = document.getElementById('tests-grid');
+                grid.innerHTML = '';
+
+                availableTests.forEach(test => {
+                    const card = document.createElement('div');
+
+                    // Card Container Styling (Matching renderTestsWithHistory)
+                    if (test.isReady || (test.id === 'iq_test')) {
+                        card.onclick = () => window.location.href = test.url;
+                        card.className = "group relative rounded-3xl overflow-hidden hover-card transition-all cursor-pointer h-full border border-white/20 shadow-xl";
+                    } else {
+                        card.className = "group relative rounded-3xl overflow-hidden h-full border border-white/20 shadow-xl opacity-80 cursor-not-allowed";
+                    }
+
+                    // Content Logic
+                    let badgeHTML = '';
+                    let actionHTML = '';
+
+                    if (test.id === 'iq_test') {
+                        badgeHTML = `<span class="text-xs font-semibold text-blue-500 bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800">Belum Tes</span>`;
+                        actionHTML = `
+                            <button class="flex items-center gap-1 text-sm font-bold text-blue-600 dark:text-blue-400 group-hover:gap-2 transition-all">
+                                Mulai Tes <span class="material-icons-round text-base">play_arrow</span>
+                            </button>
+                        `;
+                    } else {
+                        badgeHTML = `<span class="text-xs font-semibold text-gray-400 bg-gray-50 dark:bg-gray-800 px-3 py-1 rounded-full">Coming Soon</span>`;
+                        actionHTML = `<span class="text-sm font-bold text-gray-400 cursor-not-allowed">Segera Hadir</span>`;
+                    }
+
+                    // Card HTML Construction
+                    card.innerHTML = `
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+                             style="background-image: url('${test.img}');">
+                        </div>
+                        
+                        <div class="absolute inset-0 bg-white/90 dark:bg-slate-900/90 transition-opacity duration-300 group-hover:bg-white/80 dark:group-hover:bg-slate-900/80"></div>
+
+                        <div class="relative z-10 p-6 flex flex-col h-full">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-2xl bg-${test.color}-50/80 dark:bg-${test.color}-900/50 backdrop-blur-sm flex items-center justify-center text-${test.color}-600 dark:text-${test.color}-400 shadow-sm border border-${test.color}-100/50">
+                                    <span class="material-icons-round text-2xl">${test.icon}</span>
+                                </div>
+                                ${badgeHTML} 
+                            </div>
+
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-${test.color}-600 dark:group-hover:text-${test.color}-400 transition-colors drop-shadow-sm">
+                                ${test.title}
+                            </h3>
+                            <p class="text-xs font-medium text-slate-500 dark:text-slate-400 mb-6 leading-relaxed line-clamp-3">
+                                ${test.desc}
+                            </p>
+
+                            <div class="mt-auto pt-4 border-t border-slate-200/50 dark:border-slate-700/50 flex items-center justify-end">
+                                ${actionHTML}
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+
+            // --- INIT ---
+            setTimeout(async () => {
+                if (supabase) {
+                    const { data: { session } } = await supabase.auth.getSession();
+                    updateUI(session?.user);
+
+                    supabase.auth.onAuthStateChange((event, session) => {
+                        updateUI(session?.user);
+                    });
+                } else {
+                    updateUI(null);
+                }
+            }, 100);
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+node_modules/
+.venv/
+assets/
+.env
+optimize_assets.py
+optimize_assets_v2.py
+download_assets*.ps1
+build_info.json
+*.pyc
+__pycache__/
+.DS_Store

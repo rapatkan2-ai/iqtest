@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selesaikan Pesanan - MindTest.id</title>
+    <link rel="icon" type="image/webp" href="assets/FaviconNew.webp">
+    <link href="styles.css" rel="stylesheet">
+    <link href="fonts.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+    <style>
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .animate-scroll-right {
+            animation: scroll-right 60s linear infinite;
+            width: max-content;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+</head>
+
+<body class="bg-slate-50 text-slate-900 selection:bg-indigo-500 selection:text-white">
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <!-- LEFT COLUMN: PRODUCT INFO & TRUST (40-50% width) -->
+        <div
+            class="hidden md:flex w-full md:w-1/2 lg:w-7/12 bg-white md:bg-slate-50 p-6 md:p-12 lg:p-16 flex-col justify-between relative overflow-hidden order-2 md:order-1 border-r border-slate-100">
+            <!-- Decor -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                <div
+                    class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-200/40 rounded-full blur-3xl mix-blend-multiply filter animate-float">
+                </div>
+                <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-200/40 rounded-full blur-3xl mix-blend-multiply filter animate-float"
+                    style="animation-delay: 2s"></div>
+            </div>
+            <div class="relative z-10">
+                <!-- Header Logo -->
+                <div class="flex items-center gap-3 mb-8 md:mb-12"><a href="index.html"
+                        class="flex items-center gap-2 group hover:opacity-80 transition-opacity">
+                        <div
+                            class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center border border-slate-100 pb-1">
+                            <img src="assets/FaviconNew.webp" class="w-6 h-6 object-contain">
+                        </div><span class="font-bold text-lg text-slate-800 tracking-tight">MindTest.id</span>
+                    </a></div>
+                <!-- Product Title -->
+                <div class="mb-8"><span
+                        class="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-bold uppercase tracking-wider rounded-full mb-3 border border-indigo-100">Paket
+                        Premium</span>
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+                        Investasi Sekali,
+                        <br>Manfaat Selamanya
+                    </h1>
+                    <p class="text-slate-500 text-lg leading-relaxed max-w-lg">Buka potensi penuh
+                        kecerdasanmu dengan analisis mendalam </p>
+                </div>
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                    <!-- Feature 1 -->
+                    <div
+                        class="flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center shrink-0 text-purple-600">
+                            <span class="material-icons-round text-xl">psychology</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Analisis 8 Dimensi Kecerdasan</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">Ungkap potensi tersembunyi
+                                melalui pemetaan mendalam pada aspek Verbal, Logika, Visual, Memori, hingga Kinestetik
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div
+                        class="flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center shrink-0 text-indigo-600">
+                            <span class="material-icons-round text-xl">workspace_premium</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Sertifikat Digital Resmi</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">Dokumen valid dengan ID unik yang
+                                terverifikasi. Sangat kredibel untuk dilampirkan pada CV, LinkedIn, atau portofolio
+                                profesional</p>
+                        </div>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div
+                        class="flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0 text-emerald-600">
+                            <span class="material-icons-round text-xl">all_inclusive</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Akses Premium Seumur Hidup</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">Investasi cerdas tanpa biaya
+                                tersembunyi. Cukup satu kali pembayaran untuk akses tak terbatas ke semua pembaruan
+                                fitur</p>
+                        </div>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div
+                        class="flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0 text-blue-600">
+                            <span class="material-icons-round text-xl">description</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Laporan Detail & PDF</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">Dapatkan breakdown lengkap skor
+                                IQ dan analisis kepribadian dalam format PDF yang rapi, komprehensif, dan siap cetak
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Feature 5 -->
+                    <div
+                        class="flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center shrink-0 text-amber-600">
+                            <span class="material-icons-round text-xl">query_stats</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Komparasi Data Global</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">Ketahui posisi kecerdasanmu
+                                dibandingkan dengan ribuan pengguna lain di seluruh Indonesia melalui grafik persentil
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Feature 6 -->
+                    <div
+                        class="flex gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <div
+                            class="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center shrink-0 text-rose-600">
+                            <span class="material-icons-round text-xl">trending_up</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-sm">Rekomendasi Karir & Pengembangan</h4>
+                            <p class="text-[12px] text-slate-500 mt-1 leading-relaxed">Dapatkan saran praktis yang
+                                dipersonalisasi untuk meningkatkan area yang masih kurang dan memaksimalkan kekuatanmu
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Slider -->
+                <div class="mt-auto pt-8">
+                    <div class="mb-6">
+                        <span
+                            class="text-indigo-600 font-bold tracking-wider text-[10px] uppercase mb-2 block">Testimonial</span>
+                        <h3 class="text-xl md:text-2xl font-extrabold text-slate-900 leading-tight">Kata Mereka yang
+                            Udah Coba</h3>
+                        <p class="text-slate-500 text-sm mt-1">Ribuan orang udah buktiin potensi mereka di sini.
+                            Sekarang giliran kamu!</p>
+                    </div>
+
+                    <div class="relative w-full overflow-hidden -mx-6 md:-mx-12 lg:-mx-16">
+                        <!-- Gradient Masks -->
+                        <div
+                            class="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white/90 md:from-slate-50/90 to-transparent z-10 pointer-events-none">
+                        </div>
+                        <div
+                            class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white/90 md:from-slate-50/90 to-transparent z-10 pointer-events-none">
+                        </div>
+
+                        <div class="flex animate-scroll-right px-6 md:px-12 lg:px-16 hover:pause">
+                            <!-- Original Items -->
+                            <div class="flex gap-4 pr-4">
+                                <!-- Card 1 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/raka.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Raka Aditya">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Raka Aditya</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Fresh Graduate • Jakarta
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Iseng nyobain, eh hasilnya lumayan bikin kaget. Nilai logika gue lebih tinggi
+                                        dari perkiraan, jadi masukin sertifikat ke CV"
+                                    </p>
+                                </article>
+
+                                <!-- Card 2 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/sarah.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Sarah Wilandari">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Sarah Wilandari</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">HR Manager • Surabaya</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Biasanya saya pakai buat screening kandidat. Ringkas, hasilnya cepat, dan cukup
+                                        jelas buat lihat skill dasar"
+                                    </p>
+                                </article>
+
+                                <!-- Card 3 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/dimas.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Dimas Pratama">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Dimas Pratama</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Mahasiswa IT • Bandung</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_half</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Soal-soalnya asik, kadang ngeselin tapi seru. Grafik progresnya nunjukin apa
+                                        yang harus diasah"
+                                    </p>
+                                </article>
+
+                                <!-- Card 4 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/bella.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Bella Putri">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Bella Putri</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Content Creator • Bali</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "UI-nya enak dilihat dan terasa profesional. Sertifikatnya kelihatan bagus saat
+                                        dipamerin"
+                                    </p>
+                                </article>
+
+                                <!-- Card 5 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/andre.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Andre Santoso">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Andre Santoso</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Karyawan Swasta • Jakarta
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_half</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Ngebantu banget pas mau apply kerja. Ringkas, jelas, dan kadang jadi bahan
+                                        obrolan waktu interview"
+                                    </p>
+                                </article>
+
+                                <!-- Card 6 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/livia.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Livia Putri">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Livia Putri</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Pelajar SMA • Bandung</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_border</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Mulai iseng belajar, lama-lama ketagihan. Nilai jadi patokan buat latihan lagi"
+                                    </p>
+                                </article>
+
+                                <!-- Card 7 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/kevin.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Kevin Wijaya">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Kevin Wijaya</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Freelancer • Yogyakarta
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_border</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Beneran ngebantu jelasin strengths gue buat kerja freelance. Singkat, padat,
+                                        langsung ke inti"
+                                    </p>
+                                </article>
+                            </div>
+
+                            <!-- Duplicate for Infinite Loop -->
+                            <div class="flex gap-4 pr-4">
+                                <!-- Card 1 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/raka.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Raka Aditya">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Raka Aditya</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Fresh Graduate • Jakarta
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Iseng nyobain, eh hasilnya lumayan bikin kaget. Nilai logika gue lebih tinggi
+                                        dari perkiraan, jadi masukin sertifikat ke CV"
+                                    </p>
+                                </article>
+
+                                <!-- Card 2 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/sarah.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Sarah Wilandari">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Sarah Wilandari</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">HR Manager • Surabaya</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Biasanya saya pakai buat screening kandidat. Ringkas, hasilnya cepat, dan cukup
+                                        jelas buat lihat skill dasar"
+                                    </p>
+                                </article>
+
+                                <!-- Card 3 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/dimas.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Dimas Pratama">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Dimas Pratama</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Mahasiswa IT • Bandung</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_half</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Soal-soalnya asik, kadang ngeselin tapi seru. Grafik progresnya nunjukin apa
+                                        yang harus diasah"
+                                    </p>
+                                </article>
+
+                                <!-- Card 4 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/bella.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Bella Putri">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Bella Putri</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Content Creator • Bali</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "UI-nya enak dilihat dan terasa profesional. Sertifikatnya kelihatan bagus saat
+                                        dipamerin"
+                                    </p>
+                                </article>
+
+                                <!-- Card 5 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/andre.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Andre Santoso">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Andre Santoso</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Karyawan Swasta • Jakarta
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_half</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Ngebantu banget pas mau apply kerja. Ringkas, jelas, dan kadang jadi bahan
+                                        obrolan waktu interview"
+                                    </p>
+                                </article>
+
+                                <!-- Card 6 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/livia.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Livia Putri">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Livia Putri</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Pelajar SMA • Bandung</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_border</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Mulai iseng belajar, lama-lama ketagihan. Nilai jadi patokan buat latihan lagi"
+                                    </p>
+                                </article>
+
+                                <!-- Card 7 -->
+                                <article
+                                    class="w-[280px] p-5 rounded-2xl bg-white border border-slate-100 shadow-sm shrink-0">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <img src="assets/testimonials/kevin.jpg"
+                                            class="w-10 h-10 rounded-full object-cover" alt="Kevin Wijaya">
+                                        <div>
+                                            <h4 class="font-bold text-slate-900 text-sm">Kevin Wijaya</h4>
+                                            <p class="text-[10px] font-medium text-slate-500">Freelancer • Yogyakarta
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="flex text-yellow-400 mb-2 gap-0.5">
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star</span>
+                                        <span class="material-icons-round text-xs">star_border</span>
+                                    </div>
+                                    <p class="text-slate-600 text-xs leading-relaxed italic">
+                                        "Beneran ngebantu jelasin strengths gue buat kerja freelance. Singkat, padat,
+                                        langsung ke inti"
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- RIGHT COLUMN: ACTION & PAYMENT (Fixed on Desktop) -->
+        <div
+            class="w-full md:w-1/2 lg:w-5/12 bg-white relative flex flex-col items-center justify-center p-6 md:p-12 order-1 md:order-2 shadow-2xl md:shadow-none z-20">
+            <div class="w-full max-w-sm">
+                <!-- Mobile Header -->
+                <div class="mb-6 text-center md:hidden mt-8">
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div
+                            class="w-8 h-8 bg-white rounded-lg shadow-sm flex items-center justify-center border border-slate-100 pb-1">
+                            <img src="assets/FaviconNew.webp" class="w-5 h-5 object-contain">
+                        </div>
+                        <span class="font-bold text-base text-slate-800 tracking-tight">MindTest.id</span>
+                    </div>
+                    <span
+                        class="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-bold uppercase tracking-wider rounded-full mb-3 border border-indigo-100">
+                        Paket Premium
+                    </span>
+                    <h1 class="text-2xl font-extrabold text-slate-900 leading-tight">
+                        Investasi Sekali,<br>Manfaat Selamanya
+                    </h1>
+                </div>
+
+                <!-- Floating Back Button (Mobile Only) --><a href="index.html"
+                    class="md:hidden absolute top-4 left-4 p-2 text-slate-400 hover:text-slate-600 transition-colors"><span
+                        class="material-icons-round">arrow_back</span></a>
+                <!-- STEP 2: PAYMENT INTERFACE (QRIS) -->
+                <div id="step-payment" class="transition-all duration-300">
+                    <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-4 text-white text-center">
+                            <p class="text-xs font-medium opacity-90">Total Tagihan</p>
+                            <p class="text-2xl font-bold">Rp 35.000</p>
+                        </div>
+                        <div class="p-6 flex flex-col items-center">
+                            <!-- Timer -->
+                            <div
+                                class="flex items-center gap-1.5 mb-5 text-red-500 bg-red-50 px-3 py-1 rounded-full text-[10px] font-bold border border-red-100">
+                                <span class="material-icons-round text-sm animate-pulse">timer</span><span>Sisa
+                                    Waktu:</span><span id="payment-timer" class="font-mono text-sm">10:00</span>
+                            </div>
+                            <!-- QR -->
+                            <div
+                                class="w-full max-w-[240px] aspect-square bg-slate-50 rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center p-3 mb-4 relative group">
+                                <img src="assets/QR_Mindtest.png"
+                                    class="w-full h-full object-contain mix-blend-multiply transition-opacity group-hover:opacity-100">
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl pointer-events-none">
+                                    <span class="bg-white px-2 py-1 text-[10px] font-bold rounded shadow-sm">Scan
+                                        Me</span>
+                                </div>
+                            </div><button onclick="downloadQRWithBranding(this)"
+                                class="text-indigo-600 text-xs font-bold hover:underline mb-4 flex items-center gap-1"><span
+                                    class="material-icons-round text-sm">download</span>Simpan
+                                QR Code </button><img src="assets/payment_methods.webp"
+                                class="h-24 object-contain mb-6 opacity-80" alt="Payment Methods">
+                            <!-- Voucher -->
+                            <div class="w-full mb-4"><label
+                                    class="text-[10px] font-bold text-slate-500 mb-1 block uppercase">Kode
+                                    Voucher</label>
+                                <div class="flex gap-2"><input type="text" id="voucher-input" placeholder="W-XXXXX"
+                                        class="flex-1 px-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none uppercase font-mono"><button
+                                        onclick="checkVoucher()" id="btn-check-voucher"
+                                        class="px-4 py-2 bg-slate-800 text-white font-bold text-xs rounded-lg hover:bg-slate-700 transition-colors">Check
+                                    </button></div>
+                                <p id="voucher-msg" class="text-[10px] mt-1.5 hidden"></p>
+                            </div>
+                            <!-- Actions --><input type="file" id="proof-upload" class="hidden" accept="image/*"><button
+                                id="btn-upload-proof" onclick="document.getElementById('proof-upload').click()"
+                                class="w-full py-3 bg-white border border-slate-200 text-slate-700 font-bold rounded-xl hover:bg-slate-50 transition-all flex items-center justify-center gap-2 group mb-3 shadow-sm"><span
+                                    class="material-icons-round group-hover:-translate-y-0.5 transition-transform text-indigo-500">cloud_upload</span>Upload
+                                Bukti Bayar </button><button id="btn-activate-free" onclick="verifyAndFinish(true)"
+                                class="hidden w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-200 transition-all flex items-center justify-center gap-2 mb-3 animate-bounce"><span
+                                    class="material-icons-round">celebration</span>Aktifkan
+                                Premium Gratis </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- SECURITY BADGE ROW -->
+                <div
+                    class="mt-8 pt-6 border-t border-slate-100 w-full flex justify-between items-center text-[10px] text-slate-400">
+                    <span>© 2024 MindTest.id</span>
+                    <div class="flex gap-2"><span>Privacy</span><span>Terms</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- LOGIN MODAL -->
+    <div id="loginModal"
+        class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-[100] hidden transition-all duration-300 opacity-0"
+        style="opacity: 0;">
+        <div
+            class="bg-white rounded-[2rem] shadow-2xl w-full max-w-sm p-8 m-4 relative transform scale-95 transition-all duration-300">
+            <!-- Close Button REMOVED for mandatory login -->
+
+            <div class="text-center mt-2">
+                <div class="mb-6 flex justify-center">
+                    <div class="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center -rotate-6">
+                        <span class="text-3xl">👋</span>
+                    </div>
+                </div>
+
+                <h2 class="text-2xl font-bold mb-2 text-slate-900 tracking-tight">Welcome Back!</h2>
+                <p class="text-slate-500 mb-8 text-sm leading-relaxed px-4">
+                    Login untuk melanjutkan pembayaran dan menyimpan hasil tesmu.
+                </p>
+
+                <div class="space-y-3">
+                    <button id="googleLoginModalBtn"
+                        class="group w-full flex items-center justify-center gap-3 bg-white border border-slate-200 hover:border-indigo-200 hover:bg-indigo-50/50 text-slate-700 font-semibold py-3.5 px-4 rounded-xl transition-all duration-200 hover:shadow-md transform hover:-translate-y-0.5">
+                        <img src="assets/google-color.svg" alt="Google" class="w-5 h-5">
+                        <span>Masuk dengan Google</span>
+                    </button>
+
+                    <button disabled
+                        class="w-full flex items-center justify-center gap-3 bg-slate-50 border border-slate-200 text-slate-400 font-medium py-3.5 px-4 rounded-xl cursor-not-allowed opacity-75 grayscale select-none">
+                        <img src="assets/Microsoft_logo.svg" alt="Microsoft" class="w-5 h-5 opacity-50">
+                        <span>Masuk dengan Microsoft</span>
+                    </button>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100">
+                    <p class="text-xs text-slate-400">
+                        Dengan masuk, Anda menyetujui <a href="#"
+                            class="text-slate-600 hover:text-indigo-600 hover:underline">Syarat & Ketentuan</a> kami
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="supabase-init.js"></script>
+    <script src="checkout.js"></script>
+</body>
+
+</html>
