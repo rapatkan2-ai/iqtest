@@ -138,33 +138,33 @@ class AppHeader extends HTMLElement {
                         </a>
                     </div>
                     <div id="desktop-nav-menu" class="hidden md:flex items-center space-x-2">
-                        <a href="index.html" id="nav-home" class="flex flex-col items-center text-gray-400 hover:text-rose-500 transition-colors px-4 py-2 rounded-lg hover:bg-rose-50">
+                        <a href="index.html" id="nav-home" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 transition-colors px-4 py-2 rounded-lg hover:bg-indigo-50">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-6 w-6" fill="currentColor"><path d="M256,319.841c-35.346,0-64,28.654-64,64v128h128v-128C320,348.495,291.346,319.841,256,319.841z" /><path d="M362.667,383.841v128H448c35.346,0,64-28.654,64-64V253.26c0.005-11.083-4.302-21.733-12.011-29.696l-181.29-195.99 c-31.988-34.61-85.976-36.735-120.586-4.747c-1.644,1.52-3.228,3.103-4.747,4.747L12.395,223.5 C4.453,231.496-0.003,242.31,0,253.58v194.261c0,35.346,28.654,64,64,64h85.333v-128c0.399-58.172,47.366-105.676,104.073-107.044 C312.01,275.383,362.22,323.696,362.667,383.841z" /></svg>
                             <span>Beranda</span>
                         </a>
-                        <a href="leaderboard.html" id="nav-leaderboard" class="flex flex-col items-center text-gray-400 hover:text-rose-500 transition-colors px-4 py-2 rounded-lg hover:bg-rose-50">
+                        <a href="leaderboard.html" id="nav-leaderboard" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 transition-colors px-4 py-2 rounded-lg hover:bg-indigo-50">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
               <path
                 d="m17.829,7.762c-.141,0-.282-.045-.4-.133-.227-.17-.321-.464-.236-.734l.627-2.011-1.585-1.29c-.213-.181-.291-.476-.194-.738.096-.262.346-.437.626-.437h2.001l.708-1.987c.097-.261.346-.434.625-.434s.528.173.625.434l.708,1.987h2.001c.28,0,.53.175.626.438s.017.558-.197.739l-1.577,1.285.652,1.987c.089.269-.001.565-.226.738-.225.173-.534.185-.771.031l-1.836-1.196-1.805,1.208c-.112.075-.242.113-.371.113Zm-8,3c-.141,0-.282-.045-.4-.133-.227-.17-.321-.464-.236-.734l.627-2.011-1.585-1.29c-.213-.181-.291-.476-.194-.738.096-.262.346-.437.626-.437h2.001l.708-1.987c.097-.261.346-.434.625-.434s.528.173.625.434l.708,1.987h2.001c.28,0,.53.175.626.438s.017.558-.197.739l-1.577,1.285.652,1.987c.089.269-.001.565-.226.738-.225.173-.534.185-.771.031l-1.836-1.196-1.805,1.208c-.112.075-.242.113-.371.113ZM1.829,13.762c-.141,0-.282-.045-.4-.133-.227-.17-.321-.464-.236-.734l.627-2.011-1.585-1.29c-.213-.181-.291-.476-.194-.738.096-.262.346-.437.626-.437h2.001l.708-1.987c.097-.261.346-.434.625-.434s.528.173.625.434l.708,1.987h2.001c.28,0,.53.175.626.438s.017.558-.197.739l-1.577,1.285.652,1.987c.089.269-.001.565-.226.738-.225.173-.534.185-.771.031l-1.836-1.196-1.805,1.208c-.112.075-.242.113-.371.113Zm19.671-3.762h-2c-1.381,0-2.5,1.119-2.5,2.5v9c0,1.381,1.119,2.5,2.5,2.5h2c1.381,0,2.5-1.119,2.5-2.5v-9c0-1.381-1.119-2.5-2.5-2.5Zm-17.5,6h-1.5c-1.381,0-2.5,1.119-2.5,2.5v3c0,1.381,1.119,2.5,2.5,2.5h1.5c1.381,0,2.5-1.119,2.5-2.5v-3c0-1.381-1.119-2.5-2.5-2.5Zm8.5-3h-1.5c-1.381,0-2.5,1.119-2.5,2.5v6c0,1.381,1.119,2.5,2.5,2.5h1.5c1.381,0,2.5-1.119,2.5-2.5v-6c0-1.381-1.119-2.5-2.5-2.5Z" />
             </svg>
                             <span>Peringkat</span>
                         </a>
-                        <a href="daftar_tes.html" id="nav-daftar" class="flex flex-col items-center text-gray-400 hover:text-rose-500 transition-colors px-4 py-2 rounded-lg hover:bg-rose-50">
+                        <a href="daftar_tes.html" id="nav-daftar" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 transition-colors px-4 py-2 rounded-lg hover:bg-indigo-50">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
         <path
           d="m15.5,0h-7c-1.933,0-3.5,1.567-3.5,3.5v5c0,1.933,1.567,3.5,3.5,3.5h.654l1.835,1.617c.289.256.652.383,1.014.383.359,0,.716-.125,1-.375l1.878-1.625h.619c1.933,0,3.5-1.567,3.5-3.5V3.5c0-1.933-1.567-3.5-3.5-3.5Zm-.266,5.68l-2.531,2.734c-.392.387-.896.578-1.395.578-.485,0-.964-.182-1.331-.54l-1.202-1.263c-.381-.4-.365-1.033.036-1.414.4-.382,1.034-.363,1.414.035l1.096,1.153,2.445-2.644c.375-.406,1.007-.431,1.413-.054.405.375.43,1.008.055,1.413Zm-9.074,11.737l.732,2.139h-1.784l.725-2.121c.023-.047.112-.102.167-.102.057,0,.142.047.16.083Zm4.84,1.584c0,2.761-2.239,5-5,5s-5-2.239-5-5,2.239-5,5-5,5,2.239,5,5Zm-2.444,2.061l-1.362-4.055c-.286-.647-.685-.784-1.194-.784-.509,0-.909.137-1.202.804l-1.354,4.034c-.118.352.144.717.516.717h0c.233,0,.439-.148.515-.368l.254-.743h2.544l.254.743c.075.22.282.368.514.368h0c.372,0,.634-.365.515-.717Zm11.108-.893c-.029.288-.287.499-.577.499-.4,0-1.134,0-1.643,0-.307,0-.555-.249-.555-.556v-.556h2.222c.325,0,.586.281.553.612Zm-.556-2.335c-.029-.288-.288-.499-.578-.499h-1.086c-.307,0-.556.249-.556.556v.556h1.667c.325,0,.586-.281.553-.612Zm3.892,1.167c0,2.761-2.239,5-5,5s-5-2.239-5-5,2.239-5,5-5,5,2.239,5,5Zm-2.228,1.248c.052-.645-.267-1.222-.765-1.541.144-.254.222-.549.214-.863-.024-.911-.801-1.622-1.713-1.622h-.848c-1.088,0-1.883.796-1.883,1.778v2c0,.982.796,1.778,1.778,1.778h1.512c.876,0,1.635-.657,1.705-1.53Z" />
       </svg>
                             <span>Daftar Tes</span>
                         </a>
-                        <a href="playground_ifp.html" id="nav-playground" class="flex flex-col items-center text-gray-400 hover:text-rose-500 transition-colors px-4 py-2 rounded-lg hover:bg-rose-50">
+                        <a href="playground_ifp.html" id="nav-playground" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 transition-colors px-4 py-2 rounded-lg hover:bg-indigo-50">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor"><path d="M21,6H3C1.9,6,1,6.9,1,8v8c0,1.1,0.9,2,2,2h18c1.1,0,2-0.9,2-2V8C23,6.9,22.1,6,21,6z M11,13H8v3H6v-3H3v-2h3V8h2v3h3V13z M17,13 c-0.83,0-1.5-0.67-1.5-1.5c0-0.83,0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5C18.5,12.33,17.83,13,17,13z M19.5,10c-0.83,0-1.5-0.67-1.5-1.5 c0-0.83,0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5C21,9.33,20.33,10,19.5,10z" /></svg>
                             <span>Playground</span>
                         </a>
-                        <a href="dashboard.html" id="desktop-nav-hasil" class="hidden flex flex-col items-center text-gray-400 hover:text-rose-500 transition-colors px-4 py-2 rounded-lg hover:bg-rose-50">
+                        <a href="dashboard.html" id="desktop-nav-hasil" class="hidden flex flex-col items-center text-gray-400 hover:text-indigo-500 transition-colors px-4 py-2 rounded-lg hover:bg-indigo-50">
                             <span class="material-icons">assignment_turned_in</span>
                             <span>Dashboard</span>
                         </a>
-                        <a href="Tentang-Kami.html" id="nav-about" class="flex flex-col items-center text-gray-400 hover:text-rose-500 transition-colors px-4 py-2 rounded-lg hover:bg-rose-50">
+                        <a href="Tentang-Kami.html" id="nav-about" class="flex flex-col items-center text-gray-400 hover:text-indigo-500 transition-colors px-4 py-2 rounded-lg hover:bg-indigo-50">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
               <path
                 d="m15,24c0,.009,0,.017,0,.026h-6.001c0-.009,0-.017,0-.026,0-1.654,1.346-3,3-3s3,1.346,3,3Zm-.077-15.974h6.54c-.347-.913-.88-1.753-1.591-2.464l-3.484-3.486c-.712-.711-1.552-1.244-2.465-1.59v6.54c0,.551.448,1,1,1Zm7,2.485v8.515c0,2.731-2.202,4.958-4.924,4.999,0-.008,0-.016,0-.025,0-2.757-2.243-5-5-5s-5,2.243-5,5c0,.009,0,.017,0,.026h-.078c-2.757,0-5-2.243-5-5V5.026C1.923,2.269,4.166.026,6.923.026h4.515c.163,0,.324.013.485.024v6.976c0,1.654,1.346,3,3,3h6.976c.011.161.024.322.024.485Zm-6.423,3.989c0-1.93-1.57-3.5-3.5-3.5s-3.5,1.57-3.5,3.5,1.57,3.5,3.5,3.5-1.57,3.5-3.5Zm-3.5-1.5c-.827,0-1.5.673-1.5,1.5s.673,1.5,1.5,1.5,1.5-.673,1.5-1.5-.673-1.5-1.5-1.5Z" />
@@ -236,8 +236,8 @@ class AppHeader extends HTMLElement {
         if (activeId) {
             const el = this.querySelector(`#${activeId}`);
             if (el) {
-                el.classList.remove('text-gray-400', 'hover:bg-rose-50', 'hover:text-rose-500');
-                el.classList.add('text-rose-600', 'font-semibold', 'bg-rose-50', 'rounded-2xl');
+                el.classList.remove('text-gray-400', 'hover:bg-indigo-50', 'hover:text-indigo-500');
+                el.classList.add('text-indigo-600', 'font-semibold', 'bg-indigo-50', 'rounded-2xl');
             }
         }
     }
@@ -375,36 +375,36 @@ class AppMobileNav extends HTMLElement {
     </style>
     <div class="md:hidden h-16 dashboard-nav-hidden"></div>
     <div id="mobile-bottom-nav" class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-white/50 z-50 md:hidden flex justify-around items-center h-20 pb-2 transition-transform duration-300 translate-y-0 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-        <a href="index.html" id="mob-home" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-rose-500 transition-all rounded-2xl" aria-label="Beranda">
+        <a href="index.html" id="mob-home" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-indigo-500 transition-all rounded-2xl" aria-label="Beranda">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-6 w-6" fill="currentColor">
                 <path d="M256,319.841c-35.346,0-64,28.654-64,64v128h128v-128C320,348.495,291.346,319.841,256,319.841z" />
                 <path d="M362.667,383.841v128H448c35.346,0,64-28.654,64-64V253.26c0.005-11.083-4.302-21.733-12.011-29.696l-181.29-195.99 c-31.988-34.61-85.976-36.735-120.586-4.747c-1.644,1.52-3.228,3.103-4.747,4.747L12.395,223.5 C4.453,231.496-0.003,242.31,0,253.58v194.261c0,35.346,28.654,64,64,64h85.333v-128c0.399-58.172,47.366-105.676,104.073-107.044 C312.01,275.383,362.22,323.696,362.667,383.841z" />
             </svg>
             <span class="text-[10px] font-medium mt-1">Beranda</span>
         </a>
-        <a href="leaderboard.html" id="mob-leaderboard" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-rose-500 transition-all rounded-2xl" aria-label="Peringkat">
+        <a href="leaderboard.html" id="mob-leaderboard" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-indigo-500 transition-all rounded-2xl" aria-label="Peringkat">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
                 <path d="m17.829,7.762c-.141,0-.282-.045-.4-.133-.227-.17-.321-.464-.236-.734l.627-2.011-1.585-1.29c-.213-.181-.291-.476-.194-.738.096-.262.346-.437.626-.437h2.001l.708-1.987c.097-.261.346-.434.625-.434s.528.173.625.434l.708,1.987h2.001c.28,0,.53.175.626.438s.017.558-.197.739l-1.577,1.285.652,1.987c.089.269-.001.565-.226.738-.225.173-.534.185-.771.031l-1.836-1.196-1.805,1.208c-.112.075-.242.113-.371.113Zm-8,3c-.141,0-.282-.045-.4-.133-.227-.17-.321-.464-.236-.734l.627-2.011-1.585-1.29c-.213-.181-.291-.476-.194-.738.096-.262.346-.437.626-.437h2.001l.708-1.987c.097-.261.346-.434.625-.434s.528.173.625.434l.708,1.987h2.001c.28,0,.53.175.626.438s.017.558-.197.739l-1.577,1.285.652,1.987c.089.269-.001.565-.226.738-.225.173-.534.185-.771.031l-1.836-1.196-1.805,1.208c-.112.075-.242.113-.371.113ZM1.829,13.762c-.141,0-.282-.045-.4-.133-.227-.17-.321-.464-.236-.734l.627-2.011-1.585-1.29c-.213-.181-.291-.476-.194-.738.096-.262.346-.437.626-.437h2.001l.708-1.987c.097-.261.346-.434.625-.434s.528.173.625.434l.708,1.987h2.001c.28,0,.53.175.626.438s.017.558-.197.739l-1.577,1.285.652,1.987c.089.269-.001.565-.226.738-.225.173-.534.185-.771.031l-1.836-1.196-1.805,1.208c-.112.075-.242.113-.371.113Zm19.671-3.762h-2c-1.381,0-2.5,1.119-2.5,2.5v9c0,1.381,1.119,2.5,2.5,2.5h2c1.381,0,2.5-1.119,2.5-2.5v-9c0-1.381-1.119-2.5-2.5-2.5Zm-17.5,6h-1.5c-1.381,0-2.5,1.119-2.5,2.5v3c0,1.381,1.119,2.5,2.5,2.5h1.5c1.381,0,2.5-1.119,2.5-2.5v-3c0-1.381-1.119-2.5-2.5-2.5Zm8.5-3h-1.5c-1.381,0-2.5,1.119-2.5,2.5v6c0,1.381,1.119,2.5,2.5,2.5h1.5c1.381,0,2.5-1.119,2.5-2.5v-6c0-1.381-1.119-2.5-2.5-2.5Z" />
             </svg>
             <span class="text-[10px] font-medium mt-1">Peringkat</span>
         </a>
-        <a href="daftar_tes.html" id="mob-tes" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-rose-500 transition-all rounded-2xl" aria-label="Tes">
+        <a href="daftar_tes.html" id="mob-tes" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-indigo-500 transition-all rounded-2xl" aria-label="Tes">
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
             <path d="m15.5,0h-7c-1.933,0-3.5,1.567-3.5,3.5v5c0,1.933,1.567,3.5,3.5,3.5h.654l1.835,1.617c.289.256.652.383,1.014.383.359,0,.716-.125,1-.375l1.878-1.625h.619c1.933,0,3.5-1.567,3.5-3.5V3.5c0-1.933-1.567-3.5-3.5-3.5Zm-.266,5.68l-2.531,2.734c-.392.387-.896.578-1.395.578-.485,0-.964-.182-1.331-.54l-1.202-1.263c-.381-.4-.365-1.033.036-1.414.4-.382,1.034-.363,1.414.035l1.096,1.153,2.445-2.644c.375-.406,1.007-.431,1.413-.054.405.375.43,1.008.055,1.413Zm-9.074,11.737l.732,2.139h-1.784l.725-2.121c.023-.047.112-.102.167-.102.057,0,.142.047.16.083Zm4.84,1.584c0,2.761-2.239,5-5,5s-5-2.239-5-5,2.239-5,5-5,5,2.239,5,5Zm-2.444,2.061l-1.362-4.055c-.286-.647-.685-.784-1.194-.784-.509,0-.909.137-1.202.804l-1.354,4.034c-.118.352.144.717.516.717h0c.233,0,.439-.148.515-.368l.254-.743h2.544l.254.743c.075.22.282.368.514.368h0c.372,0,.634-.365.515-.717Zm11.108-.893c-.029.288-.287.499-.577.499-.4,0-1.134,0-1.643,0-.307,0-.555-.249-.555-.556v-.556h2.222c.325,0,.586.281.553.612Zm-.556-2.335c-.029-.288-.288-.499-.578-.499h-1.086c-.307,0-.556.249-.556.556v.556h1.667c.325,0,.586-.281.553-.612Zm3.892,1.167c0,2.761-2.239,5-5,5s-5-2.239-5-5,2.239-5,5-5,5,2.239,5,5Zm-2.228,1.248c.052-.645-.267-1.222-.765-1.541.144-.254.222-.549.214-.863-.024-.911-.801-1.622-1.713-1.622h-.848c-1.088,0-1.883.796-1.883,1.778v2c0,.982.796,1.778,1.778,1.778h1.512c.876,0,1.635-.657,1.705-1.53Z" />
       </svg>
             <span class="text-[10px] font-medium mt-1">Daftar Tes</span>
         </a>
-        <a href="playground_ifp.html" id="mob-playground" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-rose-500 transition-all rounded-2xl" aria-label="Playground">
+        <a href="playground_ifp.html" id="mob-playground" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-indigo-500 transition-all rounded-2xl" aria-label="Playground">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
                 <path d="M21,6H3C1.9,6,1,6.9,1,8v8c0,1.1,0.9,2,2,2h18c1.1,0,2-0.9,2-2V8C23,6.9,22.1,6,21,6z M11,13H8v3H6v-3H3v-2h3V8h2v3h3V13z M17,13 c-0.83,0-1.5-0.67-1.5-1.5c0-0.83,0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5C18.5,12.33,17.83,13,17,13z M19.5,10c-0.83,0-1.5-0.67-1.5-1.5 c0-0.83,0.67-1.5,1.5-1.5s1.5,0.67,1.5,1.5C21,9.33,20.33,10,19.5,10z" />
             </svg>
             <span class="text-[10px] font-medium mt-1">Playground</span>
         </a>
-         <a href="dashboard.html" id="mobile-nav-hasil" class="hidden flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-rose-500 transition-all rounded-2xl" aria-label="Hasil Tes">
+         <a href="dashboard.html" id="mobile-nav-hasil" class="hidden flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-indigo-500 transition-all rounded-2xl" aria-label="Hasil Tes">
             <span class="material-icons">assignment_turned_in</span>
             <span class="text-[10px] font-medium mt-1">Hasil</span>
         </a>
-        <a href="Tentang-Kami.html" id="mob-about" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-rose-500 transition-all rounded-2xl" aria-label="Tentang">
+        <a href="Tentang-Kami.html" id="mob-about" class="flex flex-col items-center justify-center w-16 h-16 text-gray-400 hover:text-indigo-500 transition-all rounded-2xl" aria-label="Tentang">
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor" aria-hidden="true">
         <path d="m15,24c0,.009,0,.017,0,.026h-6.001c0-.009,0-.017,0-.026,0-1.654,1.346-3,3-3s3,1.346,3,3Zm-.077-15.974h6.54c-.347-.913-.88-1.753-1.591-2.464l-3.484-3.486c-.712-.711-1.552-1.244-2.465-1.59v6.54c0,.551.448,1,1,1Zm7,2.485v8.515c0,2.731-2.202,4.958-4.924,4.999,0-.008,0-.016,0-.025,0-2.757-2.243-5-5-5s-5,2.243-5,5c0,.009,0,.017,0,.026h-.078c-2.757,0-5-2.243-5-5V5.026C1.923,2.269,4.166.026,6.923.026h4.515c.163,0,.324.013.485.024v6.976c0,1.654,1.346,3,3,3h6.976c.011.161.024.322.024.485Zm-6.423,3.989c0-1.93-1.57-3.5-3.5-3.5s-3.5,1.57-3.5,3.5,1.57,3.5,3.5,3.5-1.57,3.5-3.5Zm-3.5-1.5c-.827,0-1.5.673-1.5,1.5s.673,1.5,1.5,1.5,1.5-.673,1.5-1.5-.673-1.5-1.5-1.5Z" />
       </svg>
@@ -462,7 +462,7 @@ class AppMobileNav extends HTMLElement {
             const el = this.querySelector(`#${activeId}`);
             if (el) {
                 el.classList.remove('text-gray-500');
-                el.classList.add('text-rose-600', 'bg-rose-50', 'rounded-2xl');
+                el.classList.add('text-indigo-600', 'bg-indigo-50', 'rounded-2xl');
             }
         }
     }
@@ -768,13 +768,13 @@ class AppSidebar extends HTMLElement {
                 el.classList.remove('text-slate-500', 'hover:bg-slate-50');
 
                 // Add active classes (Light Rose Background + Red Text + Bold)
-                el.classList.add('bg-rose-50', 'text-rose-600', 'font-bold');
+                el.classList.add('bg-indigo-50', 'text-indigo-600', 'font-bold');
 
                 // Icon Color
                 const icon = el.querySelector('.material-icons-round');
                 if (icon) {
                     icon.classList.remove('text-slate-400');
-                    icon.classList.add('text-rose-600');
+                    icon.classList.add('text-indigo-600');
                 }
             }
         }

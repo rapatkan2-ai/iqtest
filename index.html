@@ -1544,12 +1544,13 @@
               class="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white/90 md:from-slate-50/90 to-transparent z-10 pointer-events-none">
             </div>
 
-            <div class="flex animate-scroll-right px-6 md:px-12 lg:px-16 hover:pause">
+            <div id="testimonial-scroll"
+              class="flex overflow-x-auto px-6 md:px-12 lg:px-16 pb-4 md:pb-0 scrollbar-hide">
 
               <div class="flex gap-4 pr-4">
 
                 <article
-                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-center"
                   role="listitem">
                   <div class="absolute top-6 right-6 text-slate-200 group-hover:text-blue-100 transition-colors">
                     <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
@@ -1583,7 +1584,7 @@
                 </article>
 
                 <article
-                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-center"
                   role="listitem">
                   <div class="absolute top-6 right-6 text-slate-200 group-hover:text-purple-100 transition-colors">
                     <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
@@ -1617,7 +1618,7 @@
                 </article>
 
                 <article
-                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-green-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-start"
+                  class="card-item w-[320px] md:w-[360px] p-7 rounded-3xl bg-slate-50 border border-slate-100 hover:border-green-200 hover:bg-white hover:shadow-lg transition-all duration-300 relative group snap-center"
                   role="listitem">
                   <div class="absolute top-6 right-6 text-slate-200 group-hover:text-green-100 transition-colors">
                     <svg class="w-10 h-10 transform rotate-180" fill="currentColor" viewBox="0 0 24 24">
@@ -1957,6 +1958,107 @@
   </div>
 
 
+  <!-- Hybrid Infinite Scroll Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const scrollContainer = document.getElementById('testimonial-scroll');
+      if (!scrollContainer) return;
+
+      // Duplicate content to create seamless loop illusion (Triple it for safety)
+      // Note: We are duplicating the inner content (the div with flex gap-4)
+      const contentWrapper = scrollContainer.firstElementChild;
+      if (!contentWrapper) return;
+
+      // Clone the content wrapper twice to ensure enough buffer for left and right scrolling
+      // Using cloneNode to copy the <div> holding the articles
+      const clone1 = contentWrapper.cloneNode(true);
+      const clone2 = contentWrapper.cloneNode(true);
+
+      scrollContainer.appendChild(clone1);
+      scrollContainer.appendChild(clone2);
+
+      let scrollSpeed = 0.5; // Adjustable speed
+      let isPaused = false;
+      let animationId;
+
+      // We want to start in the middle set to allow backward swipe immediately
+      // The container has 3 sets: [Original][Clone1][Clone2]
+      // We want to be at the start of [Clone1] which is essentially the "middle" visually
+
+      const resetScrollPosition = () => {
+        // If we scroll past the second set (visually into the third), jump back to start of second set
+        // Width of one set
+        const setWidth = contentWrapper.offsetWidth + 16; // APPROXimate gap? Better to measure.
+        // Let's rely on scrollWidth total. 
+        const totalWidth = scrollContainer.scrollWidth;
+        const singleSetWidth = totalWidth / 3;
+
+        if (scrollContainer.scrollLeft >= singleSetWidth * 2) {
+          scrollContainer.scrollLeft = singleSetWidth;
+        } else if (scrollContainer.scrollLeft <= 5) { // If user swipes too far left near 0
+          scrollContainer.scrollLeft = singleSetWidth;
+        }
+      };
+
+      const autoScroll = () => {
+        if (!isPaused) {
+          scrollContainer.scrollLeft += scrollSpeed;
+
+          const totalWidth = scrollContainer.scrollWidth;
+          const singleSetWidth = totalWidth / 3;
+
+          // Seamless loop check
+          if (scrollContainer.scrollLeft >= singleSetWidth * 2) {
+            scrollContainer.scrollLeft = singleSetWidth + (scrollContainer.scrollLeft - singleSetWidth * 2);
+          }
+        }
+        animationId = requestAnimationFrame(autoScroll);
+      };
+
+      // Set initial position to the middle set (Clone1)
+      const initScroll = () => {
+        const totalWidth = scrollContainer.scrollWidth;
+        // We need to wait for layout? 
+        // A rough estimate or just setting it might be enough if images have dimensions.
+        // Because of lazy loading, width might change. Let's try setting it.
+        scrollContainer.scrollLeft = totalWidth / 3;
+      };
+
+      // Delay slightly to ensure layout rendering
+      setTimeout(initScroll, 100);
+
+      // Interactions
+      const pause = () => {
+        isPaused = true;
+        scrollContainer.classList.add('snap-x');
+      };
+
+      const resume = () => {
+        isPaused = false;
+        scrollContainer.classList.remove('snap-x');
+      };
+
+      scrollContainer.addEventListener('mouseenter', pause);
+      scrollContainer.addEventListener('mouseleave', resume);
+      scrollContainer.addEventListener('touchstart', pause, { passive: true });
+      scrollContainer.addEventListener('touchend', resume);
+
+      // Infinite Loop Logic on manual scroll
+      scrollContainer.addEventListener('scroll', () => {
+        const totalWidth = scrollContainer.scrollWidth;
+        const singleSetWidth = totalWidth / 3;
+
+        if (scrollContainer.scrollLeft >= singleSetWidth * 2) {
+          scrollContainer.scrollLeft = singleSetWidth + (scrollContainer.scrollLeft - singleSetWidth * 2);
+        } else if (scrollContainer.scrollLeft <= 0) {
+          scrollContainer.scrollLeft = singleSetWidth;
+        }
+      });
+
+      // Start animation
+      animationId = requestAnimationFrame(autoScroll);
+    });
+  </script>
 </body>
 
 </html>
