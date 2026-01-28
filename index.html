@@ -31,13 +31,9 @@
 
   <link rel="icon" type="image/webp" href="assets/FaviconNew.webp">
 
-  <!-- Preload main stylesheets but load them asynchronously -->
-  <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="tailwind_compiled.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="tailwind_compiled.css">
-  </noscript>
+  <!-- Main Stylesheets (Synchronous for FOUC prevention) -->
+  <link rel="stylesheet" href="styles.css">
+
 
   <!-- Non-critical Stylesheets (Deferred) -->
   <link rel="stylesheet" href="fonts.css" media="print" onload="this.media='all'">
@@ -187,7 +183,18 @@
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="assets/fonts/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2"
     crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2" crossorigin>
   <style>
+    /* Inlined Critical Font: Poppins 600 Latin */
+    @font-face {
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('assets/fonts/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
     @keyframes scroll-right {
       0% {
         transform: translateX(-50%);
@@ -215,7 +222,7 @@
 
   <app-header></app-header>
 
-  <section class="relative pt-12 md:pt-8 pb-12 overflow-hidden animate-fade-in-up">
+  <section class="relative pt-12 md:pt-8 pb-12 overflow-hidden">
     <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-80px)] md:min-h-0 md:h-auto py-2 md:py-8">
 
@@ -231,13 +238,17 @@
             <div class="flex items-center justify-center md:justify-start">
               <div class="flex -space-x-2">
                 <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
-                  src="assets/user1.jpg" alt="User 1" width="32" height="32">
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/user1.jpg"
+                  alt="User 1" width="32" height="32">
                 <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
-                  src="assets/user2.jpg" alt="User 2" width="32" height="32">
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/user2.jpg"
+                  alt="User 2" width="32" height="32">
                 <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
-                  src="assets/user3.jpg" alt="User 3" width="32" height="32">
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/user3.jpg"
+                  alt="User 3" width="32" height="32">
                 <img class="inline-block h-8 w-8 rounded-full ring-2 ring-white object-cover" loading="lazy"
-                  src="assets/user4.jpg" alt="User 4" width="32" height="32">
+                  src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/user4.jpg"
+                  alt="User 4" width="32" height="32">
               </div>
               <div class="ml-2 text-left">
                 <div class="flex items-center text-yellow-500">
@@ -281,14 +292,18 @@
 
         <div class="relative -mt-10 md:hidden h-80 sm:h-96">
           <div id="hero-slider-mobile" class="relative h-full">
-            <img src="assets/12.webp" class="w-full h-full object-contain drop-shadow-2xl animate-fade-in"
+            <img
+              src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/12.webp"
+              class="w-full h-full object-contain drop-shadow-2xl animate-fade-in"
               style="transform: scale(1.1) translateY(-30px); transform-origin: center bottom; animation: fadeIn 0.5s"
               alt="IQ Test Illustration Mobile" fetchpriority="high" width="500" height="500">
           </div>
         </div>
         <div class="hidden md:block absolute right-0 top-0 h-full w-1/2 z-10">
           <div id="hero-slider-desktop" class="relative h-full" style="top: 5px;">
-            <img src="assets/12.webp" class="w-full h-full object-contain drop-shadow-2xl animate-fade-in"
+            <img
+              src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/12.webp"
+              class="w-full h-full object-contain drop-shadow-2xl animate-fade-in"
               style="transform: scale(1.2); transform-origin: bottom; animation: fadeIn 0.5s"
               alt="IQ Test Illustration Desktop" fetchpriority="high" width="800" height="800">
           </div>
@@ -325,8 +340,9 @@
       </div>
       <div class="text-center md:hidden pt-0 md:pt-0">
         <div class="flex items-center justify-center space-x-3 md:hidden">
-          <img src="assets/FaviconNew.webp" alt="MindTest.id Logo" class="h-12 w-auto align-bottom" width="48"
-            height="48">
+          <img
+            src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/FaviconNew.webp"
+            alt="MindTest.id Logo" class="h-12 w-auto align-bottom" width="48" height="48">
           <h1 class="text-4xl font-extrabold text-primary">MindTest.id</h1>
         </div>
 
@@ -397,7 +413,9 @@
                   <span class="material-icons text-sm mr-1.5">article</span> Standar Internasional
                 </div>
                 <div class="rounded-lg p-2 bg-white/10">
-                  <img src="assets/Tes_IQ_Picture.webp" alt="Tes IQ Jenius"
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/Tes_IQ_Picture.webp"
+                    alt="Tes IQ Jenius"
                     class="w-full h-40 object-contain transform scale-[1.4] transition-transform duration-300"
                     width="320" height="320" loading="lazy" />
                 </div>
@@ -480,7 +498,9 @@
                   <span class="material-icons text-sm mr-1.5">self_improvement</span> Pengembangan Diri
                 </div>
                 <div class="rounded-lg p-2 bg-white/10">
-                  <img src="assets/4.webp" alt="Tes Kepribadian"
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/4.webp"
+                    alt="Tes Kepribadian"
                     class="w-full h-40 object-contain transform scale-[1.4] transition-transform duration-300"
                     width="320" height="320" loading="lazy" />
                 </div>
@@ -568,7 +588,9 @@
                   <span class="material-icons text-sm mr-1.5">public</span> Global Opportunities
                 </div>
                 <div class="rounded-lg p-2 bg-white/10">
-                  <img src="assets/coin_2.webp" alt="English Proficiency"
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/coin_2.webp"
+                    alt="English Proficiency"
                     class="w-full h-40 object-contain transform scale-[1.4] transition-transform duration-300"
                     width="320" height="320" loading="lazy" />
                 </div>
@@ -626,7 +648,9 @@
                 <h3 class="font-bold text-lg text-gray-800">Eksplorasi semua tes</h3>
                 <p class="text-sm text-gray-500 mt-1">Jelajahi semua tes dari MindTest.id</p>
               </div>
-              <img src="assets/Hero_Image.webp" alt="Lihat Semua Kuis"
+              <img
+                src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/Hero_Image.webp"
+                alt="Lihat Semua Kuis"
                 class="relative w-full h-auto max-h-64 object-contain mt-4 opacity-90 group-hover:opacity-100 transition-opacity transform scale-130"
                 width="500" height="500" loading="lazy">
               <div class="relative z-10 mt-4">
@@ -766,7 +790,9 @@
                     <span class="text-xs text-white/80 font-serif italic tracking-wide">John Carlyle Raven</span>
                   </div>
 
-                  <img src="assets/raven_preview.webp" alt="J.C. Raven"
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/raven_preview.webp"
+                    alt="J.C. Raven"
                     class="absolute bottom-14 right-0 w-[90%] md:w-[85%] h-auto object-contain object-bottom filter grayscale contrast-125 opacity-60 group-hover:scale-105 group-hover:opacity-90 group-hover:grayscale-0 transition-all duration-700 ease-out z-0"
                     width="640" height="640" loading="lazy">
 
@@ -964,11 +990,14 @@
                 </p>
                 <div class="flex gap-4">
                   <div class="flex -space-x-3">
-                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="assets/user_men_32.jpg"
+                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                      src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/user_men_32.jpg"
                       alt="User" width="40" height="40" loading="lazy">
-                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="assets/user_women_44.jpg"
+                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                      src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/user_women_44.jpg"
                       alt="User" width="40" height="40" loading="lazy">
-                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm" src="assets/user_men_85.jpg"
+                    <img class="w-10 h-10 rounded-full border-2 border-white shadow-sm"
+                      src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/user_men_85.jpg"
                       alt="User" width="40" height="40" loading="lazy">
                     <div
                       class="w-10 h-10 rounded-full border-2 border-white bg-slate-800 text-white flex items-center justify-center text-xs font-bold shadow-sm">
@@ -1059,17 +1088,20 @@
                   </div>
                   <div class="flex gap-3 overflow-x-auto pb-4 scrollbar-hide snap-x pt-2">
                     <div class="relative group/thumb cursor-pointer snap-center shrink-0">
-                      <img src="assets/report1.webp"
+                      <img
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/report1.webp"
                         class="certificate-thumb w-32 md:w-40 h-auto rounded-lg shadow-md border-2 border-white group-hover/thumb:border-blue-400 transition-all group-hover/thumb:scale-105 group-hover/thumb:shadow-lg object-cover"
                         alt="Contoh Sertifikat 1" width="160" height="226" loading="lazy">
                     </div>
                     <div class="relative group/thumb cursor-pointer snap-center shrink-0">
-                      <img src="assets/report2.webp"
+                      <img
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/report2.webp"
                         class="certificate-thumb w-32 md:w-40 h-auto rounded-lg shadow-md border-2 border-white group-hover/thumb:border-blue-400 transition-all group-hover/thumb:scale-105 group-hover/thumb:shadow-lg object-cover"
                         alt="Contoh Sertifikat 2" width="160" height="226" loading="lazy">
                     </div>
                     <div class="relative group/thumb cursor-pointer snap-center shrink-0">
-                      <img src="assets/report3.webp"
+                      <img
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/report3.webp"
                         class="certificate-thumb w-32 md:w-40 h-auto rounded-lg shadow-md border-2 border-white group-hover/thumb:border-blue-400 transition-all group-hover/thumb:scale-105 group-hover/thumb:shadow-lg object-cover"
                         alt="Contoh Sertifikat 3" width="160" height="226" loading="lazy">
                     </div>
@@ -1162,7 +1194,8 @@
                       <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
                       <div class="w-2 h-2 rounded-full bg-green-400"></div>
                     </div>
-                    <img src="assets/Dashboard.webp"
+                    <img
+                      src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/Dashboard.webp"
                       class="certificate-thumb w-full h-auto mt-6 object-cover transform transition-transform duration-700 group-hover/dash:scale-105 cursor-pointer"
                       alt="Contoh Dashboard Analisis">
 
@@ -1524,8 +1557,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/raka.jpg" class="w-full h-full object-cover"
-                        alt="Raka Aditya">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/raka.jpg"
+                        class="w-full h-full object-cover" alt="Raka Aditya">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Raka Aditya</h4>
@@ -1557,8 +1591,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/sarah.jpg" class="w-full h-full object-cover"
-                        alt="Sarah Wilandari">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/sarah.jpg"
+                        class="w-full h-full object-cover" alt="Sarah Wilandari">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Sarah Wilandari</h4>
@@ -1590,8 +1625,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/dimas.jpg" class="w-full h-full object-cover"
-                        alt="Dimas Pratama">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/dimas.jpg"
+                        class="w-full h-full object-cover" alt="Dimas Pratama">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Dimas Pratama</h4>
@@ -1622,8 +1658,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/bella.jpg" class="w-full h-full object-cover"
-                        alt="Bella Putri">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/bella.jpg"
+                        class="w-full h-full object-cover" alt="Bella Putri">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Bella Putri</h4>
@@ -1654,8 +1691,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/andre.jpg" class="w-full h-full object-cover"
-                        alt="Andre Santoso">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/andre.jpg"
+                        class="w-full h-full object-cover" alt="Andre Santoso">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Andre Santoso</h4>
@@ -1686,8 +1724,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/livia.jpg" class="w-full h-full object-cover"
-                        alt="Livia Putri">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/livia.jpg"
+                        class="w-full h-full object-cover" alt="Livia Putri">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Livia Putri</h4>
@@ -1718,8 +1757,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/kevin.jpg" class="w-full h-full object-cover"
-                        alt="Kevin Wijaya">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/kevin.jpg"
+                        class="w-full h-full object-cover" alt="Kevin Wijaya">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Kevin Wijaya</h4>
@@ -1750,8 +1790,9 @@
 
                   <div class="flex items-center gap-4 mb-5 relative z-10">
                     <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                      <img loading="lazy" src="assets/testimonials/maya.jpg" class="w-full h-full object-cover"
-                        alt="Maya Lestari">
+                      <img loading="lazy"
+                        src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/testimonials/maya.jpg"
+                        class="w-full h-full object-cover" alt="Maya Lestari">
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-900 text-lg">Maya Lestari</h4>
@@ -1854,8 +1895,9 @@
       </div>
 
       <div class="p-4 bg-gray-50 flex justify-center items-center">
-        <img id="cert-lightbox-img" src="assets/Dashboard.webp" alt="Certificate Preview"
-          class="max-w-full max-h-[60vh] w-auto h-auto rounded-lg shadow-sm object-contain">
+        <img id="cert-lightbox-img"
+          src="https://cdn.jsdelivr.net/gh/rapatkan2-ai/iqtest@14ee90eb5fe731f6b098c0980853358ca663fb5a/assets/Dashboard.webp"
+          alt="Certificate Preview" class="max-w-full max-h-[60vh] w-auto h-auto rounded-lg shadow-sm object-contain">
       </div>
     </div>
   </div>
@@ -1915,4 +1957,4 @@
 </body>
 
 </html>
-<!-- BUILD_ID: 20260127-1018-UNIQUE-DEPLOY -->
+<!-- BUILD_ID: 20260127-2205-CDN-CHECK -->
